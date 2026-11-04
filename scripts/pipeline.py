@@ -13,6 +13,7 @@ from scripts.downloader import download_item
 from scripts.list_config import load_mod_list
 from scripts.manifest import asset_name, atomic_write_json, load_manifest, sha256_file, validate_manifest
 from scripts.publisher import create_draft, delete_draft, download_latest_manifest, publish, upload, verify_assets
+from scripts.release_notes import build_release_notes
 from scripts.workshop import fetch_details
 
 
@@ -75,7 +76,16 @@ def main() -> int:
         item_id = selected_mod.workshop_id
         metadata = details[item_id]
         if item_id not in changed_ids:
-            output_mods.append(old_by_id[item_id])
+            old = old_by_id[item_id]
+            output_mods.append({
+                "id": item_id,
+                "name": metadata.name,
+                "description": metadata.description,
+                "workshopUrl": metadata.url,
+                "creator": metadata.creator,
+                "timeUpdated": metadata.time_updated,
+                "files": old["files"],
+            })
             continue
         files = download_item(config.game, item_id, download_root, os.environ.get("STEAMCMD_PATH"))
         entries = []
@@ -94,6 +104,7 @@ def main() -> int:
         output_mods.append({
             "id": item_id,
             "name": metadata.name,
+            "description": metadata.description,
             "workshopUrl": metadata.url,
             "creator": metadata.creator,
             "timeUpdated": metadata.time_updated,
@@ -103,13 +114,14 @@ def main() -> int:
     generated = datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z")
     manifest = {"schemaVersion": 1, "latest": version, "game": config.game, "generatedAt": generated, "mods": output_mods}
     validate_manifest(manifest)
+    notes = build_release_notes(version, manifest, previous, changes)
     latest_asset = args.work_dir / "manifest.json"
     atomic_write_json(latest_asset, manifest)
 
     expected = {path.name for path in asset_paths} | {latest_asset.name}
     draft_created = False
     try:
-        create_draft(tag, f"L4D2 Modpack {version}", f"Adicionados: {len(changes.added)}\nAtualizados: {len(changes.updated)}\nRemovidos: {len(changes.removed)}")
+        create_draft(tag, f"L4D2 Modpack {version}", notes)
         draft_created = True
         upload(tag, asset_paths)
         upload(tag, [latest_asset])
