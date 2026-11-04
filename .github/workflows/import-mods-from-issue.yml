@@ -83,5 +83,8 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           ISSUE_URL: ${{ github.event.issue.html_url }}
           RUN_URL: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
-        run: gh issue comment "$ISSUE_URL" --body "## ❌ Não foi possível importar os mods\n\nConsulte os detalhes da execução: $RUN_URL"
+        run: |
+          gh issue comment "$ISSUE_URL" --body "## ❌ Não foi possível importar os mods
+
+          Consulte os detalhes da execução: $RUN_URL"
 
