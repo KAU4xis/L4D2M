@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "latest": "1.0.6",
+  "latest": "1.0.7",
   "game": 550,
-  "generatedAt": "2026-11-04T18:59:09Z",
+  "generatedAt": "2026-11-04T19:11:39Z",
   "mods": [
     {
       "id": "3547441271",
@@ -17,6 +17,38 @@
           "size": 19329610,
           "sha256": "a06cf0b8faa5ea8798e8f324ccc1227f199d53d640111050a7b3217ca607d3ea",
           "url": "https://github.com/KAU4xis/L4D2M/releases/download/v1.0.1/Singularity-Sheriff-from-Valorant-3547441271-a06cf0b8faa5.vpk"
+        }
+      ]
+    },
+    {
+      "id": "2830757120",
+      "name": "Chamber [Ellis] - Valorant",
+      "description": "[h1] Introducing Chamber!  [/h1]\r\n\r\nHere's Chamber's playermodel taken from Valorant. Enjoy!\r\n\r\n[h2] Donations are APPRECIATED! Any amount is welcome, and I also take commissions. Please message me on my profile [/h2]\r\n\r\n[b] Paypal OR Venmo me @: [/b]\r\nPaypal: https://paypal.me/HeyItsNess552?country.x=US&locale.x=en_US\r\nVenmo: https://venmo.com/code?user_id=3583352435115943525\r\n\r\n\r\n[b] This content includes: [/b]\r\n\r\n[list]\r\n    [*]Custom playermodel \r\n    [*]Custom viewmodel hands \r\n    [*]Custom VGUI\r\n \r\n  \r\n[/list]\r\n\r\n\r\n[h1] If you liked this mod please make sure to LIKE and SUBSCRIBE [/h1]",
+      "workshopUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=2830757120",
+      "creator": "76561198065517427",
+      "timeUpdated": 1657011513,
+      "files": [
+        {
+          "filename": "Chamber-Ellis-Valorant-2830757120-cc242a1e0f39.vpk",
+          "size": 186985168,
+          "sha256": "cc242a1e0f39794d7668d720e2055a5b7417036048d734f55c87d0b5ad55898a",
+          "url": "https://github.com/KAU4xis/L4D2M/releases/download/v1.0.7/Chamber-Ellis-Valorant-2830757120-cc242a1e0f39.vpk"
+        }
+      ]
+    },
+    {
+      "id": "1603974683",
+      "name": "Snorlax (Boomer)",
+      "description": "Play the PokéFlute they said, it'll be fine they said...\n\nWhat's large, round, hungry, and about to cover you with its extremely acidic digestive juices? Why, it's a Snorlax, the Sleeping Pokémon! Its thick fat helps it withstand heat, cold and poisoning. Well, it's a good thing bullets aren't elemental!\nComes with a Boomette replacement. Now I know what you're thinking, male and female Snorlaxes look the same. Well, don't worry, that's been taken care of!\nExpect it to be a bit bigger than your average Boomer. Snorlaxes are large creatures after all.\n\nFeatures:\nBoomette\nExploded Model\nUI Icons\nViewmodel Arms\n\nIf you're wondering why it's using the Super Smash Bros. for Wii U model instead of a proper Pokémon one, well, personal preferences, really. I didn't want to make it look cartoony because it'd stand out too much.\n\nGreat big thanks to [url=https://steamcommunity.com/profiles/76561198046141851/] Szalitar PL[/url] for having this idea in the first place.\n\nSnorlax model ripped by \"ThatTrueStruggle\" on The Models Resource\nBow model ripped by \"Hallow\" on The Models Resource\nI know it's a bow tie, alright?",
+      "workshopUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=1603974683",
+      "creator": "76561198071732989",
+      "timeUpdated": 1601063350,
+      "files": [
+        {
+          "filename": "Snorlax-Boomer-1603974683-cd7ee5d0ef6f.vpk",
+          "size": 3668822,
+          "sha256": "cd7ee5d0ef6f7f0f8252d1258d8b21cb39b6a6bf3d7a01758316a4867a409d66",
+          "url": "https://github.com/KAU4xis/L4D2M/releases/download/v1.0.7/Snorlax-Boomer-1603974683-cd7ee5d0ef6f.vpk"
         }
       ]
     }
