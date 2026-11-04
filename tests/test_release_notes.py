@@ -1,7 +1,7 @@
 import unittest
 
 from scripts.comparator import Changes
-from scripts.release_notes import build_release_notes, human_size
+from scripts.release_notes import _steam_description, build_release_notes, human_size
 
 
 class ReleaseNotesTests(unittest.TestCase):
@@ -24,6 +24,11 @@ class ReleaseNotesTests(unittest.TestCase):
         self.assertIn("Pipe \\| Bomb", notes)
         self.assertIn("🟢 Adicionado", notes)
         self.assertIn("<details>", notes)
+
+    def test_converts_steam_bbcode(self) -> None:
+        converted = _steam_description("[b]Arma[/b] [img]https://example.com/demo.gif[/img]")
+        self.assertIn("**Arma**", converted)
+        self.assertIn("![Imagem do mod](https://example.com/demo.gif)", converted)
 
 
 if __name__ == "__main__":

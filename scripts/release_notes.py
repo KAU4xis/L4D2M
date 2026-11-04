@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+import re
+
 from scripts.comparator import Changes
 
 
@@ -16,6 +18,21 @@ def human_size(size: int) -> str:
 
 def _cell(value: object) -> str:
     return str(value or "—").replace("|", "\\|").replace("\r", " ").replace("\n", " ").strip()
+
+
+def _steam_description(value: object) -> str:
+    """Convert the most common safe Steam BBCode tags to GitHub Markdown."""
+    text = str(value or "").replace("\r\n", "\n").replace("\r", "\n").strip()
+    text = re.sub(r"\[img\](https?://[^\s\[]+)\[/img\]", r"\n\n![Imagem do mod](\1)\n\n", text, flags=re.IGNORECASE)
+    text = re.sub(r"\[url=(https?://[^\]]+)\](.*?)\[/url\]", r"[\2](\1)", text, flags=re.IGNORECASE | re.DOTALL)
+    text = re.sub(r"\[url\](https?://[^\s\[]+)\[/url\]", r"[\1](\1)", text, flags=re.IGNORECASE)
+    for tag, marker in (("b", "**"), ("i", "*"), ("u", "")):
+        text = re.sub(rf"\[{tag}\](.*?)\[/{tag}\]", rf"{marker}\1{marker}", text, flags=re.IGNORECASE | re.DOTALL)
+    text = re.sub(r"\[(?:/?list|\*)\]", "\n- ", text, flags=re.IGNORECASE)
+    text = re.sub(r"\n{3,}", "\n\n", text)
+    if len(text) > 5000:
+        text = text[:4997].rstrip() + "..."
+    return text or "_O autor não forneceu uma descrição no Workshop._"
 
 
 def _status(item_id: str, changes: Changes) -> str:
@@ -91,12 +108,12 @@ def build_release_notes(version: str, manifest: dict, previous: dict, changes: C
     if not mods:
         lines += ["_O modpack está vazio nesta versão._", ""]
     for mod in mods:
-        description = _cell(mod.get("description"))
+        description = _steam_description(mod.get("description"))
         lines += [
             "<details>",
             f"<summary><strong>🎯 {_cell(mod.get('name'))}</strong> — <code>{mod['id']}</code></summary>",
             "",
-            description if description != "—" else "_O autor não forneceu uma descrição no Workshop._",
+            description,
             "",
             f"[🔗 Abrir na Oficina Steam]({mod.get('workshopUrl', '')})",
             "",
