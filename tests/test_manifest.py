@@ -12,7 +12,7 @@ class ManifestTests(unittest.TestCase):
             path.write_bytes(b"test")
             digest = sha256_file(path)
             self.assertEqual(digest, "9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08")
-            self.assertEqual(asset_name("123", 1, path, digest), "123-1-9f86d081884c7d65.vpk")
+            self.assertEqual(asset_name("123", 1, path, digest, "Minha Arma!"), "Minha-Arma-123-9f86d081884c.vpk")
 
     def test_atomic_round_trip(self) -> None:
         with tempfile.TemporaryDirectory() as directory:

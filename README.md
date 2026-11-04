@@ -49,7 +49,7 @@ O workflow `.github/workflows/build.yml` repete as verificações e publica quan
 
 O workflow usa o `GITHUB_TOKEN` automático; não é necessário cadastrar token pessoal. A publicação falha por inteiro se um item estiver indisponível, pertencer a outro jogo, não gerar VPK ou se algum upload não puder ser confirmado.
 
-Cada versão é criada inicialmente como rascunho. Os VPKs recebem nomes com Workshop ID e SHA-256; o manifesto só é enviado e a Release só é publicada depois dos uploads. Uma execução sem mudanças não cria Release.
+Cada versão é criada inicialmente como rascunho. Os VPKs recebem nomes legíveis derivados do título no Workshop, mais o Workshop ID e parte do SHA-256. Cada execução cria a próxima versão PATCH (`1.0.1`, `1.0.2` etc.), mesmo quando o conteúdo do Workshop não mudou; nesse caso os VPKs anteriores são reutilizados. Cada Release contém somente um `manifest.json`.
 
 O manifesto da Release mais recente é a fonte canônica. O workflow o recupera antes de comparar alterações, portanto uma eventual falha ao enviar o commit de `manifest.json` para uma branch protegida não provoca republicação dos mesmos arquivos.
 

@@ -39,9 +39,5 @@ def next_version(previous: str | None, changes: Changes) -> str:
     if not match:
         raise ValueError(f"versão anterior inválida: {previous}")
     major, minor, patch = map(int, match.groups())
-    if changes.added or changes.removed:
-        return f"{major}.{minor + 1}.0"
-    if changes.updated:
-        return f"{major}.{minor}.{patch + 1}"
-    return previous
+    return f"{major}.{minor}.{patch + 1}"
 

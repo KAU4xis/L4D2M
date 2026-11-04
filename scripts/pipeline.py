@@ -48,9 +48,6 @@ def main() -> int:
 
     timestamps = {mod.workshop_id: details[mod.workshop_id].time_updated for mod in selected}
     changes = compare(previous, timestamps)
-    if not changes.changed:
-        print("Nenhuma alteração detectada; nenhuma Release será criada.")
-        return 0
     version = next_version(previous.get("latest"), changes)
     tag = f"v{version}"
     print(f"Alterações: +{len(changes.added)} ~{len(changes.updated)} -{len(changes.removed)}; próxima versão {version}")
@@ -64,7 +61,13 @@ def main() -> int:
     assets_dir = args.work_dir / "assets"
     assets_dir.mkdir(parents=True)
     old_by_id = {str(mod["id"]): mod for mod in previous.get("mods", [])}
-    changed_ids = set(changes.added) | set(changes.updated)
+    # Assets created by older versions used an ID-only filename. Rebuild them once
+    # so every current mod has a readable Workshop-derived name.
+    needs_readable_name = {
+        item_id for item_id, mod in old_by_id.items()
+        if any(file.get("filename", "").startswith(f"{item_id}-") for file in mod.get("files", []))
+    }
+    changed_ids = set(changes.added) | set(changes.updated) | needs_readable_name
     output_mods: list[dict] = []
     asset_paths: list[Path] = []
 
@@ -78,7 +81,7 @@ def main() -> int:
         entries = []
         for index, source in enumerate(files, start=1):
             digest = sha256_file(source)
-            filename = asset_name(item_id, index, source, digest)
+            filename = asset_name(item_id, index, source, digest, metadata.name)
             destination = assets_dir / filename
             shutil.copy2(source, destination)
             asset_paths.append(destination)
@@ -100,18 +103,16 @@ def main() -> int:
     generated = datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z")
     manifest = {"schemaVersion": 1, "latest": version, "game": config.game, "generatedAt": generated, "mods": output_mods}
     validate_manifest(manifest)
-    historical = args.work_dir / f"manifest-{version}.json"
     latest_asset = args.work_dir / "manifest.json"
-    atomic_write_json(historical, manifest)
     atomic_write_json(latest_asset, manifest)
 
-    expected = {path.name for path in asset_paths} | {historical.name, latest_asset.name}
+    expected = {path.name for path in asset_paths} | {latest_asset.name}
     draft_created = False
     try:
         create_draft(tag, f"L4D2 Modpack {version}", f"Adicionados: {len(changes.added)}\nAtualizados: {len(changes.updated)}\nRemovidos: {len(changes.removed)}")
         draft_created = True
         upload(tag, asset_paths)
-        upload(tag, [historical, latest_asset])
+        upload(tag, [latest_asset])
         verify_assets(tag, expected)
         publish(tag)
     except BaseException:

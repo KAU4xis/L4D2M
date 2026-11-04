@@ -7,6 +7,7 @@ import json
 import os
 import re
 import tempfile
+import unicodedata
 from pathlib import Path
 
 _SAFE_ASSET = re.compile(r"^[A-Za-z0-9][A-Za-z0-9._-]{0,199}$")
@@ -20,9 +21,16 @@ def sha256_file(path: Path) -> str:
     return digest.hexdigest()
 
 
-def asset_name(workshop_id: str, index: int, source: Path, digest: str) -> str:
+def _slug(value: str, maximum: int = 80) -> str:
+    normalized = unicodedata.normalize("NFKD", value).encode("ascii", "ignore").decode("ascii")
+    cleaned = re.sub(r"[^A-Za-z0-9]+", "-", normalized).strip("-")
+    return (cleaned or "Workshop-Mod")[:maximum].rstrip("-")
+
+
+def asset_name(workshop_id: str, index: int, source: Path, digest: str, mod_name: str = "Workshop Mod") -> str:
     suffix = source.suffix.lower()
-    name = f"{workshop_id}-{index}-{digest[:16]}{suffix}"
+    part = f"-part{index}" if index > 1 else ""
+    name = f"{_slug(mod_name)}-{workshop_id}{part}-{digest[:12]}{suffix}"
     if suffix != ".vpk" or not _SAFE_ASSET.fullmatch(name):
         raise ValueError(f"nome de asset inseguro: {name!r}")
     return name

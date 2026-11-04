@@ -15,7 +15,9 @@ class ComparatorTests(unittest.TestCase):
     def test_version_rules(self) -> None:
         initial = compare({"mods": []}, {"1": 1})
         self.assertEqual(next_version(None, initial), "1.0.0")
-        self.assertEqual(next_version("1.2.3", initial), "1.3.0")
+        self.assertEqual(next_version("1.2.3", initial), "1.2.4")
         update = compare({"mods": [{"id": "1", "timeUpdated": 1}]}, {"1": 2})
         self.assertEqual(next_version("1.2.3", update), "1.2.4")
+        unchanged = compare({"mods": [{"id": "1", "timeUpdated": 1}]}, {"1": 1})
+        self.assertEqual(next_version("1.2.3", unchanged), "1.2.4")
 
