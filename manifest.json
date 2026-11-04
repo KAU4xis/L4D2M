@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "latest": "1.0.0",
+  "latest": "1.0.1",
   "game": 550,
-  "generatedAt": "2026-11-04T18:02:13Z",
+  "generatedAt": "2026-11-04T18:08:21Z",
   "mods": [
     {
       "id": "3547441271",
@@ -12,10 +12,10 @@
       "timeUpdated": 1755001122,
       "files": [
         {
-          "filename": "3547441271-1-a06cf0b8faa5ea87.vpk",
+          "filename": "Singularity-Sheriff-from-Valorant-3547441271-a06cf0b8faa5.vpk",
           "size": 19329610,
           "sha256": "a06cf0b8faa5ea8798e8f324ccc1227f199d53d640111050a7b3217ca607d3ea",
-          "url": "https://github.com/KAU4xis/L4D2M/releases/download/v1.0.0/3547441271-1-a06cf0b8faa5ea87.vpk"
+          "url": "https://github.com/KAU4xis/L4D2M/releases/download/v1.0.1/Singularity-Sheriff-from-Valorant-3547441271-a06cf0b8faa5.vpk"
         }
       ]
     }
