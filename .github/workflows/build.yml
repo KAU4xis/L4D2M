@@ -1,0 +1,70 @@
+name: Construir e publicar modpack
+
+on:
+  push:
+    paths:
+      - "config/list.json"
+      - "scripts/**"
+      - "tests/**"
+      - ".github/workflows/build.yml"
+  pull_request:
+    paths:
+      - "config/list.json"
+      - "scripts/**"
+      - "tests/**"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: publish-modpack
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Baixar repositório
+        uses: actions/checkout@v4
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - name: Validar lista
+        run: python -m scripts.validate_list config/list.json
+      - name: Instalar dependências Python
+        run: python -m pip install --requirement requirements.txt
+      - name: Executar testes
+        run: python -m unittest discover -s tests -v
+      - name: Instalar SteamCMD
+        if: github.event_name != 'pull_request'
+        shell: bash
+        run: |
+          sudo add-apt-repository multiverse -y
+          sudo dpkg --add-architecture i386
+          echo steam steam/question select "I AGREE" | sudo debconf-set-selections
+          echo steam steam/license note '' | sudo debconf-set-selections
+          sudo apt-get update
+          sudo apt-get install -y steamcmd
+      - name: Consultar, baixar e publicar alterações
+        if: github.event_name != 'pull_request'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          STEAMCMD_PATH: /usr/games/steamcmd
+        run: python -m scripts.pipeline
+      - name: Salvar manifesto publicado no repositório
+        if: github.event_name != 'pull_request'
+        shell: bash
+        run: |
+          if git diff --quiet -- manifest.json; then
+            echo "Manifesto não mudou."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add manifest.json
+          git commit -m "chore: atualizar manifesto publicado [skip ci]"
+          git push
+
