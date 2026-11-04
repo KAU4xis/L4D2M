@@ -1,12 +1,13 @@
 {
   "schemaVersion": 1,
-  "latest": "1.0.3",
+  "latest": "1.0.4",
   "game": 550,
-  "generatedAt": "2026-11-04T18:11:14Z",
+  "generatedAt": "2026-11-04T18:17:16Z",
   "mods": [
     {
       "id": "3547441271",
       "name": "Singularity Sheriff from Valorant",
+      "description": "Singularity Sheriff from Valorant\r\nReplaces Magnum (desert eagle)\r\n\r\n[img]https://i.ibb.co/fGCvDkkS/1deploy.gif[/img]\r\n[img]https://i.ibb.co/hJj33v6P/2idle.gif[/img]\r\n[img]https://i.ibb.co/Wvn411hf/3fire-r.gif[/img]\r\n[img]https://i.ibb.co/tkdWZ3W/4fire-r.gif[/img]",
       "workshopUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3547441271",
       "creator": "76561198074242841",
       "timeUpdated": 1755001122,
