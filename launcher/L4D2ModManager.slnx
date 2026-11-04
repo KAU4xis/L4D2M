@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="src/L4D2ModManager.Core/L4D2ModManager.Core.csproj" />
+  <Project Path="src/L4D2ModManager.Infrastructure/L4D2ModManager.Infrastructure.csproj" />
+  <Project Path="src/L4D2ModManager.Desktop/L4D2ModManager.Desktop.csproj" />
+  <Project Path="tests/L4D2ModManager.Tests/L4D2ModManager.Tests.csproj" />
+</Solution>

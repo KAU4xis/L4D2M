@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <PublishSingleFile>true</PublishSingleFile>
+    <SelfContained>true</SelfContained>
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+    <AssemblyName>L4D2ModManager</AssemblyName>
+    <ApplicationIcon Condition="Exists('Assets\app.ico')">Assets\app.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\L4D2ModManager.Core\L4D2ModManager.Core.csproj" />
+    <ProjectReference Include="..\L4D2ModManager.Infrastructure\L4D2ModManager.Infrastructure.csproj" />
+    <Content Include="Assets\README.md" CopyToOutputDirectory="PreserveNewest" />
+    <Content Include="Assets\background.jpg" Condition="Exists('Assets\background.jpg')" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>
