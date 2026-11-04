@@ -55,6 +55,22 @@ O manifesto da Release mais recente é a fonte canônica. O workflow o recupera 
 
 Itens com `redistributionAuthorized: false` não entram no manifesto nem são baixados/republicados por este pipeline.
 
+## Adicionar vários mods por Issue
+
+Abra uma nova Issue e escolha o template **➕ Adicionar mods**. Cole quantos links ou IDs quiser, um por linha, confirme a autorização e envie.
+
+Quando um mantenedor fechar a Issue, o workflow `import-mods-from-issue.yml`:
+
+1. Confere se quem fechou possui permissão de escrita.
+2. Extrai e deduplica todos os IDs.
+3. Ignora itens que já existem no `config/list.json`.
+4. Consulta a Steam e exige que todos os novos itens estejam disponíveis e pertençam ao L4D2.
+5. Atualiza e valida o `list.json`.
+6. Comenta um resumo na própria Issue.
+7. Dispara o pipeline normal de publicação por meio do commit na lista.
+
+Se qualquer item novo for inválido, o lote inteiro é rejeitado e o arquivo não é alterado.
+
 ## Estado do projeto
 
 - Fase 1: estrutura, contrato da lista, normalização, validação e testes.

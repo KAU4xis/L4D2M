@@ -1,0 +1,41 @@
+name: "➕ Adicionar mods"
+description: "Adicione vários itens da Oficina Steam ao modpack de uma só vez."
+title: "[MODS] Adicionar itens ao modpack"
+labels:
+  - "mod-request"
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## 🧟 Adicionar mods ao L4D2 Modpack
+
+        Cole abaixo quantos IDs ou links da Oficina Steam quiser, **um por linha**. Quando a Issue for fechada por um mantenedor, um Action separado validará os itens, removerá duplicatas e atualizará `config/list.json`.
+
+  - type: textarea
+    id: workshop_links
+    attributes:
+      label: Links dos mods
+      description: "Aceita URLs completas ou apenas IDs numéricos, um por linha."
+      placeholder: |
+        https://steamcommunity.com/sharedfiles/filedetails/?id=3547441271
+        1234567890
+        https://steamcommunity.com/sharedfiles/filedetails/?id=9876543210
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: redistribution
+    attributes:
+      label: Autorização de redistribuição
+      description: "Os arquivos marcados como autorizados poderão ser publicados nas Releases do repositório."
+      options:
+        - label: "Confirmo que estes itens possuem autorização para redistribuição neste modpack."
+          required: true
+
+  - type: textarea
+    id: notes
+    attributes:
+      label: Observações
+      description: "Campo opcional para contexto, créditos ou lembretes."
+      placeholder: "Ex.: pacote de armas para a próxima versão."
+

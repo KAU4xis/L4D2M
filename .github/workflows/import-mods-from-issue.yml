@@ -1,0 +1,87 @@
+name: Importar mods de Issue fechada
+
+on:
+  issues:
+    types: [closed]
+
+permissions:
+  contents: write
+  issues: write
+
+concurrency:
+  group: import-mods-from-issues
+  cancel-in-progress: false
+
+jobs:
+  import:
+    if: contains(github.event.issue.labels.*.name, 'mod-request')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Verificar permissão de quem fechou a Issue
+        env:
+          GH_TOKEN: ${{ github.token }}
+          ACTOR: ${{ github.actor }}
+          REPOSITORY: ${{ github.repository }}
+        shell: bash
+        run: |
+          permission="$(gh api "repos/$REPOSITORY/collaborators/$ACTOR/permission" --jq .permission)"
+          case "$permission" in
+            admin|maintain|write) ;;
+            *) echo "Somente mantenedores podem confirmar a importação fechando a Issue." >&2; exit 1 ;;
+          esac
+
+      - name: Baixar repositório
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Instalar dependências
+        run: python -m pip install --requirement requirements.txt
+
+      - name: Validar, deduplicar e importar mods
+        run: python -m scripts.issue_importer --event "$GITHUB_EVENT_PATH" --summary issue-summary.md
+
+      - name: Atualizar list.json
+        shell: bash
+        run: |
+          if git diff --quiet -- config/list.json; then
+            echo "Nenhum item novo para salvar."
+            exit 0
+          fi
+          updated_list="$(mktemp)"
+          cp config/list.json "$updated_list"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          for attempt in 1 2 3; do
+            git fetch origin main
+            git checkout -B main origin/main
+            cp "$updated_list" config/list.json
+            python -m scripts.validate_list config/list.json
+            git add config/list.json
+            git commit -m "feat: importar mods da issue #${{ github.event.issue.number }}"
+            if git push origin HEAD:main; then exit 0; fi
+            sleep $((attempt * 2))
+          done
+          exit 1
+
+      - name: Comentar resultado na Issue
+        if: success()
+        env:
+          GH_TOKEN: ${{ github.token }}
+          ISSUE_URL: ${{ github.event.issue.html_url }}
+        run: gh issue comment "$ISSUE_URL" --body-file issue-summary.md
+
+      - name: Comentar falha na Issue
+        if: failure()
+        env:
+          GH_TOKEN: ${{ github.token }}
+          ISSUE_URL: ${{ github.event.issue.html_url }}
+          RUN_URL: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: gh issue comment "$ISSUE_URL" --body "## ❌ Não foi possível importar os mods\n\nConsulte os detalhes da execução: $RUN_URL"
+
