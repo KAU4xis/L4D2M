@@ -1,12 +1,6 @@
 name: Construir e publicar modpack
 
 on:
-  push:
-    paths:
-      - "config/list.json"
-      - "scripts/**"
-      - "tests/**"
-      - ".github/workflows/build.yml"
   pull_request:
     paths:
       - "config/list.json"

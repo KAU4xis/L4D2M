@@ -23,6 +23,7 @@ class WorkshopItem:
     workshop_id: str
     name: str
     description: str
+    preview_url: str | None
     app_id: int
     creator: str | None
     time_updated: int
@@ -66,6 +67,7 @@ def fetch_details(ids: list[str], timeout: int = 30) -> dict[str, WorkshopItem]:
             workshop_id=item_id,
             name=str(raw.get("title") or f"Workshop {item_id}"),
             description=str(raw.get("description") or "").strip(),
+            preview_url=str(raw["preview_url"]) if raw.get("preview_url") else None,
             app_id=int(raw.get("consumer_app_id") or 0),
             creator=str(raw["creator"]) if raw.get("creator") else None,
             time_updated=int(raw.get("time_updated") or 0),
