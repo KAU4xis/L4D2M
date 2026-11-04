@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import shutil
+import struct
 import subprocess
 import time
 from pathlib import Path
@@ -10,6 +11,32 @@ from pathlib import Path
 
 class DownloadError(RuntimeError):
     pass
+
+
+VPK_SIGNATURE = 0x55AA1234
+
+
+def is_vpk(path: Path) -> bool:
+    """Identify a Valve package by its binary signature, regardless of extension."""
+    try:
+        with path.open("rb") as file:
+            header = file.read(4)
+        return len(header) == 4 and struct.unpack("<I", header)[0] == VPK_SIGNATURE
+    except OSError:
+        return False
+
+
+def _find_vpks(item_dir: Path) -> list[Path]:
+    results: list[Path] = []
+    for path in sorted(candidate for candidate in item_dir.rglob("*") if candidate.is_file() and candidate.stat().st_size > 0):
+        if not is_vpk(path):
+            continue
+        if path.suffix.lower() != ".vpk":
+            normalized = path.with_name(f"{path.name}.vpk")
+            path.replace(normalized)
+            path = normalized
+        results.append(path)
+    return results
 
 
 def _steamcmd_path(explicit: str | None) -> str:
@@ -43,7 +70,7 @@ def download_item(
             "+quit",
         ]
         completed = subprocess.run(command, capture_output=True, text=True, timeout=1800, check=False)
-        files = sorted(path for path in item_dir.rglob("*.vpk") if path.is_file() and path.stat().st_size > 0)
+        files = _find_vpks(item_dir) if item_dir.exists() else []
         if completed.returncode == 0 and files:
             return files
         output = (completed.stdout + "\n" + completed.stderr).strip()
