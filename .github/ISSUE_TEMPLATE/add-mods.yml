@@ -15,11 +15,11 @@ body:
     id: workshop_links
     attributes:
       label: Links dos mods
-      description: "Aceita URLs completas ou apenas IDs numéricos, um por linha."
+      description: "Aceita URLs completas ou apenas IDs numéricos, um por linha. Prefixe com '-' para remover um item."
       placeholder: |
         https://steamcommunity.com/sharedfiles/filedetails/?id=3547441271
         1234567890
-        https://steamcommunity.com/sharedfiles/filedetails/?id=9876543210
+        -https://steamcommunity.com/sharedfiles/filedetails/?id=9876543210
     validations:
       required: true
 
