@@ -75,14 +75,14 @@
                   Width="44" Height="42" Padding="0" Margin="10,0,0,0" VerticalAlignment="Center"
                   VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
                   ToolTip="Ocultar interface">
-            <TextBlock Text="&#xE890;" FontFamily="Segoe Fluent Icons" FontSize="17"
+            <TextBlock Text="&#xE890;" FontFamily="Segoe MDL2 Assets, Segoe Fluent Icons" FontSize="17"
                        HorizontalAlignment="Center" VerticalAlignment="Center" />
           </Button>
           <Button Grid.Column="3" Command="{Binding DeleteAllLocalModsCommand}" Background="#6846292D"
                   Width="44" Height="42" Padding="0" Margin="10,0,0,0" VerticalAlignment="Center"
                   VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
                   ToolTip="Excluir todos os mods locais">
-            <TextBlock Text="&#xE74D;" FontFamily="Segoe Fluent Icons" FontSize="16"
+            <TextBlock Text="&#xE74D;" FontFamily="Segoe MDL2 Assets, Segoe Fluent Icons" FontSize="16"
                        HorizontalAlignment="Center" VerticalAlignment="Center" />
           </Button>
         </Grid>
@@ -103,7 +103,7 @@
                           BorderBrush="#55FFFFFF" BorderThickness="1" ClipToBounds="True">
                     <Grid>
                       <Image Source="{Binding PreviewUrl}" Stretch="UniformToFill" />
-                      <TextBlock Text="&#xE7C3;" FontFamily="Segoe Fluent Icons" FontSize="28"
+                      <TextBlock Text="&#xE7C3;" FontFamily="Segoe MDL2 Assets, Segoe Fluent Icons" FontSize="28"
                                  Foreground="#AFC5D7" HorizontalAlignment="Center" VerticalAlignment="Center">
                         <TextBlock.Style>
                           <Style TargetType="TextBlock">
@@ -144,7 +144,7 @@
                           </Style.Triggers>
                         </Style>
                       </Button.Style>
-                      <TextBlock Text="&#xE74D;" FontFamily="Segoe Fluent Icons" FontSize="15" />
+                      <TextBlock Text="&#xE74D;" FontFamily="Segoe MDL2 Assets, Segoe Fluent Icons" FontSize="15" />
                     </Button>
                   </Grid>
                 </Grid>
@@ -412,7 +412,7 @@
           </Style.Triggers>
         </Style>
       </Button.Style>
-      <TextBlock Text="&#xE890;" FontFamily="Segoe Fluent Icons" FontSize="17"
+      <TextBlock Text="&#xE890;" FontFamily="Segoe MDL2 Assets, Segoe Fluent Icons" FontSize="17"
                  HorizontalAlignment="Center" VerticalAlignment="Center" />
     </Button>
   </Grid>
