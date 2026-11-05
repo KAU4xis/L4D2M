@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "latest": "1.0.9",
+  "latest": "1.0.10",
   "game": 550,
-  "generatedAt": "2026-11-05T18:47:23Z",
+  "generatedAt": "2026-11-05T19:38:50Z",
   "mods": [
     {
       "id": "3547441271",
@@ -545,6 +545,227 @@
           "size": 59267650,
           "sha256": "a8a7664cfe6958eb653140dec0e061cda5cd18edc188aac8e45dbf899a9df291",
           "url": "https://github.com/KAU4xis/L4D2M/releases/download/v1.0.9/Ellie-for-Rochelle-TLOU2-2885161224-a8a7664cfe69.vpk"
+        }
+      ]
+    },
+    {
+      "id": "3438243355",
+      "name": "Minecraft HUD Overhaul!",
+      "description": "[h1][b]Minecraft HUD for Left 4 Dead 2[/b][/h1]\r\n[h3]A complete Minecraft-themed Heads-Up Display overhaul![/h3]\r\n\r\n[b]Features[/b]\r\n[list]\r\n[*][b]Immersive Health Bar[/b] – Animated with a custom panel design for both teammates and players from my previous mod [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3408424861]Immersive Minecraft Healthbar[/url].\r\n[*][b]Inventory Slots as Weapon Slots[/b] – With Minecraft SFX when switching to different weapons and while picking up items!\r\n[*][b]Minecraft Crosshair[/b] – With compatibility to any of [url=https://steamcommunity.com/sharedfiles/filedetails/?id=279865825&searchtext=Urik%27s+Crosshair]Urik’s Crosshair Support[/url] mod.\r\n[*][b]Skeleton Death Overlay[/b] – Feel free to suggest for a better looking one ;>\r\n[*][b]XP Bar as Progress Bar[/b]\r\n[*][b]Minecraft-Style Hit Indicator[/b]\r\n[*][b]Steve Crouching Icon[/b]\r\n[*][b]Custom Death Screen[/b]\r\n[hr]\r\n[h1][b]⚠ Important Notes:[/b][/h1]\r\n[list]\r\n[*][b]May conflict with other HUD addons,[/b] but it should still work fine.\r\n[*][b]Only modifies the HUD for standard/classic game mode.[/b]\r\n[*][b]No custom incapacitation HUD[/b] to avoid conflicts with survivor-related mods. This way, you don’t have to disable your favorite survivor addons just for this HUD!\r\n[/list]\r\n[h1]If you have encountered any issues, please let me know![/h1]\r\n[hr]\r\n[code][b]Credits to[/b][b][url=https://steamcommunity.com/profiles/76561198339624413/] Interneted[/url][/b] For guiding me creating this mod <3 [/code]\r\n\r\n[b]This is my 2nd and biggest mod yet I have made![/b]  I hope you'll like it, feel free to suggest any idea that you think can match my HUD, and maybe I'll plan on doing it on the future.\r\n\r\n[h3][i]I know it's not enough, I'll try keeping it updated for new and better features soon![/i][/h3]\r\n\r\n[*][url=https://www.paypal.me/MarkyyyPlier]My PayPal[/url] [url=https://ko-fi.com/burntputito][b][u]Buy me a Potato[/u][/b][/url]:)",
+      "previewUrl": "https://images.steamusercontent.com/ugc/15303550436216292/F907BC0F73BB42C85E590F34C9EB2CB03B971F53/",
+      "workshopUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3438243355",
+      "creator": "76561199202624788",
+      "timeUpdated": 1741083165,
+      "files": [
+        {
+          "filename": "Minecraft-HUD-Overhaul-3438243355-4a2aa782143d.vpk",
+          "size": 3800025,
+          "sha256": "4a2aa782143d6c7258e216ac2cd33d7935d50b09a374290edcfe49ad84d8e5db",
+          "url": "https://github.com/KAU4xis/L4D2M/releases/download/v1.0.10/Minecraft-HUD-Overhaul-3438243355-4a2aa782143d.vpk"
+        }
+      ]
+    },
+    {
+      "id": "1501637307",
+      "name": "Thomas The Tank Engine - Jimmy Gibbs Jr.",
+      "description": "It started as a silly joke. But it [i]derailed[/i]\r\nI guess you can call this high quality Shetposting.\r\n\r\nCredits:\r\nStian Ervik Wahlvåg - Model, Texture\r\nMike O'Donnell & Junior Campbell - \"Thomas the Tank Engine\" Themesong\r\nMrFunreal - Animation, Port, Sound, Compile\r\n\r\n______\r\nThis item is not authorized for posting on Steam, except under the Steam account named мяFunreal; Steam id \"funreal\"\r\nModifications or Redistribution without explicit permission is prohibited.\r\nI have my own [url=http://discord.gg/5eDA7CE]Discord server[/url] where i post WIP screenshots. We can also just chat.",
+      "previewUrl": "https://images.steamusercontent.com/ugc/967600198932263257/C2B641971D4416CF426EAEB9B187E8ECC900894A/",
+      "workshopUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=1501637307",
+      "creator": "76561198032510500",
+      "timeUpdated": 1535914118,
+      "files": [
+        {
+          "filename": "Thomas-The-Tank-Engine-Jimmy-Gibbs-Jr-1501637307-ade59a65b0c3.vpk",
+          "size": 35692143,
+          "sha256": "ade59a65b0c36dca6feeb06598e8e0abc71e360e8e7e26edaea7625f8ded8d2e",
+          "url": "https://github.com/KAU4xis/L4D2M/releases/download/v1.0.10/Thomas-The-Tank-Engine-Jimmy-Gibbs-Jr-1501637307-ade59a65b0c3.vpk"
+        }
+      ]
+    },
+    {
+      "id": "1380451374",
+      "name": "King Dedede's Hammer (Fire Axe)",
+      "description": "The perfect tool to clobber that there some zombie faces in.\n\nThere's a distinct lack of giant mallets to hammer things with, but don't worry, that's being taken care of. This big thing is King Dedede's hammer, from the Kirby universe, but the model itself comes from Super Smash Bros. Brawl.\nIt comes with its own custom sounds, straight out of Super Smash Bros. For Wii U, because hammering things and hearing slashing noises just wouldn't work out.\n\n\nThe animations used for the viewmodels are from the guitar, just because the axe ones broke on me.\nAs for why the model itself isn't from the Wii U game, I ran into texture issues I didn't know how to fix.\n\nModel ripped by Peardian on the Models Resource\nSounds ripped by RandomTBush",
+      "previewUrl": "https://images.steamusercontent.com/ugc/915798053710574113/A3B67319AACDF5FB653EE33C99D5D773A2F00D09/",
+      "workshopUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=1380451374",
+      "creator": "76561198071732989",
+      "timeUpdated": 1525709601,
+      "files": [
+        {
+          "filename": "King-Dedede-s-Hammer-Fire-Axe-1380451374-f2b1d105822b.vpk",
+          "size": 1147133,
+          "sha256": "f2b1d105822b2bcb3ac400ce9f8c2ca1bb22be003015927f44973cb597ce9474",
+          "url": "https://github.com/KAU4xis/L4D2M/releases/download/v1.0.10/King-Dedede-s-Hammer-Fire-Axe-1380451374-f2b1d105822b.vpk"
+        }
+      ]
+    },
+    {
+      "id": "3253162754",
+      "name": "MCD Nightmare`s Bite (Machete)",
+      "description": "这里是简介 Description below:\r\n[h1]来自我的世界 ：地下城的传奇双持镰刀——梦魇之噬，替换开山刀\r\nLegendary Akimbo Sickle From Minecraft: Dungeons. Replace for Machete\r\n[/h1]\r\n\r\n此MOD包含模型,图标,嘤效\r\nThis mod includes model/icon/sound\r\n\r\nCredits:\r\n模型编译 Compile - 苦黄瓜\r\n奔跑&待机动画 Run&Idle Animation - Mav\r\n动画 Animation - 苦黄瓜\r\n模型/纹理 Model/Texture 苦黄瓜/Mojang Studio\r\n音效 Sound - 苦黄瓜/Bugjump Studio",
+      "previewUrl": "https://images.steamusercontent.com/ugc/2493383965109527405/66799980547F6E9B39B258C1FFB58ACA0D21C66E/",
+      "workshopUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3253162754",
+      "creator": "76561198355644266",
+      "timeUpdated": 1716527464,
+      "files": [
+        {
+          "filename": "MCD-Nightmare-s-Bite-Machete-3253162754-2c77ee84abad.vpk",
+          "size": 1439977,
+          "sha256": "2c77ee84abadef5f55fb14db15a1063b929ef5291b517e4abffbbc61984133e4",
+          "url": "https://github.com/KAU4xis/L4D2M/releases/download/v1.0.10/MCD-Nightmare-s-Bite-Machete-3253162754-2c77ee84abad.vpk"
+        }
+      ]
+    },
+    {
+      "id": "3500676157",
+      "name": "Floppy Baseball Bat",
+      "description": "baseball bat, but floppy\r\n\r\nnot perfect but yeah\r\n\r\ncompatible with retextures/sound mods",
+      "previewUrl": "https://images.steamusercontent.com/ugc/11770930289967077281/5EF1D625911607E650B9273FC04802BF5EAE40B3/",
+      "workshopUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3500676157",
+      "creator": "76561198878053169",
+      "timeUpdated": 1750052355,
+      "files": [
+        {
+          "filename": "Floppy-Baseball-Bat-3500676157-588cde3d242d.vpk",
+          "size": 517154,
+          "sha256": "588cde3d242df9a193e0fda8693589da88e433420298f30fa9418bb7b1047288",
+          "url": "https://github.com/KAU4xis/L4D2M/releases/download/v1.0.10/Floppy-Baseball-Bat-3500676157-588cde3d242d.vpk"
+        }
+      ]
+    },
+    {
+      "id": "3550357050",
+      "name": " Tom & Jerry - Tom Frying Pan (Model - Frying Pan)\n",
+      "description": "Toms squashed face on the frying pan",
+      "previewUrl": "https://images.steamusercontent.com/ugc/11481614130291116853/0E69EED5A46D3CF7FB3EA8E312F91BF31C59DA99/",
+      "workshopUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3550357050",
+      "creator": "76561198162229122",
+      "timeUpdated": 1755385289,
+      "files": [
+        {
+          "filename": "Tom-Jerry-Tom-Frying-Pan-Model-Frying-Pan-3550357050-392ba43b9073.vpk",
+          "size": 2458032,
+          "sha256": "392ba43b9073ad7d0e7de1b63d03ae54a6d4113c3487e51e00f0bd4e9f667959",
+          "url": "https://github.com/KAU4xis/L4D2M/releases/download/v1.0.10/Tom-Jerry-Tom-Frying-Pan-Model-Frying-Pan-3550357050-392ba43b9073.vpk"
+        }
+      ]
+    },
+    {
+      "id": "1996674756",
+      "name": "Star Wars stormtrooper z6 riot baton",
+      "description": "[quote]A non-lethal melee weapon, the Z6 baton was comprised of a central shaft terminating in two contact conductor vanes capable of resisting the plasma blade of a lightsaber. These collapsible vanes sparked with electric currents while in use,and delivered a stunning shock against opponents.The weapon was held via an adhesion grip that was capable of being magnatomically paired with the gloves of a First Order stormtrooper.This magnetic grip allowed the baton to be spun in combat.[/quote]\r\n\r\nFull own made model replace police stick aka tonfa :\r\n\r\nViewmodel with my animation edit\r\nOriginal tonfa anim from Cry Of Fear Nightstick mod\r\nworldmodel\r\nOriginal sounds from movie",
+      "previewUrl": "https://images.steamusercontent.com/ugc/794259586445125305/B0F8949FEC81438EAD8D69470556882D2C3B62B7/",
+      "workshopUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=1996674756",
+      "creator": "76561197978382175",
+      "timeUpdated": 1581627769,
+      "files": [
+        {
+          "filename": "Star-Wars-stormtrooper-z6-riot-baton-1996674756-8747aa0cf929.vpk",
+          "size": 21711432,
+          "sha256": "8747aa0cf92906ee83026ecb7aab24ce0f4f58cd4b48a0b23999265dba44efb6",
+          "url": "https://github.com/KAU4xis/L4D2M/releases/download/v1.0.10/Star-Wars-stormtrooper-z6-riot-baton-1996674756-8747aa0cf929.vpk"
+        }
+      ]
+    },
+    {
+      "id": "3743012896",
+      "name": "Whopper Medkit",
+      "description": "why eat with a clown when you can dine with a king?\r\n\r\nreplaces the medkit and its HUD icons\r\n\r\noriginal model by CatNapper on Sketchfab",
+      "previewUrl": "https://images.steamusercontent.com/ugc/9576944281464517393/B5F856715F1AC9CAEA5103B218AA1C2687DC3E90/",
+      "workshopUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3743012896",
+      "creator": "76561198766299162",
+      "timeUpdated": 1784619439,
+      "files": [
+        {
+          "filename": "Whopper-Medkit-3743012896-d0097017e320.vpk",
+          "size": 2397573,
+          "sha256": "d0097017e320173663d4318722384b455bc02c4749c4ea9e07a54d9d4f8bac89",
+          "url": "https://github.com/KAU4xis/L4D2M/releases/download/v1.0.10/Whopper-Medkit-3743012896-d0097017e320.vpk"
+        }
+      ]
+    },
+    {
+      "id": "1344952291",
+      "name": "Defibrillator FX - Divine Defi (for particles manifest)",
+      "description": "disclaimer: I know this new implementaion is super complicated, but let's see how it goes...\r\n\r\nPLESE SEE REQUIRED MOD ON THE RIGHT\r\n\r\nA re-release of Divine Defi mod under new 'particle manifest' initiative. Some people asked if they could have tree/ufo  without the defi, or defi without  the tree/ufo, now it's possible.\r\n\r\n[h1] - How is this different from [url=http://steamcommunity.com/sharedfiles/filedetails/?id=209153417]this[/url]?[/h1]\r\nIt's the same mod, but implemenation is different. That version replaces entire item_fx. This one uses defi.pcf , but it needs [b]Particle Manifest[/B] mod to work (it's linked on the right)\r\n[h1] - Why doesn't it work for me?[/h1]\r\n1) Check that you are subsrcibed to Particle Manifest\r\n2) It could conflict with another particle mod that uses item_fx.pcf, and you wouldn't even know because from game's perspective, there's no conflict.\r\n\r\nyou could modify addonlist.txt yourself but I don't remember atm which direction it prioritizes (top-bottom or vice versa)",
+      "previewUrl": "https://images.steamusercontent.com/ugc/931557144373777441/39519D146EEE82DFFF53C76A83C66F58CCA9F25F/",
+      "workshopUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=1344952291",
+      "creator": "76561198009320497",
+      "timeUpdated": 1522267520,
+      "files": [
+        {
+          "filename": "Defibrillator-FX-Divine-Defi-for-particles-manifest-1344952291-8412c01a627f.vpk",
+          "size": 5073185,
+          "sha256": "8412c01a627fa0bf5a3f26c4129a4d9d30d9c0038807b046e92bd8fba43dd4c6",
+          "url": "https://github.com/KAU4xis/L4D2M/releases/download/v1.0.10/Defibrillator-FX-Divine-Defi-for-particles-manifest-1344952291-8412c01a627f.vpk"
+        }
+      ]
+    },
+    {
+      "id": "2555232061",
+      "name": "Bad Dragon Cum Lube (Boomer Bile)",
+      "description": "What am I doing with my life?\r\n\r\n\r\nIncludes edited particles to fit the liquids better.\r\n\r\nCredit goes to:\r\n\"theGentleGiant\" on Sketchfab for the lube model\r\nhttps://sketchfab.com/models/16a027e8e45743a7922a289d3ea46544\r\n\r\nTexture edits by me",
+      "previewUrl": "https://images.steamusercontent.com/ugc/1686023009998933110/3B59AF07D05A7D5CA03A3C77687863FD9EDB1994/",
+      "workshopUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=2555232061",
+      "creator": "76561198071732989",
+      "timeUpdated": 1629930818,
+      "files": [
+        {
+          "filename": "Bad-Dragon-Cum-Lube-Boomer-Bile-2555232061-74032969ac43.vpk",
+          "size": 3376161,
+          "sha256": "74032969ac43f82926d6e7a3d9a10a705dee8fe8ead6bdda260e975de820705a",
+          "url": "https://github.com/KAU4xis/L4D2M/releases/download/v1.0.10/Bad-Dragon-Cum-Lube-Boomer-Bile-2555232061-74032969ac43.vpk"
+        }
+      ]
+    },
+    {
+      "id": "3499980368",
+      "name": "Sponge Bob As a Gas Can",
+      "description": "Enjoy filling the tank with a Sponge Can",
+      "previewUrl": "https://images.steamusercontent.com/ugc/15314448330902401292/4F0429E8114F2DE24019C46309A749165FE85C48/",
+      "workshopUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3499980368",
+      "creator": "76561198134902345",
+      "timeUpdated": 1749991382,
+      "files": [
+        {
+          "filename": "Sponge-Bob-As-a-Gas-Can-3499980368-66c0771b845d.vpk",
+          "size": 350171,
+          "sha256": "66c0771b845dcf694042d22c2f44d0bfedcb66437513e9a918d5016f8ea714c3",
+          "url": "https://github.com/KAU4xis/L4D2M/releases/download/v1.0.10/Sponge-Bob-As-a-Gas-Can-3499980368-66c0771b845d.vpk"
+        }
+      ]
+    },
+    {
+      "id": "3765027399",
+      "name": "[xdR] Metroman dance",
+      "description": "Reemplaza la animación y el sonido de curación por el Metroman dance\r\n\r\n\r\nCréditos: La animación original no me pertenece. Todo el crédito corresponde a su creador:\r\n\r\nhttps://steamcommunity.com/profiles/76561199231961807\r\n\r\nAquí les dejo el enlace al addon original:\r\n\r\nhttps://steamcommunity.com/sharedfiles/filedetails/?id=3744070897\r\n\r\nDonaciones\r\n\r\nSi gustas, puedes apoyarme con una donación. Prometo invertirla en sobrevivir. ❤️\r\n\r\nKo-fi: https://ko-fi.com/vnmr279299",
+      "previewUrl": "https://images.steamusercontent.com/ugc/17085595318404142776/BA39322AD1769F8F85C2933C549725E7FAC9967F/",
+      "workshopUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3765027399",
+      "creator": "76561199003979704",
+      "timeUpdated": 1784081998,
+      "files": [
+        {
+          "filename": "xdR-Metroman-dance-3765027399-2968ab704903.vpk",
+          "size": 12799988,
+          "sha256": "2968ab704903446ce382e45bb743b5749eb50daccc71bb3a5809c8d57f1af8dd",
+          "url": "https://github.com/KAU4xis/L4D2M/releases/download/v1.0.10/xdR-Metroman-dance-3765027399-2968ab704903.vpk"
+        }
+      ]
+    },
+    {
+      "id": "3832293324",
+      "name": "[M16] Hololive: CS2 M4A1\n",
+      "description": "Hololive Gen 4 and 5 group skin on Counter-Strike 2's M4A1, with animation by Lt Rocky, replacing the assault rifle\nReworked anim featuring new inspect animation by me\n\n[h1]Features:[/h1]\n- 9 skin variants (Botan as default)\n- Skin 1: Shishiro Botan  \n- Skin 2: Yukihana Lamy\n- Skin 3: Momosuzu Nene  \n- Skin 4: Omaru Polka\n- Skin 5: Tokoyami Towa\n- Skin 6: Kiryu Coco\n- Skin 7: Amane Kanata\n- Skin 8: Himemori Luna\n- Skin 9: Tsunomaki Watame (did nothing wrong)\n- HUD icon\n- Support reskin\n\n[h1]Credits:[/h1]\nLt Rocky - Animations: https://steamcommunity.com/sharedfiles/filedetails/?id=1961334579\n7EMP3ST - Rig, materials/shader, SKINNER, reanims",
+      "previewUrl": "https://images.steamusercontent.com/ugc/9534449884655282612/7B6331E3F9062000C47E2AC3E3064D7D0A849955/",
+      "workshopUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3832293324",
+      "creator": "76561199845706982",
+      "timeUpdated": 1793623469,
+      "files": [
+        {
+          "filename": "M16-Hololive-CS2-M4A1-3832293324-9596f3029d31.vpk",
+          "size": 54600148,
+          "sha256": "9596f3029d31a19813f6ffb4ef7c62ee8614b9e5ae9312ddc8833c0f4f07c9d5",
+          "url": "https://github.com/KAU4xis/L4D2M/releases/download/v1.0.10/M16-Hololive-CS2-M4A1-3832293324-9596f3029d31.vpk"
         }
       ]
     }
