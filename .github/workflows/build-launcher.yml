@@ -1,42 +1,127 @@
-name: Build do launcher Windows
+name: Build e Release do launcher Windows
 
 on:
   workflow_dispatch:
   pull_request:
+    branches:
+      - "feature/launcher"
+      - "main"
     paths:
       - "launcher/**"
       - ".github/workflows/build-launcher.yml"
   push:
     branches:
       - "feature/launcher"
+    tags:
+      - "launcher-v*"
     paths:
       - "launcher/**"
       - ".github/workflows/build-launcher.yml"
 
 permissions:
-  contents: read
+  contents: write
 
 concurrency:
   group: launcher-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
-  test-and-build:
+  build-release:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - uses: actions/setup-dotnet@v5
         with:
           dotnet-version: "10.0.x"
+
       - name: Restaurar dependências
         run: dotnet restore launcher/L4D2ModManager.slnx
+
+      - name: Verificar formatação (lint)
+        run: dotnet format launcher/L4D2ModManager.slnx --verify-no-changes --verbosity diagnostic
+
       - name: Executar testes
         run: dotnet test launcher/L4D2ModManager.slnx -c Release --no-restore
-      - name: Publicar executável
-        run: dotnet publish launcher/src/L4D2ModManager.Desktop/L4D2ModManager.Desktop.csproj -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -o launcher/artifacts/win-x64
-      - name: Enviar artifact
+
+      - name: Definir versão e release
+        id: meta
+        shell: pwsh
+        run: |
+          $isTag = $env:GITHUB_REF_TYPE -eq 'tag'
+          $isBranchRelease = ($env:GITHUB_EVENT_NAME -eq 'push' -or $env:GITHUB_EVENT_NAME -eq 'workflow_dispatch') -and $env:GITHUB_REF -eq 'refs/heads/feature/launcher'
+          $publish = $isTag -or $isBranchRelease
+          $sha = $env:GITHUB_SHA.Substring(0,7)
+          if ($isTag) {
+            $tag = $env:GITHUB_REF_NAME
+            $version = $tag -replace '^launcher-v',''
+            $name = "Launcher $tag"
+            $prerelease = 'false'
+            $latest = 'true'
+          } elseif ($isBranchRelease) {
+            $run = $env:GITHUB_RUN_NUMBER
+            $version = "0.0.0-feature.$run+$sha"
+            $tag = 'launcher-feature-latest'
+            $name = "Launcher (feature/launcher latest, run $run / $sha)"
+            $prerelease = 'true'
+            $latest = 'false'
+          } else {
+            $version = "0.0.0-ci.$sha"
+            $tag = ''
+            $name = ''
+            $prerelease = 'false'
+            $latest = 'false'
+          }
+          "publish=$($publish.ToString().ToLower())" >> $env:GITHUB_OUTPUT
+          "version=$version" >> $env:GITHUB_OUTPUT
+          "tag=$tag" >> $env:GITHUB_OUTPUT
+          "name=$name" >> $env:GITHUB_OUTPUT
+          "prerelease=$prerelease" >> $env:GITHUB_OUTPUT
+          "latest=$latest" >> $env:GITHUB_OUTPUT
+          "sha=$sha" >> $env:GITHUB_OUTPUT
+
+      - name: Publicar executável (portable)
+        shell: pwsh
+        run: |
+          dotnet publish launcher/src/L4D2ModManager.Desktop/L4D2ModManager.Desktop.csproj `
+            -c Release -r win-x64 --self-contained true `
+            -p:PublishSingleFile=true `
+            -p:IncludeNativeLibrariesForSelfExtract=true `
+            -p:EnableCompressionInSingleFile=true `
+            -p:Version="${{ steps.meta.outputs.version }}" `
+            -o launcher/artifacts/win-x64
+
+      - name: Empacotar ZIP portable
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory -Force -Path launcher/artifacts/release | Out-Null
+          $suffix = if ('${{ steps.meta.outputs.tag }}') { '${{ steps.meta.outputs.tag }}' } else { 'ci-${{ steps.meta.outputs.sha }}' }
+          Compress-Archive -Path launcher/artifacts/win-x64/* -DestinationPath "launcher/artifacts/release/L4D2ModManager-$suffix-win-x64-portable.zip" -Force
+
+      - name: Enviar artifact (CI)
         uses: actions/upload-artifact@v4
         with:
-          name: L4D2ModManager-win-x64
-          path: launcher/artifacts/win-x64/**
+          name: L4D2ModManager-${{ steps.meta.outputs.sha }}-win-x64-portable
+          path: launcher/artifacts/release/*.zip
           if-no-files-found: error
+
+      - name: Publicar GitHub Release (automático)
+        if: steps.meta.outputs.publish == 'true'
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.meta.outputs.tag }}
+          name: ${{ steps.meta.outputs.name }}
+          target_commitish: ${{ github.sha }}
+          files: launcher/artifacts/release/*.zip
+          generate_release_notes: ${{ steps.meta.outputs.prerelease != 'true' }}
+          prerelease: ${{ steps.meta.outputs.prerelease == 'true' }}
+          make_latest: ${{ steps.meta.outputs.latest }}
+          fail_on_unmatched_files: true
+          overwrite_files: true
+          body: |
+            Build automático do launcher (portable, self-contained, win-x64).
+            Commit: ${{ github.sha }}
+            - Lint: `dotnet format --verify-no-changes`
+            - Testes: `dotnet test -c Release`
+            Download: arquivo `.zip` anexado (extraia e execute `L4D2ModManager.exe`).

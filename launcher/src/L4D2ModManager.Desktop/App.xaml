@@ -1,12 +1,124 @@
 <Application x:Class="L4D2ModManager.Desktop.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:L4D2ModManager.Desktop"
              StartupUri="MainWindow.xaml">
   <Application.Resources>
     <Color x:Key="AccentColor">#E4473E</Color>
     <SolidColorBrush x:Key="AccentBrush" Color="{StaticResource AccentColor}" />
-    <SolidColorBrush x:Key="SurfaceBrush" Color="#DC11161D" />
-    <SolidColorBrush x:Key="MutedBrush" Color="#AAB5C0" />
+    <SolidColorBrush x:Key="SurfaceBrush" Color="#52141B24" />
+    <SolidColorBrush x:Key="MutedBrush" Color="#D2DCE7" />
+
+    <!-- Liquid glass: real sampled backdrop blur plus a restrained adaptive tint. -->
+    <LinearGradientBrush x:Key="GlassSurfaceBrush" StartPoint="0,0" EndPoint="1,1">
+      <GradientStop Color="#3FFFFFFF" Offset="0" />
+      <GradientStop Color="#221C2935" Offset="0.34" />
+      <GradientStop Color="#48202B36" Offset="0.74" />
+      <GradientStop Color="#58101820" Offset="1" />
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="GlassInsetBrush" StartPoint="0,0" EndPoint="1,1">
+      <GradientStop Color="#38FFFFFF" Offset="0" />
+      <GradientStop Color="#30151E28" Offset="0.35" />
+      <GradientStop Color="#5A0D141C" Offset="1" />
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="GlassRimBrush" StartPoint="0,0" EndPoint="1,1">
+      <GradientStop Color="#E8FFFFFF" Offset="0" />
+      <GradientStop Color="#61FFFFFF" Offset="0.3" />
+      <GradientStop Color="#2BFFFFFF" Offset="0.7" />
+      <GradientStop Color="#A6D9F2FF" Offset="1" />
+    </LinearGradientBrush>
+    <Style TargetType="{x:Type local:GlassCard}">
+      <Setter Property="SnapsToDevicePixels" Value="True" />
+      <Setter Property="Template">
+        <Setter.Value>
+          <ControlTemplate TargetType="{x:Type local:GlassCard}">
+            <Grid>
+              <Border CornerRadius="20" Background="#28000000">
+                <Border.Effect>
+                  <DropShadowEffect Color="#D9000000" BlurRadius="30" ShadowDepth="9" Opacity="0.64" />
+                </Border.Effect>
+              </Border>
+              <Border x:Name="PART_ClipHost" CornerRadius="20" ClipToBounds="True">
+                <Grid>
+                  <Rectangle x:Name="PART_Backdrop" Margin="-22">
+                    <Rectangle.Effect>
+                      <BlurEffect Radius="24" KernelType="Gaussian" RenderingBias="Quality" />
+                    </Rectangle.Effect>
+                  </Rectangle>
+                  <Border Background="{StaticResource GlassSurfaceBrush}" />
+                  <Border Margin="1" CornerRadius="19" BorderBrush="#38FFFFFF" BorderThickness="1,1,0,0" />
+                  <ContentPresenter Margin="{TemplateBinding Padding}"
+                                    HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                </Grid>
+              </Border>
+              <Border CornerRadius="20" BorderBrush="{StaticResource GlassRimBrush}" BorderThickness="1"
+                      IsHitTestVisible="False" />
+            </Grid>
+          </ControlTemplate>
+        </Setter.Value>
+      </Setter>
+    </Style>
+    <Style x:Key="GlassInsetStyle" TargetType="Border">
+      <Setter Property="Background" Value="#8A101820" />
+      <Setter Property="BorderBrush" Value="#32FFFFFF" />
+      <Setter Property="BorderThickness" Value="1" />
+      <Setter Property="CornerRadius" Value="12" />
+    </Style>
+
+    <!-- Minimal glass scrollbar shared by the mod list and Markdown preview. -->
+    <Style TargetType="ScrollBar">
+      <Setter Property="Width" Value="10" />
+      <Setter Property="MinWidth" Value="10" />
+      <Setter Property="Background" Value="Transparent" />
+      <Setter Property="Foreground" Value="#72FFFFFF" />
+      <Setter Property="Template">
+        <Setter.Value>
+          <ControlTemplate TargetType="ScrollBar">
+            <Grid Background="Transparent" Margin="2,1">
+              <Border Background="#18101820" BorderBrush="#24FFFFFF" BorderThickness="1" CornerRadius="4" />
+              <Track x:Name="PART_Track" Orientation="{TemplateBinding Orientation}"
+                     Maximum="{TemplateBinding Maximum}" Minimum="{TemplateBinding Minimum}"
+                     Value="{TemplateBinding Value}" ViewportSize="{TemplateBinding ViewportSize}"
+                     IsDirectionReversed="True" Focusable="False">
+                <Track.DecreaseRepeatButton>
+                  <RepeatButton Command="ScrollBar.PageUpCommand" Opacity="0" Focusable="False" />
+                </Track.DecreaseRepeatButton>
+                <Track.Thumb>
+                  <Thumb MinHeight="28">
+                    <Thumb.Template>
+                      <ControlTemplate TargetType="Thumb">
+                        <Border x:Name="ThumbGlass" Background="#72FFFFFF" BorderBrush="#8CFFFFFF"
+                                BorderThickness="1" CornerRadius="4" Margin="1" />
+                        <ControlTemplate.Triggers>
+                          <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="ThumbGlass" Property="Background" Value="#A6FFFFFF" />
+                          </Trigger>
+                          <Trigger Property="IsDragging" Value="True">
+                            <Setter TargetName="ThumbGlass" Property="Background" Value="#D0FFFFFF" />
+                          </Trigger>
+                        </ControlTemplate.Triggers>
+                      </ControlTemplate>
+                    </Thumb.Template>
+                  </Thumb>
+                </Track.Thumb>
+                <Track.IncreaseRepeatButton>
+                  <RepeatButton Command="ScrollBar.PageDownCommand" Opacity="0" Focusable="False" />
+                </Track.IncreaseRepeatButton>
+              </Track>
+            </Grid>
+            <ControlTemplate.Triggers>
+              <Trigger Property="Orientation" Value="Horizontal">
+                <Setter Property="Width" Value="Auto" />
+                <Setter Property="Height" Value="10" />
+                <Setter Property="MinHeight" Value="10" />
+              </Trigger>
+            </ControlTemplate.Triggers>
+          </ControlTemplate>
+        </Setter.Value>
+      </Setter>
+    </Style>
+
     <Style TargetType="Button">
       <Setter Property="Foreground" Value="White" />
       <Setter Property="Background" Value="{StaticResource AccentBrush}" />
@@ -14,12 +126,29 @@
       <Setter Property="Padding" Value="18,10" />
       <Setter Property="FontWeight" Value="SemiBold" />
       <Setter Property="Cursor" Value="Hand" />
+      <Setter Property="RenderTransformOrigin" Value="0.5,0.5" />
       <Setter Property="Template">
         <Setter.Value>
           <ControlTemplate TargetType="Button">
-            <Border Background="{TemplateBinding Background}" CornerRadius="8" Padding="{TemplateBinding Padding}">
+            <Border x:Name="ButtonChrome" Background="{TemplateBinding Background}" BorderBrush="#6FFFFFFF" BorderThickness="1"
+                    CornerRadius="10" Padding="{TemplateBinding Padding}">
+              <Border.Effect>
+                <DropShadowEffect Color="#8A000000" BlurRadius="12" ShadowDepth="3" Opacity="0.48" />
+              </Border.Effect>
               <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
             </Border>
+            <ControlTemplate.Triggers>
+              <Trigger Property="IsMouseOver" Value="True">
+                <Setter TargetName="ButtonChrome" Property="BorderBrush" Value="#D6FFFFFF" />
+                <Setter TargetName="ButtonChrome" Property="Opacity" Value="0.94" />
+              </Trigger>
+              <Trigger Property="IsPressed" Value="True">
+                <Setter TargetName="ButtonChrome" Property="Opacity" Value="0.78" />
+              </Trigger>
+              <Trigger Property="IsEnabled" Value="False">
+                <Setter TargetName="ButtonChrome" Property="Opacity" Value="0.48" />
+              </Trigger>
+            </ControlTemplate.Triggers>
           </ControlTemplate>
         </Setter.Value>
       </Setter>

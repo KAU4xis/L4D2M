@@ -1,7 +1,7 @@
+.codex-change/
 **/bin/
 **/obj/
 .vs/
 dist/
 *.user
 *.suo
-

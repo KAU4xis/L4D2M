@@ -30,9 +30,21 @@ public sealed record RemoteFile(
 
 public sealed record ManagedFile(string Filename, long Size, string Sha256, string ModId);
 
-public sealed record LocalState(int SchemaVersion, string? InstalledVersion, IReadOnlyList<ManagedFile> Files)
+public sealed record ManagedMod(
+    string Id,
+    string Name,
+    string? Description,
+    string? PreviewUrl,
+    string WorkshopUrl);
+
+public sealed record LocalState(
+    int SchemaVersion,
+    string? InstalledVersion,
+    IReadOnlyList<ManagedFile> Files,
+    IReadOnlyList<ManagedMod>? Mods = null)
 {
-    public static LocalState Empty { get; } = new(1, null, []);
+    [JsonIgnore] public IReadOnlyList<ManagedMod> InstalledMods => Mods ?? [];
+    public static LocalState Empty { get; } = new(2, null, [], []);
 }
 
 public sealed record SyncPlan(
@@ -44,6 +56,34 @@ public sealed record SyncPlan(
     public bool HasChanges => Downloads.Count > 0 || Removals.Count > 0;
 }
 
-public sealed record SyncProgress(string Stage, string? Filename, long CompletedBytes, long TotalBytes);
+public sealed record SyncProgress(
+    string Stage,
+    string? Filename,
+    long CompletedBytes,
+    long TotalBytes,
+    long CurrentFileBytes = 0,
+    long CurrentFileTotalBytes = 0,
+    int CompletedFiles = 0,
+    int TotalFiles = 0);
 
 public sealed record LauncherSettings(string? GamePath);
+
+public sealed record UnmanagedLocalMod(string Filename, string FullPath, long Size);
+
+public static class LocalModScanner
+{
+    public static IReadOnlyList<UnmanagedLocalMod> FindUnmanaged(string addonsPath, LocalState state)
+    {
+        if (!Directory.Exists(addonsPath)) return [];
+
+        var managed = state.Files.Select(file => file.Filename)
+            .ToHashSet(StringComparer.OrdinalIgnoreCase);
+
+        return new DirectoryInfo(addonsPath)
+            .EnumerateFiles("*.vpk", SearchOption.TopDirectoryOnly)
+            .Where(file => !managed.Contains(file.Name))
+            .OrderBy(file => file.Name, StringComparer.CurrentCultureIgnoreCase)
+            .Select(file => new UnmanagedLocalMod(file.Name, file.FullName, file.Length))
+            .ToArray();
+    }
+}

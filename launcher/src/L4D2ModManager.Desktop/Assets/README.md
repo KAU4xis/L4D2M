@@ -1,7 +1,7 @@
 # Assets visuais
 
-Coloque sua imagem personalizada nesta pasta com o nome `background.jpg`.
+Coloque sua imagem personalizada nesta pasta com o nome `background.png` (ou substitua a existente).
 
-Recomendação: 1920×1080 ou superior, JPG otimizado e com áreas escuras suficientes para manter os textos legíveis. O launcher usa um gradiente como fallback quando a imagem não está presente.
+Recomendação: 1920×1080 ou superior, com áreas escuras suficientes para manter os textos legíveis.
 
-Opcionalmente, adicione `app.ico` antes da publicação para personalizar o ícone do executável.
+O ícone do executável usa `app.ico` (gerado a partir de `icon.png`). Para atualizar o ícone, substitua `icon.png`/`app.ico` nesta pasta antes da publicação.

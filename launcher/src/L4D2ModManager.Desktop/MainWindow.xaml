@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:L4D2ModManager.Desktop"
         mc:Ignorable="d" Title="L4D2 Modpack Manager" Width="1180" Height="760"
         MinWidth="900" MinHeight="620" WindowStartupLocation="CenterScreen"
         Foreground="White" FontFamily="Segoe UI">
@@ -14,9 +15,27 @@
     </LinearGradientBrush>
   </Window.Background>
   <Grid>
-    <Image x:Name="BackgroundImage" Stretch="UniformToFill" Opacity="0.28" />
-    <Rectangle Fill="#76000000" />
+    <Image x:Name="BackgroundImage" Stretch="UniformToFill" Opacity="0.88" />
+    <Rectangle>
+      <Rectangle.Fill>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+          <GradientStop Color="#38101419" Offset="0" />
+          <GradientStop Color="#16000000" Offset="0.48" />
+          <GradientStop Color="#4A071018" Offset="1" />
+        </LinearGradientBrush>
+      </Rectangle.Fill>
+    </Rectangle>
     <Grid Margin="34">
+      <Grid.Style>
+        <Style TargetType="Grid">
+          <Setter Property="Visibility" Value="Visible" />
+          <Style.Triggers>
+            <DataTrigger Binding="{Binding IsInterfaceHidden}" Value="True">
+              <Setter Property="Visibility" Value="Collapsed" />
+            </DataTrigger>
+          </Style.Triggers>
+        </Style>
+      </Grid.Style>
       <Grid.RowDefinitions>
         <RowDefinition Height="Auto" />
         <RowDefinition Height="Auto" />
@@ -36,65 +55,365 @@
         </StackPanel>
       </Grid>
 
-      <Border Grid.Row="1" Background="{StaticResource SurfaceBrush}" CornerRadius="12" Padding="18" Margin="0,0,0,18">
+      <local:GlassCard Grid.Row="1" Backdrop="{Binding ElementName=BackgroundImage}" Padding="18" Margin="0,0,0,18"
+                       HorizontalContentAlignment="Stretch">
         <Grid>
-          <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+          </Grid.ColumnDefinitions>
           <StackPanel>
             <TextBlock Text="PASTA DO JOGO" FontSize="11" FontWeight="Bold" Foreground="{StaticResource MutedBrush}" />
             <TextBlock Text="{Binding GamePath}" FontSize="15" TextTrimming="CharacterEllipsis" Margin="0,5,0,0" />
           </StackPanel>
-          <Button Grid.Column="1" Content="Selecionar pasta" Command="{Binding SelectPathCommand}" Background="#34404C" Margin="16,0,0,0" />
+          <Button Grid.Column="1" Content="Selecionar pasta" Command="{Binding SelectPathCommand}"
+                  Background="#6B34404C" Height="42" Padding="18,0" Margin="16,0,0,0"
+                  VerticalAlignment="Center" VerticalContentAlignment="Center" />
+          <Button Grid.Column="2" Command="{Binding ToggleInterfaceCommand}" Background="#6B34404C"
+                  Width="44" Height="42" Padding="0" Margin="10,0,0,0" VerticalAlignment="Center"
+                  VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
+                  ToolTip="Ocultar interface">
+            <TextBlock Text="&#xE890;" FontFamily="Segoe Fluent Icons" FontSize="17"
+                       HorizontalAlignment="Center" VerticalAlignment="Center" />
+          </Button>
+          <Button Grid.Column="3" Command="{Binding DeleteAllLocalModsCommand}" Background="#6846292D"
+                  Width="44" Height="42" Padding="0" Margin="10,0,0,0" VerticalAlignment="Center"
+                  VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
+                  ToolTip="Excluir todos os mods locais">
+            <TextBlock Text="&#xE74D;" FontFamily="Segoe Fluent Icons" FontSize="16"
+                       HorizontalAlignment="Center" VerticalAlignment="Center" />
+          </Button>
         </Grid>
-      </Border>
+      </local:GlassCard>
 
       <Grid Grid.Row="2">
-        <Grid.ColumnDefinitions><ColumnDefinition Width="2*"/><ColumnDefinition Width="360"/></Grid.ColumnDefinitions>
-        <Border Background="{StaticResource SurfaceBrush}" CornerRadius="12" Padding="12" Margin="0,0,18,0">
-          <Grid>
-            <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="*"/></Grid.RowDefinitions>
-            <TextBlock Text="MODS DO PACOTE" FontSize="13" FontWeight="Bold" Margin="8,5,0,12" />
-            <ListBox Grid.Row="1" ItemsSource="{Binding Mods}" Background="Transparent" BorderThickness="0" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
-              <ListBox.ItemContainerStyle><Style TargetType="ListBoxItem"><Setter Property="HorizontalContentAlignment" Value="Stretch"/><Setter Property="Margin" Value="0,0,0,8"/><Setter Property="Focusable" Value="False"/></Style></ListBox.ItemContainerStyle>
-              <ListBox.ItemTemplate>
-                <DataTemplate>
-                  <Border Background="#A51C232C" CornerRadius="10" Padding="10">
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="*" />
+          <ColumnDefinition Width="0.55*" MinWidth="320" MaxWidth="400" />
+        </Grid.ColumnDefinitions>
+        <local:GlassCard Backdrop="{Binding ElementName=BackgroundImage}" Padding="12" Margin="0,0,18,0">
+          <local:GlassCard.Resources>
+            <DataTemplate x:Key="ModCardTemplate">
+              <Border Style="{StaticResource GlassInsetStyle}" Padding="10" HorizontalAlignment="Stretch">
+                <Grid>
+                  <Grid.ColumnDefinitions><ColumnDefinition Width="112"/><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+                  <Border Width="100" Height="64" CornerRadius="8" Background="#5427313B"
+                          BorderBrush="#55FFFFFF" BorderThickness="1" ClipToBounds="True">
                     <Grid>
-                      <Grid.ColumnDefinitions><ColumnDefinition Width="112"/><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
-                      <Border Width="100" Height="64" CornerRadius="7" Background="#27313B" ClipToBounds="True">
-                        <Image Source="{Binding PreviewUrl}" Stretch="UniformToFill" />
-                      </Border>
-                      <StackPanel Grid.Column="1" Margin="12,1">
-                        <TextBlock Text="{Binding Name}" FontSize="15" FontWeight="SemiBold" TextTrimming="CharacterEllipsis" />
-                        <TextBlock Text="{Binding Description}" Foreground="{StaticResource MutedBrush}" FontSize="12" MaxHeight="34" TextWrapping="Wrap" TextTrimming="CharacterEllipsis" />
-                        <TextBlock Text="{Binding Id, StringFormat=Workshop #{0}}" Foreground="#758393" FontSize="11" Margin="0,3,0,0" />
-                      </StackPanel>
-                      <TextBlock Grid.Column="2" Text="{Binding DisplaySize}" Foreground="{StaticResource MutedBrush}" VerticalAlignment="Center" Margin="12" />
+                      <Image Source="{Binding PreviewUrl}" Stretch="UniformToFill" />
+                      <TextBlock Text="&#xE7C3;" FontFamily="Segoe Fluent Icons" FontSize="28"
+                                 Foreground="#AFC5D7" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <TextBlock.Style>
+                          <Style TargetType="TextBlock">
+                            <Setter Property="Visibility" Value="Collapsed" />
+                            <Style.Triggers>
+                              <DataTrigger Binding="{Binding PreviewUrl}" Value="{x:Null}">
+                                <Setter Property="Visibility" Value="Visible" />
+                              </DataTrigger>
+                            </Style.Triggers>
+                          </Style>
+                        </TextBlock.Style>
+                      </TextBlock>
                     </Grid>
                   </Border>
-                </DataTemplate>
-              </ListBox.ItemTemplate>
-            </ListBox>
-          </Grid>
-        </Border>
+                  <StackPanel Grid.Column="1" Margin="12,1">
+                    <TextBlock Text="{Binding Name}" FontSize="15" FontWeight="SemiBold" TextTrimming="CharacterEllipsis" />
+                    <TextBlock Text="{Binding Description}" Foreground="{StaticResource MutedBrush}" FontSize="12"
+                               MaxHeight="34" TextWrapping="Wrap" TextTrimming="CharacterEllipsis" />
+                    <TextBlock Text="{Binding DisplayIdentifier}" Foreground="#8FA1B4" FontSize="11" Margin="0,3,0,0"
+                               TextTrimming="CharacterEllipsis" />
+                  </StackPanel>
+                  <Grid Grid.Column="2" VerticalAlignment="Center" Margin="12,0,6,0">
+                    <Grid.ColumnDefinitions><ColumnDefinition Width="Auto"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+                    <StackPanel VerticalAlignment="Center">
+                      <TextBlock Text="{Binding State}" Foreground="#BCEAFF" FontWeight="SemiBold" FontSize="11" HorizontalAlignment="Right" />
+                      <TextBlock Text="{Binding DisplaySize}" Foreground="{StaticResource MutedBrush}" FontSize="11" HorizontalAlignment="Right" Margin="0,4,0,0" />
+                    </StackPanel>
+                    <Button Grid.Column="1" Command="{Binding DataContext.DeleteLocalModCommand, RelativeSource={RelativeSource AncestorType=Window}}"
+                            CommandParameter="{Binding}" Width="34" Height="34" Padding="0" Margin="10,0,0,0"
+                            ToolTip="Excluir mod local" Background="#553E2428">
+                      <Button.Style>
+                        <Style TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+                          <Setter Property="Visibility" Value="Collapsed" />
+                          <Style.Triggers>
+                            <DataTrigger Binding="{Binding CanDelete}" Value="True">
+                              <Setter Property="Visibility" Value="Visible" />
+                            </DataTrigger>
+                          </Style.Triggers>
+                        </Style>
+                      </Button.Style>
+                      <TextBlock Text="&#xE74D;" FontFamily="Segoe Fluent Icons" FontSize="15" />
+                    </Button>
+                  </Grid>
+                </Grid>
+              </Border>
+            </DataTemplate>
+            <Style x:Key="ModListItemStyle" TargetType="ListBoxItem">
+              <Setter Property="Foreground" Value="White" />
+              <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+              <Setter Property="Margin" Value="0,0,0,8" />
+              <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+              <Setter Property="Background" Value="Transparent" />
+              <EventSetter Event="PreviewMouseLeftButtonDown" Handler="ModItem_PreviewMouseLeftButtonDown" />
+              <Setter Property="Template">
+                <Setter.Value>
+                  <ControlTemplate TargetType="ListBoxItem">
+                    <Border x:Name="HoverSurface" Background="{TemplateBinding Background}" BorderBrush="Transparent"
+                            BorderThickness="1" CornerRadius="12">
+                      <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                      <Trigger Property="IsMouseOver" Value="True">
+                        <Setter TargetName="HoverSurface" Property="Background" Value="#18FFFFFF" />
+                        <Setter TargetName="HoverSurface" Property="BorderBrush" Value="#42FFFFFF" />
+                      </Trigger>
+                      <Trigger Property="IsSelected" Value="True">
+                        <Setter TargetName="HoverSurface" Property="Background" Value="#221E9BD7" />
+                        <Setter TargetName="HoverSurface" Property="BorderBrush" Value="#6CBCEAFF" />
+                      </Trigger>
+                    </ControlTemplate.Triggers>
+                  </ControlTemplate>
+                </Setter.Value>
+              </Setter>
+            </Style>
+            <Style x:Key="ModListStyle" TargetType="ListBox">
+              <Setter Property="Background" Value="Transparent" />
+              <Setter Property="BorderThickness" Value="0" />
+              <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+              <Setter Property="VerticalContentAlignment" Value="Stretch" />
+              <Setter Property="ItemTemplate" Value="{StaticResource ModCardTemplate}" />
+              <Setter Property="ItemContainerStyle" Value="{StaticResource ModListItemStyle}" />
+              <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled" />
+            </Style>
+          </local:GlassCard.Resources>
 
-        <Border Grid.Column="1" Background="{StaticResource SurfaceBrush}" CornerRadius="12" Padding="24">
-          <StackPanel>
-            <TextBlock Text="STATUS" Foreground="{StaticResource MutedBrush}" FontSize="11" FontWeight="Bold" />
-            <TextBlock Text="{Binding Status}" FontSize="20" FontWeight="SemiBold" TextWrapping="Wrap" Margin="0,8,0,22" />
-            <Grid Margin="0,0,0,20">
-              <Grid.ColumnDefinitions><ColumnDefinition/><ColumnDefinition/></Grid.ColumnDefinitions>
-              <StackPanel><TextBlock Text="INSTALADA" Foreground="{StaticResource MutedBrush}" FontSize="10"/><TextBlock Text="{Binding InstalledVersion}" FontSize="18" FontWeight="Bold"/></StackPanel>
-              <StackPanel Grid.Column="1"><TextBlock Text="MODS" Foreground="{StaticResource MutedBrush}" FontSize="10"/><TextBlock Text="{Binding ModCount}" FontSize="18" FontWeight="Bold"/></StackPanel>
+          <TabControl Background="Transparent" BorderThickness="0" Padding="0"
+                      HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
+            <TabControl.Resources>
+              <Style TargetType="TabItem">
+                <Setter Property="Foreground" Value="{StaticResource MutedBrush}" />
+                <Setter Property="FontSize" Value="12" />
+                <Setter Property="FontWeight" Value="SemiBold" />
+                <Setter Property="Margin" Value="2" />
+                <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                <Setter Property="Template">
+                  <Setter.Value>
+                    <ControlTemplate TargetType="TabItem">
+                      <Border x:Name="TabSurface" Padding="14,8" CornerRadius="9" Background="Transparent"
+                              BorderBrush="Transparent" BorderThickness="1">
+                        <ContentPresenter ContentSource="Header" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                      </Border>
+                      <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                          <Setter TargetName="TabSurface" Property="Background" Value="#24FFFFFF" />
+                        </Trigger>
+                        <Trigger Property="IsSelected" Value="True">
+                          <Setter Property="Foreground" Value="White" />
+                          <Setter TargetName="TabSurface" Property="Background" Value="#63394755" />
+                          <Setter TargetName="TabSurface" Property="BorderBrush" Value="#72FFFFFF" />
+                        </Trigger>
+                      </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                  </Setter.Value>
+                </Setter>
+              </Style>
+            </TabControl.Resources>
+            <TabControl.Template>
+              <ControlTemplate TargetType="TabControl">
+                <Grid>
+                  <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="*"/></Grid.RowDefinitions>
+                  <Border Grid.Row="0" Background="#5C101820" BorderBrush="#35FFFFFF" BorderThickness="1"
+                          CornerRadius="12" Padding="2" Margin="0,0,0,12">
+                    <UniformGrid Rows="1" IsItemsHost="True" HorizontalAlignment="Stretch" />
+                  </Border>
+                  <ContentPresenter Grid.Row="1" ContentSource="SelectedContent"
+                                    HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+                </Grid>
+              </ControlTemplate>
+            </TabControl.Template>
+            <TabItem Header="{Binding RequiredTabTitle}">
+              <ListBox ItemsSource="{Binding RequiredMods}" SelectedItem="{Binding SelectedRequiredMod, Mode=TwoWay}"
+                       Style="{StaticResource ModListStyle}" />
+            </TabItem>
+            <TabItem Header="{Binding LocalTabTitle}">
+              <ListBox ItemsSource="{Binding LocalMods}" SelectedItem="{Binding SelectedLocalMod, Mode=TwoWay}"
+                       Style="{StaticResource ModListStyle}" />
+            </TabItem>
+          </TabControl>
+        </local:GlassCard>
+
+        <local:GlassCard Grid.Column="1" Backdrop="{Binding ElementName=BackgroundImage}" Padding="24"
+                         VerticalAlignment="Stretch" VerticalContentAlignment="Stretch">
+          <Grid>
+            <Grid.RowDefinitions>
+              <RowDefinition Height="13*" MinHeight="140" />
+              <RowDefinition Height="7*" MinHeight="260" />
+            </Grid.RowDefinitions>
+
+            <Grid>
+              <Grid.Style>
+                <Style TargetType="Grid">
+                  <Setter Property="Visibility" Value="Visible" />
+                  <Style.Triggers>
+                    <DataTrigger Binding="{Binding SelectedMod}" Value="{x:Null}">
+                      <Setter Property="Visibility" Value="Collapsed" />
+                    </DataTrigger>
+                  </Style.Triggers>
+                </Style>
+              </Grid.Style>
+              <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+              </Grid.RowDefinitions>
+              <TextBlock Text="MOD SELECIONADO" Foreground="{StaticResource MutedBrush}" FontSize="11" FontWeight="Bold" />
+              <Grid Grid.Row="1" Margin="0,8,0,8">
+                <TextBlock FontSize="22" FontWeight="SemiBold" TextWrapping="Wrap">
+                  <TextBlock.Style>
+                    <Style TargetType="TextBlock">
+                      <Style.Triggers>
+                        <DataTrigger Binding="{Binding SelectedMod.WorkshopUrl}" Value="{x:Null}">
+                          <Setter Property="Visibility" Value="Collapsed" />
+                        </DataTrigger>
+                      </Style.Triggers>
+                    </Style>
+                  </TextBlock.Style>
+                  <Hyperlink NavigateUri="{Binding SelectedMod.WorkshopUrl}" RequestNavigate="SteamLink_RequestNavigate"
+                             Foreground="White" TextDecorations="None">
+                    <Run Text="{Binding SelectedMod.Name, Mode=OneWay}" />
+                  </Hyperlink>
+                </TextBlock>
+                <TextBlock Text="{Binding SelectedMod.Name}" FontSize="22" FontWeight="SemiBold" TextWrapping="Wrap">
+                  <TextBlock.Style>
+                    <Style TargetType="TextBlock">
+                      <Setter Property="Visibility" Value="Collapsed" />
+                      <Style.Triggers>
+                        <DataTrigger Binding="{Binding SelectedMod.WorkshopUrl}" Value="{x:Null}">
+                          <Setter Property="Visibility" Value="Visible" />
+                        </DataTrigger>
+                      </Style.Triggers>
+                    </Style>
+                  </TextBlock.Style>
+                </TextBlock>
+              </Grid>
+              <Grid Grid.Row="2" Margin="0,0,0,14">
+                <TextBlock Text="{Binding SelectedMod.DisplayIdentifier}" Foreground="#9FB0C1" FontSize="11" TextTrimming="CharacterEllipsis" />
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                  <TextBlock Text="{Binding SelectedMod.State}" Foreground="#BCEAFF" FontWeight="SemiBold" FontSize="11" />
+                  <TextBlock Text="{Binding SelectedMod.DisplaySize, StringFormat= · {0}}" Foreground="{StaticResource MutedBrush}" FontSize="11" />
+                </StackPanel>
+              </Grid>
+              <local:GlassMarkdownViewer Grid.Row="3" Markdown="{Binding SelectedMod.MarkdownDescription}"
+                                         Theme="Dark" />
             </Grid>
-            <ProgressBar Height="7" Minimum="0" Maximum="100" Value="{Binding ProgressPercent, Mode=OneWay}" Foreground="{StaticResource AccentBrush}" Background="#29313A" BorderThickness="0" Margin="0,0,0,12" />
-            <TextBlock Text="{Binding PlanSummary}" Foreground="{StaticResource MutedBrush}" TextWrapping="Wrap" Margin="0,0,0,20" />
-            <Button Content="VERIFICAR ATUALIZAÇÕES" Command="{Binding RefreshCommand}" Background="#34404C" Margin="0,0,0,10" />
-            <Button Content="ATUALIZAR MODPACK" Command="{Binding UpdateCommand}" />
-          </StackPanel>
-        </Border>
+
+            <TextBlock Text="Selecione um mod para visualizar sua descrição." Foreground="{StaticResource MutedBrush}"
+                       TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center">
+              <TextBlock.Style>
+                <Style TargetType="TextBlock">
+                  <Setter Property="Visibility" Value="Collapsed" />
+                  <Style.Triggers>
+                    <DataTrigger Binding="{Binding SelectedMod}" Value="{x:Null}">
+                      <Setter Property="Visibility" Value="Visible" />
+                    </DataTrigger>
+                  </Style.Triggers>
+                </Style>
+              </TextBlock.Style>
+            </TextBlock>
+
+            <Border Grid.Row="1" Background="#52101820" BorderBrush="#32FFFFFF" BorderThickness="1"
+                    CornerRadius="14" Padding="14" Margin="0,16,0,0">
+              <Grid>
+                <Grid.RowDefinitions>
+                  <RowDefinition Height="Auto" />
+                  <RowDefinition Height="Auto" />
+                  <RowDefinition Height="Auto" />
+                  <RowDefinition Height="Auto" />
+                  <RowDefinition Height="Auto" />
+                  <RowDefinition Height="Auto" />
+                  <RowDefinition Height="Auto" />
+                  <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid>
+                  <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                  </Grid.ColumnDefinitions>
+                  <StackPanel Margin="0,0,10,0">
+                    <TextBlock Text="STATUS" Foreground="{StaticResource MutedBrush}" FontSize="10" FontWeight="Bold" />
+                    <TextBlock Text="{Binding Status}" FontSize="16" FontWeight="SemiBold" TextTrimming="CharacterEllipsis" />
+                  </StackPanel>
+                  <StackPanel Grid.Column="1" Margin="0,0,14,0"><TextBlock Text="INSTALADA" Foreground="{StaticResource MutedBrush}" FontSize="9"/><TextBlock Text="{Binding InstalledVersion}" FontSize="14" FontWeight="Bold"/></StackPanel>
+                  <StackPanel Grid.Column="2"><TextBlock Text="MODS" Foreground="{StaticResource MutedBrush}" FontSize="9"/><TextBlock Text="{Binding ModCount}" FontSize="14" FontWeight="Bold"/></StackPanel>
+                </Grid>
+                <Grid Grid.Row="1" Margin="0,10,0,4">
+                  <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
+                  <TextBlock Text="{Binding CurrentDownloadName}" FontSize="11" FontWeight="SemiBold"
+                             TextTrimming="CharacterEllipsis" ToolTip="{Binding CurrentDownloadName}" />
+                  <TextBlock Grid.Row="1" Text="{Binding CurrentFileProgress}" Foreground="{StaticResource MutedBrush}"
+                             FontSize="10" HorizontalAlignment="Right" Margin="0,2,0,0" />
+                </Grid>
+                <ProgressBar Grid.Row="2" Height="7" Minimum="0" Maximum="100"
+                             Value="{Binding CurrentFilePercent, Mode=OneWay}" Foreground="#FF80D8FF"
+                             Background="#6629313A" BorderThickness="0" />
+                <Grid Grid.Row="3" Margin="0,8,0,4">
+                  <TextBlock Text="TOTAL" Foreground="{StaticResource MutedBrush}" FontSize="9" FontWeight="Bold" />
+                  <TextBlock Text="{Binding TotalDownloadProgress}" Foreground="{StaticResource MutedBrush}"
+                             FontSize="10" HorizontalAlignment="Right" />
+                </Grid>
+                <ProgressBar Grid.Row="4" Height="7" Minimum="0" Maximum="100" Value="{Binding ProgressPercent, Mode=OneWay}"
+                             Foreground="{StaticResource AccentBrush}" Background="#6629313A" BorderThickness="0" />
+                <UniformGrid Grid.Row="5" Columns="3" Margin="0,9,0,0">
+                  <StackPanel>
+                    <TextBlock Text="DECORRIDO" Foreground="{StaticResource MutedBrush}" FontSize="8" />
+                    <TextBlock Text="{Binding DownloadElapsed}" FontSize="11" FontWeight="SemiBold" />
+                  </StackPanel>
+                  <StackPanel>
+                    <TextBlock Text="ETA" Foreground="{StaticResource MutedBrush}" FontSize="8" />
+                    <TextBlock Text="{Binding DownloadEta}" FontSize="11" FontWeight="SemiBold" />
+                  </StackPanel>
+                  <StackPanel>
+                    <TextBlock Text="MODS" Foreground="{StaticResource MutedBrush}" FontSize="8" />
+                    <TextBlock Text="{Binding DownloadPosition}" FontSize="11" FontWeight="SemiBold" />
+                  </StackPanel>
+                </UniformGrid>
+                <TextBlock Grid.Row="6" Text="{Binding PlanSummary}" Foreground="{StaticResource MutedBrush}" FontSize="10"
+                           TextWrapping="Wrap" TextTrimming="CharacterEllipsis" Margin="0,7,0,0" />
+                <Grid Grid.Row="7" Margin="0,10,0,0">
+                  <Grid.ColumnDefinitions><ColumnDefinition/><ColumnDefinition/></Grid.ColumnDefinitions>
+                  <Button Content="VERIFICAR" Command="{Binding RefreshCommand}" Background="#6B34404C"
+                          Height="38" Padding="8,0" Margin="0,0,5,0" />
+                  <Button Grid.Column="1" Content="ATUALIZAR" Command="{Binding UpdateCommand}"
+                          Height="38" Padding="8,0" Margin="5,0,0,0" />
+                </Grid>
+              </Grid>
+            </Border>
+          </Grid>
+        </local:GlassCard>
       </Grid>
 
       <TextBlock Grid.Row="3" Text="{Binding Footer}" Foreground="#778390" FontSize="11" Margin="4,16,0,0" />
     </Grid>
+
+    <Button Command="{Binding ToggleInterfaceCommand}" Background="#8A202B36" Width="44" Height="42"
+            Padding="0" Margin="18" HorizontalAlignment="Left" VerticalAlignment="Top"
+            Panel.ZIndex="10" ToolTip="Mostrar interface">
+      <Button.Style>
+        <Style TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+          <Setter Property="Visibility" Value="Collapsed" />
+          <Style.Triggers>
+            <DataTrigger Binding="{Binding IsInterfaceHidden}" Value="True">
+              <Setter Property="Visibility" Value="Visible" />
+            </DataTrigger>
+          </Style.Triggers>
+        </Style>
+      </Button.Style>
+      <TextBlock Text="&#xE890;" FontFamily="Segoe Fluent Icons" FontSize="17"
+                 HorizontalAlignment="Center" VerticalAlignment="Center" />
+    </Button>
   </Grid>
 </Window>

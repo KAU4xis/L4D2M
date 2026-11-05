@@ -44,4 +44,28 @@ public sealed class SyncPlannerTests
     {
         Assert.ThrowsExactly<InvalidDataException>(() => SafePath.ManagedFile(Path.GetTempPath(), filename));
     }
+
+    [TestMethod]
+    public void FindsOnlyUnmanagedTopLevelVpkFiles()
+    {
+        var directory = Path.Combine(Path.GetTempPath(), $"l4d2-local-mods-{Guid.NewGuid():N}");
+        Directory.CreateDirectory(directory);
+        try
+        {
+            File.WriteAllBytes(Path.Combine(directory, "managed.vpk"), new byte[3]);
+            File.WriteAllBytes(Path.Combine(directory, "personal.vpk"), new byte[7]);
+            File.WriteAllText(Path.Combine(directory, "readme.txt"), "ignored");
+            var state = new LocalState(2, "1.0.0", [new("managed.vpk", 3, new string('a', 64), "1")], []);
+
+            var mods = LocalModScanner.FindUnmanaged(directory, state);
+
+            Assert.HasCount(1, mods);
+            Assert.AreEqual("personal.vpk", mods[0].Filename);
+            Assert.AreEqual(7, mods[0].Size);
+        }
+        finally
+        {
+            Directory.Delete(directory, true);
+        }
+    }
 }
