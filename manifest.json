@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "latest": "1.0.10",
+  "latest": "1.0.11",
   "game": 550,
-  "generatedAt": "2026-11-05T19:38:50Z",
+  "generatedAt": "2026-11-05T20:02:55Z",
   "mods": [
     {
       "id": "3547441271",
@@ -18,23 +18,6 @@
           "size": 19329610,
           "sha256": "a06cf0b8faa5ea8798e8f324ccc1227f199d53d640111050a7b3217ca607d3ea",
           "url": "https://github.com/KAU4xis/L4D2M/releases/download/v1.0.1/Singularity-Sheriff-from-Valorant-3547441271-a06cf0b8faa5.vpk"
-        }
-      ]
-    },
-    {
-      "id": "2830757120",
-      "name": "Chamber [Ellis] - Valorant",
-      "description": "[h1] Introducing Chamber!  [/h1]\r\n\r\nHere's Chamber's playermodel taken from Valorant. Enjoy!\r\n\r\n[h2] Donations are APPRECIATED! Any amount is welcome, and I also take commissions. Please message me on my profile [/h2]\r\n\r\n[b] Paypal OR Venmo me @: [/b]\r\nPaypal: https://paypal.me/HeyItsNess552?country.x=US&locale.x=en_US\r\nVenmo: https://venmo.com/code?user_id=3583352435115943525\r\n\r\n\r\n[b] This content includes: [/b]\r\n\r\n[list]\r\n    [*]Custom playermodel \r\n    [*]Custom viewmodel hands \r\n    [*]Custom VGUI\r\n \r\n  \r\n[/list]\r\n\r\n\r\n[h1] If you liked this mod please make sure to LIKE and SUBSCRIBE [/h1]",
-      "previewUrl": "https://images.steamusercontent.com/ugc/1840299677688798763/AF7F63B42960026C987CD236C85D559DADEE0193/",
-      "workshopUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=2830757120",
-      "creator": "76561198065517427",
-      "timeUpdated": 1657011513,
-      "files": [
-        {
-          "filename": "Chamber-Ellis-Valorant-2830757120-cc242a1e0f39.vpk",
-          "size": 186985168,
-          "sha256": "cc242a1e0f39794d7668d720e2055a5b7417036048d734f55c87d0b5ad55898a",
-          "url": "https://github.com/KAU4xis/L4D2M/releases/download/v1.0.7/Chamber-Ellis-Valorant-2830757120-cc242a1e0f39.vpk"
         }
       ]
     },
@@ -290,23 +273,6 @@
           "size": 2590155,
           "sha256": "f655dd874baf5c94ebd4d0b777d665d79bf9240cc90bcb3d6a33be5d0a03c649",
           "url": "https://github.com/KAU4xis/L4D2M/releases/download/v1.0.9/Leek-Crowbar-1413783817-f655dd874baf.vpk"
-        }
-      ]
-    },
-    {
-      "id": "3396810584",
-      "name": "[Miside] Kind Mita - Replace Bill",
-      "description": "The third Mita is complete!\r\n\r\nThis time, the model's level of detail is better than the previous two mods. The skirt clipping issues that occurred before are almost non-existent here!\r\nThe model includes more JiggleBone, making the hair and skirt more vivid.\r\n(Since I couldn't find a game disassembly model with bones for the kind Mita's hair, I brushed the weights myself, and I'm already numb from doing it.)\r\n\r\nAdditionally, the mod contains a bit of my personal taste, so... please be prepared before using it!\r\n\r\nModel from love game Miside, very good warm game that makes my kind Miside spin.\r\n\r\n[h3]Model Replaces Bill & Bill's Corpse[/h3]\r\n\r\n[h2] FEATURE [/h2]\r\n - JiggleBone\r\n - Vrd Bone\r\n - C Model & P Model\r\n - Outline\r\n - Idle Pose\r\n - Flex\r\n\r\n[h2] OTHER [/h2]\r\nIf you find any other bugs, please leave a message to let me know!\r\nThank you for your subscription and praise\r\n\r\nThe next Mita might be the short-haired Mita (maybe).\r\n\r\nCopyright: Miside\r\n\r\n[url=https://steamcommunity.com/workshop/filedetails/discussion/3394879407/599642060902908150/] Some Possible Problems and Answers [/url]",
-      "previewUrl": "https://images.steamusercontent.com/ugc/58081569315797526/1979EBAF7DE40B0E4BB95D2BCD1BD5DCD1BC0367/",
-      "workshopUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3396810584",
-      "creator": "76561199183330306",
-      "timeUpdated": 1737163360,
-      "files": [
-        {
-          "filename": "Miside-Kind-Mita-Replace-Bill-3396810584-8beebf693444.vpk",
-          "size": 14888827,
-          "sha256": "8beebf693444b36fe27886471ddfb2eaf3fc712fbf5c70d12afb3e6026949e82",
-          "url": "https://github.com/KAU4xis/L4D2M/releases/download/v1.0.9/Miside-Kind-Mita-Replace-Bill-3396810584-8beebf693444.vpk"
         }
       ]
     },
@@ -766,6 +732,23 @@
           "size": 54600148,
           "sha256": "9596f3029d31a19813f6ffb4ef7c62ee8614b9e5ae9312ddc8833c0f4f07c9d5",
           "url": "https://github.com/KAU4xis/L4D2M/releases/download/v1.0.10/M16-Hololive-CS2-M4A1-3832293324-9596f3029d31.vpk"
+        }
+      ]
+    },
+    {
+      "id": "3817520105",
+      "name": "Frozone (Bill)",
+      "description": "What i used to create this mod:\r\nhttps://steamcommunity.com/sharedfiles/filedetails/?id=3617534607\r\n\r\n\r\nDetails:\r\n-Removed the healing animations (now you can use whatever healing animations you want)\r\n-Used Nicks animations (the ones from the original mod would break every time i compiled the files)\r\n-ThePassing models for Zoey and Francis\r\n\r\n\r\nCredits:\r\noriginal mod - Frozone (Louis) / Minnie Mouse",
+      "previewUrl": "https://images.steamusercontent.com/ugc/11714508860630952009/9DE6A5E38FF1576A343D45804F66EE0EB1DA9E52/",
+      "workshopUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3817520105",
+      "creator": "76561199044652301",
+      "timeUpdated": 1791694962,
+      "files": [
+        {
+          "filename": "Frozone-Bill-3817520105-0711404dd9f0.vpk",
+          "size": 15729439,
+          "sha256": "0711404dd9f0529e13a639070d17c89192dff31ad0e043033288e364e4e1dd0e",
+          "url": "https://github.com/KAU4xis/L4D2M/releases/download/v1.0.11/Frozone-Bill-3817520105-0711404dd9f0.vpk"
         }
       ]
     }
