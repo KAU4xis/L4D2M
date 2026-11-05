@@ -1,3 +1,5 @@
+using System.Globalization;
+using System.Net;
 using System.Security.Cryptography;
 using L4D2ModManager.Core;
 
@@ -5,10 +7,13 @@ namespace L4D2ModManager.Infrastructure;
 
 public sealed class ModSynchronizer(HttpClient httpClient, ILocalStateStore stateStore) : IModSynchronizer
 {
+    private const int MaxRateLimitWaits = 120;
+
     public async Task<SyncPlan> PlanAsync(RemoteManifest manifest, string addonsPath, CancellationToken cancellationToken)
         => SyncPlanner.Create(manifest, await stateStore.LoadAsync(addonsPath, cancellationToken));
 
-    public async Task ApplyAsync(RemoteManifest manifest, string addonsPath, SyncPlan plan, IProgress<SyncProgress>? progress, CancellationToken cancellationToken)
+    public async Task ApplyAsync(RemoteManifest manifest, string addonsPath, SyncPlan plan, IProgress<SyncProgress>? progress,
+        Func<RateLimitPause, CancellationToken, Task<bool>>? rateLimitWait = null, CancellationToken cancellationToken = default)
     {
         if (System.Diagnostics.Process.GetProcessesByName("left4dead2").Length > 0)
             throw new IOException("Feche o Left 4 Dead 2 antes de atualizar o modpack.");
@@ -49,7 +54,7 @@ public sealed class ModSynchronizer(HttpClient httpClient, ILocalStateStore stat
                 {
                     progress?.Report(new("Baixando", mod.Name, completed + fileCompleted, plan.DownloadBytes,
                         modBytesBeforeFile + fileCompleted, modTotalBytes, completedMods.Count, totalMods));
-                }, cancellationToken);
+                }, rateLimitWait, cancellationToken);
                 completed += file.Size;
                 completedBytesByMod[mod.Id] = modBytesBeforeFile + file.Size;
                 if (completedBytesByMod[mod.Id] >= modTotalBytes) completedMods.Add(mod.Id);
@@ -119,11 +124,11 @@ public sealed class ModSynchronizer(HttpClient httpClient, ILocalStateStore stat
     }
 
     private async Task DownloadAndVerify(RemoteFile file, string target, Action<long> reportBytes,
-        CancellationToken cancellationToken)
+        Func<RateLimitPause, CancellationToken, Task<bool>>? rateLimitWait, CancellationToken cancellationToken)
     {
         if (!Uri.TryCreate(file.Url, UriKind.Absolute, out var uri) || uri.Scheme != Uri.UriSchemeHttps || !uri.Host.Equals("github.com", StringComparison.OrdinalIgnoreCase))
             throw new InvalidDataException("URL de download não confiável no manifesto.");
-        using var response = await SendDownloadRequestAsync(uri, cancellationToken);
+        using var response = await SendDownloadRequestAsync(uri, rateLimitWait, cancellationToken);
         await using var source = await response.Content.ReadAsStreamAsync(cancellationToken);
         await using (var output = File.Create(target))
         {
@@ -155,29 +160,78 @@ public sealed class ModSynchronizer(HttpClient httpClient, ILocalStateStore stat
         return Convert.ToHexString(await SHA256.HashDataAsync(stream, cancellationToken)).ToLowerInvariant();
     }
 
-    private async Task<HttpResponseMessage> SendDownloadRequestAsync(Uri uri, CancellationToken cancellationToken)
+    private async Task<HttpResponseMessage> SendDownloadRequestAsync(Uri uri,
+        Func<RateLimitPause, CancellationToken, Task<bool>>? rateLimitWait, CancellationToken cancellationToken)
     {
-        for (var attempt = 0; ; attempt++)
+        for (var attempt = 0; attempt <= MaxRateLimitWaits; attempt++)
         {
             var response = await httpClient.GetAsync(uri, HttpCompletionOption.ResponseHeadersRead, cancellationToken);
             if (response.IsSuccessStatusCode) return response;
 
-            var retryable = (int)response.StatusCode is 429 or 500 or 502 or 503 or 504;
-            if (!retryable || attempt >= 3)
+            var status = (int)response.StatusCode;
+            var rateLimited = response.StatusCode is HttpStatusCode.Forbidden or (HttpStatusCode)429;
+            var retryable = rateLimited || status is 500 or 502 or 503 or 504;
+
+            if (rateLimited)
             {
-                var rateLimit = response.StatusCode is System.Net.HttpStatusCode.Forbidden or
-                    (System.Net.HttpStatusCode)429
-                    ? " O GitHub pode ter limitado temporariamente os downloads."
-                    : string.Empty;
-                var status = $"{(int)response.StatusCode} {response.ReasonPhrase}";
+                var reset = TryGetRateLimitReset(response);
+                TimeSpan? resetDelta = reset.HasValue ? reset.Value - DateTimeOffset.UtcNow : null;
+                var delay = response.Headers.RetryAfter?.Delta ?? resetDelta ?? TimeSpan.FromMinutes(1);
+                if (delay < TimeSpan.FromSeconds(1)) delay = TimeSpan.FromSeconds(1);
+                if (delay > TimeSpan.FromMinutes(65)) delay = TimeSpan.FromMinutes(65);
+
+                var message = BuildRateLimitMessage(response, reset, uri);
                 response.Dispose();
-                throw new HttpRequestException($"Falha ao baixar '{uri}': {status}.{rateLimit}");
+
+                var shouldWait = rateLimitWait is null || await rateLimitWait(
+                    new(message, delay, reset, uri.ToString(), attempt + 1, MaxRateLimitWaits), cancellationToken);
+                if (!shouldWait)
+                    throw new OperationCanceledException("Download cancelado pelo usuário durante a espera do limite do GitHub.");
+                await Task.Delay(delay, cancellationToken);
+                continue;
             }
 
-            var delay = response.Headers.RetryAfter?.Delta ?? TimeSpan.FromSeconds(Math.Pow(2, attempt + 1));
+            if (!retryable || attempt >= 3)
+            {
+                var reason = $"{status} {response.ReasonPhrase}";
+                response.Dispose();
+                throw new HttpRequestException($"Falha ao baixar '{uri}': {reason}.");
+            }
+
+            var retryDelay = response.Headers.RetryAfter?.Delta ?? TimeSpan.FromSeconds(Math.Pow(2, attempt + 1));
             response.Dispose();
-            await Task.Delay(delay > TimeSpan.FromMinutes(1) ? TimeSpan.FromMinutes(1) : delay, cancellationToken);
+            await Task.Delay(retryDelay > TimeSpan.FromMinutes(1) ? TimeSpan.FromMinutes(1) : retryDelay, cancellationToken);
         }
+
+        throw new HttpRequestException($"Falha ao baixar '{uri}': limite do GitHub persistiu após várias tentativas.");
+    }
+
+    private static DateTimeOffset? TryGetRateLimitReset(HttpResponseMessage response)
+    {
+        if (response.Headers.TryGetValues("x-ratelimit-reset", out var values) &&
+            long.TryParse(values.FirstOrDefault(), NumberStyles.Integer, CultureInfo.InvariantCulture, out var epoch))
+        {
+            try { return DateTimeOffset.FromUnixTimeSeconds(epoch).ToUniversalTime(); }
+            catch (ArgumentOutOfRangeException) { }
+        }
+        if (response.Headers.RetryAfter?.Date is DateTimeOffset date) return date.ToUniversalTime();
+        if (response.Headers.RetryAfter?.Delta is TimeSpan delta) return DateTimeOffset.UtcNow + delta;
+        return null;
+    }
+
+    private static string BuildRateLimitMessage(HttpResponseMessage response, DateTimeOffset? reset, Uri uri)
+    {
+        var host = uri.Host.Equals("github.com", StringComparison.OrdinalIgnoreCase) ? "GitHub (download de releases)" : uri.Host;
+        var resetText = reset.HasValue ? $" Liberação estimada: {reset.Value.ToLocalTime():HH:mm:ss}." : string.Empty;
+        var retry = response.Headers.RetryAfter?.Delta is TimeSpan delta
+            ? $" Retry-After: {Math.Ceiling(delta.TotalSeconds)}s." : string.Empty;
+        var remaining = response.Headers.TryGetValues("x-ratelimit-remaining", out var r) ? r.FirstOrDefault() : null;
+        var remainingText = remaining == "0" ? " Requisições restantes: 0." : string.Empty;
+
+        return $"Limite de requisições/downloads atingido em {host}.{resetText}{retry}{remainingText}\n" +
+            "O GitHub não publica um único limite fixo para downloads não autenticados em github.com; " +
+            "para a API REST o limite não autenticado é 60 requisições/hora por IP (com x-ratelimit-reset). " +
+            "O launcher vai aguardar e continuar de onde parou.";
     }
 
     private static void EnsureWriteAccess(string addonsPath)

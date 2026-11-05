@@ -66,6 +66,14 @@ public sealed record SyncProgress(
     int CompletedFiles = 0,
     int TotalFiles = 0);
 
+public sealed record RateLimitPause(
+    string Message,
+    TimeSpan Wait,
+    DateTimeOffset? ResetAt,
+    string Url,
+    int Attempt,
+    int MaxAttempts);
+
 public sealed record LauncherSettings(string? GamePath);
 
 public sealed record UnmanagedLocalMod(string Filename, string FullPath, long Size);

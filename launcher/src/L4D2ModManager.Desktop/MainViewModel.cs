@@ -43,6 +43,11 @@ public sealed class MainViewModel : INotifyPropertyChanged
     private string downloadEta = "—";
     private string downloadPosition = "0 / 0";
 
+    private bool isRateLimitPaused;
+    private string rateLimitMessage = string.Empty;
+    private int rateLimitSecondsRemaining;
+    private string rateLimitResetText = "—";
+
     public MainViewModel(IManifestClient manifestClient, ILocalStateStore stateStore, IModSynchronizer synchronizer,
         IGameLocator gameLocator, ILauncherSettingsStore settingsStore, HttpClient httpClient)
     {
@@ -110,6 +115,11 @@ public sealed class MainViewModel : INotifyPropertyChanged
     public string RequiredTabTitle => $"NECESSÁRIOS ({RequiredMods.Count})";
     public string LocalTabTitle => $"LOCAIS ({LocalMods.Count})";
     public string Footer => "A sincronização automática só remove arquivos do state.json; mods locais só são apagados pela lixeira.";
+    public bool IsRateLimitPaused { get => isRateLimitPaused; private set => Set(ref isRateLimitPaused, value); }
+    public string RateLimitMessage { get => rateLimitMessage; private set => Set(ref rateLimitMessage, value); }
+    public int RateLimitSecondsRemaining { get => rateLimitSecondsRemaining; private set => Set(ref rateLimitSecondsRemaining, value); }
+    public string RateLimitResetText { get => rateLimitResetText; private set => Set(ref rateLimitResetText, value); }
+    public string RateLimitHelp => "GitHub (não autenticado): API REST = 60 requisições/hora por IP; downloads em github.com podem sofrer limitação/abuso (429/403, Retry-After/x-ratelimit-reset quando presentes). O launcher aguarda e continua de onde parou.";
     public bool Busy { get => busy; private set { Set(ref busy, value); NotifyCommands(); } }
     public bool IsInterfaceHidden { get => isInterfaceHidden; private set => Set(ref isInterfaceHidden, value); }
     public event PropertyChangedEventHandler? PropertyChanged;
@@ -201,7 +211,7 @@ public sealed class MainViewModel : INotifyPropertyChanged
                 }
                 else DownloadEta = item.TotalBytes > 0 && item.CompletedBytes >= item.TotalBytes ? "Concluído" : "Calculando…";
             });
-            await synchronizer.ApplyAsync(manifest, AddonsPath(), plan, progress, CancellationToken.None);
+            await synchronizer.ApplyAsync(manifest, AddonsPath(), plan, progress, WaitForRateLimitAsync, CancellationToken.None);
             ProgressPercent = 100;
             CurrentFilePercent = 100;
             DownloadElapsed = FormatDuration(timer.Elapsed);
@@ -392,6 +402,48 @@ public sealed class MainViewModel : INotifyPropertyChanged
     }
 
     private void ShowError(Exception exception) { Status = "Falha na operação"; MessageBox.Show(exception.Message, "Erro", MessageBoxButton.OK, MessageBoxImage.Error); }
+
+    private async Task<bool> WaitForRateLimitAsync(RateLimitPause pause, CancellationToken cancellationToken)
+    {
+        var wait = pause.Wait < TimeSpan.FromSeconds(1) ? TimeSpan.FromSeconds(1) : pause.Wait;
+        if (wait > TimeSpan.FromMinutes(65)) wait = TimeSpan.FromMinutes(65);
+        var until = DateTimeOffset.UtcNow + wait;
+        var dispatcher = Application.Current?.Dispatcher;
+
+        void Set(Action action)
+        {
+            if (dispatcher is null || dispatcher.CheckAccess()) action();
+            else dispatcher.Invoke(action);
+        }
+
+        Set(() =>
+        {
+            IsRateLimitPaused = true;
+            RateLimitMessage = pause.Message;
+            RateLimitResetText = pause.ResetAt?.ToLocalTime().ToString("HH:mm:ss") ?? "—";
+            RateLimitSecondsRemaining = (int)Math.Ceiling(wait.TotalSeconds);
+            Status = "Aguardando liberação do limite do GitHub…";
+            CurrentDownloadName = "Download pausado (rate limit)";
+            DownloadEta = RateLimitResetText;
+        });
+
+        try
+        {
+            while (true)
+            {
+                cancellationToken.ThrowIfCancellationRequested();
+                var remaining = until - DateTimeOffset.UtcNow;
+                var seconds = Math.Max(0, (int)Math.Ceiling(remaining.TotalSeconds));
+                Set(() => RateLimitSecondsRemaining = seconds);
+                if (seconds <= 0) return true;
+                await Task.Delay(TimeSpan.FromSeconds(1), cancellationToken);
+            }
+        }
+        finally
+        {
+            Set(() => IsRateLimitPaused = false);
+        }
+    }
     private static string FormatSize(long value) => value >= 1_048_576 ? $"{value / 1_048_576d:F2} MiB" : $"{value / 1024d:F1} KiB";
     private static string FormatDuration(TimeSpan value)
         => value.TotalHours >= 1 ? $"{(int)value.TotalHours:00}:{value.Minutes:00}:{value.Seconds:00}" : $"{value.Minutes:00}:{value.Seconds:00}";

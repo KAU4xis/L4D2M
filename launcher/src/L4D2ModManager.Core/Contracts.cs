@@ -14,7 +14,8 @@ public interface ILocalStateStore
 public interface IModSynchronizer
 {
     Task<SyncPlan> PlanAsync(RemoteManifest manifest, string addonsPath, CancellationToken cancellationToken);
-    Task ApplyAsync(RemoteManifest manifest, string addonsPath, SyncPlan plan, IProgress<SyncProgress>? progress, CancellationToken cancellationToken);
+    Task ApplyAsync(RemoteManifest manifest, string addonsPath, SyncPlan plan, IProgress<SyncProgress>? progress,
+        Func<RateLimitPause, CancellationToken, Task<bool>>? rateLimitWait = null, CancellationToken cancellationToken = default);
 }
 
 public interface IGameLocator

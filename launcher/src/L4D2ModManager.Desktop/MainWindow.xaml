@@ -415,5 +415,45 @@
       <TextBlock Text="&#xE890;" FontFamily="Segoe MDL2 Assets, Segoe Fluent Icons" FontSize="17"
                  HorizontalAlignment="Center" VerticalAlignment="Center" />
     </Button>
+    <Border Panel.ZIndex="20" Background="#C0101620">
+      <Border.Style>
+        <Style TargetType="Border">
+          <Setter Property="Visibility" Value="Collapsed" />
+          <Style.Triggers>
+            <DataTrigger Binding="{Binding IsRateLimitPaused}" Value="True">
+              <Setter Property="Visibility" Value="Visible" />
+            </DataTrigger>
+          </Style.Triggers>
+        </Style>
+      </Border.Style>
+      <local:GlassCard Backdrop="{Binding ElementName=BackgroundImage}" Width="560" MaxWidth="620"
+                       Padding="24" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <StackPanel>
+          <TextBlock Text="LIMITE DO GITHUB ATINGIDO" FontSize="13" FontWeight="Bold"
+                     Foreground="{StaticResource AccentBrush}" />
+          <TextBlock Text="Aguardando liberação para continuar o download" FontSize="22"
+                     FontWeight="SemiBold" Margin="0,6,0,12" TextWrapping="Wrap" />
+          <TextBlock Text="{Binding RateLimitMessage}" Foreground="{StaticResource MutedBrush}"
+                     FontSize="13" TextWrapping="Wrap" />
+          <Border Style="{StaticResource GlassInsetStyle}" Padding="14" Margin="0,16,0,0">
+            <Grid>
+              <Grid.ColumnDefinitions><ColumnDefinition/><ColumnDefinition/></Grid.ColumnDefinitions>
+              <StackPanel>
+                <TextBlock Text="ESPERA RESTANTE" Foreground="{StaticResource MutedBrush}" FontSize="10" FontWeight="Bold" />
+                <TextBlock Text="{Binding RateLimitSecondsRemaining, StringFormat={}{0} s}" FontSize="28" FontWeight="Bold" />
+              </StackPanel>
+              <StackPanel Grid.Column="1">
+                <TextBlock Text="LIBERAÇÃO ESTIMADA" Foreground="{StaticResource MutedBrush}" FontSize="10" FontWeight="Bold" />
+                <TextBlock Text="{Binding RateLimitResetText}" FontSize="28" FontWeight="Bold" />
+              </StackPanel>
+            </Grid>
+          </Border>
+          <TextBlock Text="{Binding RateLimitHelp}" Foreground="#8FA1B4" FontSize="11"
+                     TextWrapping="Wrap" Margin="0,14,0,0" />
+          <TextBlock Text="O download continuará automaticamente de onde parou quando a espera terminar."
+                     Foreground="#BCEAFF" FontSize="12" TextWrapping="Wrap" Margin="0,8,0,0" />
+        </StackPanel>
+      </local:GlassCard>
+    </Border>
   </Grid>
 </Window>
