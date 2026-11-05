@@ -7,11 +7,6 @@
       "redistributionAuthorized": true
     },
     {
-      "id": "2830757120",
-      "enabled": true,
-      "redistributionAuthorized": true
-    },
-    {
       "id": "1603974683",
       "enabled": true,
       "redistributionAuthorized": true
@@ -83,11 +78,6 @@
     },
     {
       "id": "1413783817",
-      "enabled": true,
-      "redistributionAuthorized": true
-    },
-    {
-      "id": "3396810584",
       "enabled": true,
       "redistributionAuthorized": true
     },
@@ -223,6 +213,11 @@
     },
     {
       "id": "3832293324",
+      "enabled": true,
+      "redistributionAuthorized": true
+    },
+    {
+      "id": "3817520105",
       "enabled": true,
       "redistributionAuthorized": true
     }
