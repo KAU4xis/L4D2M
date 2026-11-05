@@ -14,10 +14,10 @@
   <ItemGroup>
     <ProjectReference Include="..\L4D2ModManager.Core\L4D2ModManager.Core.csproj" />
     <ProjectReference Include="..\L4D2ModManager.Infrastructure\L4D2ModManager.Infrastructure.csproj" />
-    <Content Include="Assets\README.md" CopyToOutputDirectory="PreserveNewest" />
-    <Content Include="Assets\app.ico" CopyToOutputDirectory="PreserveNewest" />
-    <Content Include="Assets\icon.png" Condition="Exists('Assets\icon.png')" CopyToOutputDirectory="PreserveNewest" />
-    <Content Include="Assets\background.png" Condition="Exists('Assets\background.png')" CopyToOutputDirectory="PreserveNewest" />
+    <Content Include="Assets\README.md" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" ExcludeFromSingleFile="true" />
+    <Content Include="Assets\app.ico" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" ExcludeFromSingleFile="true" />
+    <Content Include="Assets\icon.png" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" ExcludeFromSingleFile="true" />
+    <Content Include="Assets\background.png" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" ExcludeFromSingleFile="true" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="WpfAnimatedGif" Version="2.0.2" />
