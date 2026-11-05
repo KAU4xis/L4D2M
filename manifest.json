@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "latest": "1.0.8",
+  "latest": "1.0.9",
   "game": 550,
-  "generatedAt": "2026-11-05T16:27:32Z",
+  "generatedAt": "2026-11-05T18:47:23Z",
   "mods": [
     {
       "id": "3547441271",
@@ -52,6 +52,499 @@
           "size": 3668822,
           "sha256": "cd7ee5d0ef6f7f0f8252d1258d8b21cb39b6a6bf3d7a01758316a4867a409d66",
           "url": "https://github.com/KAU4xis/L4D2M/releases/download/v1.0.7/Snorlax-Boomer-1603974683-cd7ee5d0ef6f.vpk"
+        }
+      ]
+    },
+    {
+      "id": "3418325672",
+      "name": "[VSCRIPT] Ragdoll Magnitude & Drive Tweaks",
+      "description": "This is a mod that makes the ragdolls similar to their L4D1 counterparts; very launchable. L4D2 made them to be rather static, so this mod fixes that. It also changes the \"drive\" which (could very well be placebo) launches the ragdoll in the direction they were attacked from.\n\nThis applies to all client sided ragdolls in the game, should work with all campaigns and mutations. Should also be compatible with custom .phy ragdolls. You will need a [url=https://steamcommunity.com/sharedfiles/filedetails/?id=1932686022]survivor ragdoll mod[/url] if you want to see survivor ragdolls.\n\n[b]This mod is server-sided. It will only work locally or on dedicated servers, but only the host/server needs it[/b]\n\n[b]Update: Now configurable![/b]",
+      "previewUrl": "https://images.steamusercontent.com/ugc/49078010232777446/A066BDD229BBCF64B395864502489747723C60D8/",
+      "workshopUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3418325672",
+      "creator": "76561198180954714",
+      "timeUpdated": 1739219876,
+      "files": [
+        {
+          "filename": "VSCRIPT-Ragdoll-Magnitude-Drive-Tweaks-3418325672-d25a11378070.vpk",
+          "size": 2057,
+          "sha256": "d25a11378070fbf16c358641e6a6e0be3627678bd16726da854f4a72c466d244",
+          "url": "https://github.com/KAU4xis/L4D2M/releases/download/v1.0.9/VSCRIPT-Ragdoll-Magnitude-Drive-Tweaks-3418325672-d25a11378070.vpk"
+        }
+      ]
+    },
+    {
+      "id": "2865107042",
+      "name": "Lux's Survivor Legs script",
+      "description": "[b]NOTICE: This addon uses scripts. This will not work in Dedicated servers. Use local/listen servers, or singleplayer instead.[/b]\nAn upside to this is that if you can see this addon's effects, [i]everyone else can.[/i]\n\nThis is a port-to-VScript of [b][u]Lux's Survivor Legs plugin[/u][/b]. [url=https://forums.alliedmods.net/showthread.php?t=299560]link here[b][/b][/url] [i](ah yes, reports galore)[/i]\nYes, it works with custom models. But it's not flawless, and you may face clipping or duplicate arm issues with them.\n\nFor the most part, it works like the plugin. Most of the internal workings are kept the same, albeit translated over to VScript.\n\nIt comes with displaying your pistols, throwable and health items on your legs. However, this can be buggy on multiplayer with people that have custom models.\n\n[h1]Technical Stuff[/h1]\n[url=https://steamcommunity.com/workshop/filedetails/discussion/2865107042/3391798007030752899/]Click here to know about other features of this mod like changeable settings.[/url]\n\n[u]Bugs:[/u]\n[strike][i]- The USE button will occasionally be blocked due to the legs. Try looking more up or down.[/i][/strike] [i](Fix applied)[/i]\n[strike][i]- The legs will take a few seconds to properly load when you spawn into the map, are respawned from a closet or revived by a defibrillator.[/i][/strike] [i](Fix applied)[/i]\n\n[h1]Before you ask 'Does this work on Official Dedicated?'[/h1]\nThe only way for legs to work on Official Dedicated is to modify the viewmodels, just like the [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2490500647]old and buggy viewmodel legs.[/url]\nThere's no way around it. Official Dedicated servers do not accept any script files.",
+      "previewUrl": "https://images.steamusercontent.com/ugc/1820040267749113019/22B340EC86D91A235980323B218775716EB26CD0/",
+      "workshopUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=2865107042",
+      "creator": "76561198095971510",
+      "timeUpdated": 1751355155,
+      "files": [
+        {
+          "filename": "Lux-s-Survivor-Legs-script-2865107042-42ec9808bbf6.vpk",
+          "size": 195659,
+          "sha256": "42ec9808bbf61876cbbe970dce0ba02d0998e3b73e20e9a260f7eccd5813b339",
+          "url": "https://github.com/KAU4xis/L4D2M/releases/download/v1.0.9/Lux-s-Survivor-Legs-script-2865107042-42ec9808bbf6.vpk"
+        }
+      ]
+    },
+    {
+      "id": "3267699591",
+      "name": "Hatsune Miku Pipebomb (with sound)",
+      "description": "Miku's going to baka baka blow you up",
+      "previewUrl": "https://images.steamusercontent.com/ugc/2470867960651758746/B3D447A59ED6524DAA4613495ACDA764A90A99CE/",
+      "workshopUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3267699591",
+      "creator": "76561198053639759",
+      "timeUpdated": 1718382717,
+      "files": [
+        {
+          "filename": "Hatsune-Miku-Pipebomb-with-sound-3267699591-69f22ce9594a.vpk",
+          "size": 4395471,
+          "sha256": "69f22ce9594ae558145238619a51fc713146beb30ef711529aca27c5e2983466",
+          "url": "https://github.com/KAU4xis/L4D2M/releases/download/v1.0.9/Hatsune-Miku-Pipebomb-with-sound-3267699591-69f22ce9594a.vpk"
+        }
+      ]
+    },
+    {
+      "id": "3431145142",
+      "name": "Better Flashlight (Script only)\n",
+      "description": "Tired of being stuck with a small flashlight? Try a bigger and brighter flashlight!\nLight up entire hallways!\nThis is the script only version of the original Better Flashlight, [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3294949969]which you can find here.[/url]\n\nThis addon replaces the default flashlight with one that has a brighter bulb and a bigger size.\nCompatible with custom flashlight textures.\n\n\n[h2]Stat changes (Simple)[/h2]\n*Bigger FOV\n*Brighter bulb\n\n[h2]Stat changes (Full)[/h2]\n+Increased FOV (53 > 80)\n+Increased brightness (0.25 > 0.5)\n\n\n[h2]Credits:[/h2]\n\nScript: Pwnage Peanut\n\nCheck out the entire [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3297519314]Better Items collection here![/url]\nI have also made better gameplay changes! [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3308066325]Check them out here![/url]\nI have also made better weapons! [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3283660297]Check them out here![/url]",
+      "previewUrl": "https://images.steamusercontent.com/ugc/22058314678212517/E1AFCDC7211D036DCFD72233DBA0221B6C6652C2/",
+      "workshopUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3431145142",
+      "creator": "76561198075588730",
+      "timeUpdated": 1740083948,
+      "files": [
+        {
+          "filename": "Better-Flashlight-Script-only-3431145142-7802cc4cf3b1.vpk",
+          "size": 80241,
+          "sha256": "7802cc4cf3b1d7c94218d2a5ca8613ba3379ee1f5a0132b1c954b5f13cb64ede",
+          "url": "https://github.com/KAU4xis/L4D2M/releases/download/v1.0.9/Better-Flashlight-Script-only-3431145142-7802cc4cf3b1.vpk"
+        }
+      ]
+    },
+    {
+      "id": "3032122082",
+      "name": "[xdR] Marlboro Red Cigarettes\n",
+      "description": "Animations by Prentice",
+      "previewUrl": "https://images.steamusercontent.com/ugc/2026112042175610800/7344C36082C6112E55C1F2F7E451EC9FBC55BE23/",
+      "workshopUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3032122082",
+      "creator": "76561198151467111",
+      "timeUpdated": 1694084979,
+      "files": [
+        {
+          "filename": "xdR-Marlboro-Red-Cigarettes-3032122082-e4f46cdf1c86.vpk",
+          "size": 5057216,
+          "sha256": "e4f46cdf1c86b8fe801f2febb95fd7f6b4e77f0e5ca45be81fc33833a9f19049",
+          "url": "https://github.com/KAU4xis/L4D2M/releases/download/v1.0.9/xdR-Marlboro-Red-Cigarettes-3032122082-e4f46cdf1c86.vpk"
+        }
+      ]
+    },
+    {
+      "id": "2858697567",
+      "name": "CJ (Louis)",
+      "description": "Replaces Louis with CJ (Carl Johnson) from Grand Theft Auto San Andreas. Comes with first person hands, hud icons, facial expressions, LOD models and Boomer bile texture.\r\n\r\nCJ owned by Rockstar Games, credit to Wolfe, Ex-Mo and Dafuq!?Boom! for uploading the model to the SFM workshop.",
+      "previewUrl": "https://images.steamusercontent.com/ugc/1832423761754399300/038DFC2542D8C6FD1DE023DBE9B7DCA45F06CA93/",
+      "workshopUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=2858697567",
+      "creator": "76561198806171279",
+      "timeUpdated": 1662311028,
+      "files": [
+        {
+          "filename": "CJ-Louis-2858697567-0426185d4135.vpk",
+          "size": 3467894,
+          "sha256": "0426185d4135f6d21a4d232d1034882a7bf721f70651a272707d688c4e7d2f23",
+          "url": "https://github.com/KAU4xis/L4D2M/releases/download/v1.0.9/CJ-Louis-2858697567-0426185d4135.vpk"
+        }
+      ]
+    },
+    {
+      "id": "3233268063",
+      "name": "- Minecraft - Bow (AWP)",
+      "description": "这里是简介 Description below:\r\n替换AWP\r\nReplace for AWP\r\n\r\n此MOD包含模型,嘤效\r\nThis mod includes model/sound\r\n\r\n该MOD包含毒箭的贴图，具有夜光效果，可自行更换\r\nThis mod includes a poisonous arrow texture, you can replace arrow texture yourself\r\n\r\nCredits:\r\n模型编译 Complie - 苦黄瓜\r\n奔跑&待机动画 Run&Idle Animation - Mav\r\n动画 Animation - 苦黄瓜\r\n模型/纹理 Model/Texture 苦黄瓜/Mojang\r\n音效 Sound - 苦黄瓜/Mojang",
+      "previewUrl": "https://images.steamusercontent.com/ugc/2510269911795953372/84122EB1BF0975F4727219DDFDD550B72C92E33E/",
+      "workshopUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3233268063",
+      "creator": "76561198355644266",
+      "timeUpdated": 1714312104,
+      "files": [
+        {
+          "filename": "Minecraft-Bow-AWP-3233268063-a6b89cd16f2b.vpk",
+          "size": 4668505,
+          "sha256": "a6b89cd16f2b4a11a7ea66cb904f4e410631f67991be44667d2f9d1459fc8cc1",
+          "url": "https://github.com/KAU4xis/L4D2M/releases/download/v1.0.9/Minecraft-Bow-AWP-3233268063-a6b89cd16f2b.vpk"
+        }
+      ]
+    },
+    {
+      "id": "2680156276",
+      "name": "[Melee] [Knife] Butterfly Knife (w/ \"Butterfly\" Deploy Sound) - axe_break",
+      "description": "Butterfly Knife replaces [b] \"Knife\" [/b] (Glow in Dark) > [b] Butterfly Deploy [/b] sound - axe_break\r\n\r\nCS:GO\r\n\r\nw/ Animation (shove/push)\r\nw/ Sound\r\nw/ Butterfly Knife Deploy Sound\r\n\r\nw/ Glowing Knife part\r\nw/ Light Reflective Handle part\r\n\r\n\r\n>>>\r\nAll Other Options\r\n[url=https://steamcommunity.com/sharedfiles/filedetails/?id=2511559062] [b]Machete[/b] = BK w/ [b]Butterfly Deploy Sound[/b] [/url]\r\n[url=https://steamcommunity.com/sharedfiles/filedetails/?id=2511561614] [b]Machete[/b] = BK w/ [b]Knife Deploy Sound[/b] [/url]\r\n[url=https://steamcommunity.com/sharedfiles/filedetails/?id=2680156276] [b ]Knife[/b] = BK w/ [b]Butterfly Deploy Sound - axe_break[/b] [/url]<<<<< Currently on This One\r\n[url=https://steamcommunity.com/sharedfiles/filedetails/?id=2680175863] [b]Knife[/b] = BK w/ [b]Knife Deploy Sound - axe_break[/b] [/url] \r\n[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3126231609] [b]Knife[/b] = BK w/ [b]Raw Deploy Sound - Default Empty[/b], may merge with other deploy sound, in order to fix the conflict problem [/url]\r\n>>>\r\n\r\n\r\n\r\nNote : If you were to use the Butterfly knife one for Machete and one for Knife, they will conflict, aka duplicate files, no big deal, will not cause much problem, since the main conflict parts are the texture and sound both duplicate itself anyways.\r\n\r\n\r\n[b]12/25/21[/b] : For Local Server or Single Player users, the speed of the Knife's attack speed has a delay. My source is not so good. I sincerely apologize. It's a pity that I am unable to share the sensation this knife can bring to all of us. Therefore I cannot find a fix at the time. Since currently there are no available fixes out there.\r\n\r\n\r\n[b]4/11/23[/b] : Updated knife's attack speed, so no more swing delayed animation anymore. Although the knife is a bit shaky, since one didn't mind it, so I updated it anyway.\r\n\r\n\r\n[b]4/16/23[/b] : Updated knife's animation. Less shaky, barely noticeable.\r\n\r\n\r\n[b]12/29/23[/b] : Due certain other mod conflict with axe_break, I've made more different versions of this, to avoid conflict issues, this is the best I can do.\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\nSpecial thanks again to their work\r\n\r\nButterfly Knife Texture [url=https://steamcommunity.com/profiles/76561198312533845] lmgchikess [/url]\r\nButterfly Knife Model Fix [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2939087657] OMW2 [/url]\r\nButterfly Knife Original [url=https://steamcommunity.com/sharedfiles/filedetails/?id=1586846378] CSGO Butterfly Knife [/url]\r\n\r\n\r\n\r\n\r\n\r\n>>>\r\nDeploy | 拿出\r\n[img]https://media1.giphy.com/media/LXCDt3zQJRBrbLr4aN/giphy.gif[/img]\r\n>>>\r\nLeft Click | 左键\r\n[img]https://media4.giphy.com/media/pnBBemx4TZ2oScDjzi/giphy.gif[/img]\r\n>>>\r\nRight Click | 右键\r\n[img]https://media0.giphy.com/media/aMvsaQsXDiFLKXk7So/giphy.gif[/img]\r\n>>>\r\nRight Click + Left Click | 右键 + 左键\r\n[img]https://media3.giphy.com/media/wAzdEaPsS494yZoAO4/giphy.gif[/img]\r\n>>>\r\n\r\n\r\n\r\n有动态的蝴蝶刀\r\n蝴蝶刀替换小刀 【蝴蝶刀拿出声】\r\n蝴蝶刀 切换为 [b] \"小刀\" [/b] (在黑暗中发光) > [b] 蝴蝶刀拿出声 [/b]  - axe_break\r\n\r\n有动态 (推开)\r\n有声音\r\n有蝴蝶刀拿出的声音\r\n\r\n有螢光 刀部分\r\n有反光 刀柄部分\r\n\r\n\r\n\r\n>>>\r\n所有的其他选择\r\n[url=https://steamcommunity.com/sharedfiles/filedetails/?id=2511559062] 砍刀 = 蝴蝶刀 × 蝴蝶刀拿出声 [/url]\r\n[url=https://steamcommunity.com/sharedfiles/filedetails/?id=2511561614] 砍刀 = 蝴蝶刀 × 小刀拿出声 [/url]\r\n[url=https://steamcommunity.com/sharedfiles/filedetails/?id=2680156276] 小刀 = 蝴蝶刀 × 蝴蝶刀拿出声 - axe_break[/url]<<<<< 目前在这个\r\n[url=https://steamcommunity.com/sharedfiles/filedetails/?id=2680175863] 小刀 = 蝴蝶刀 × 小刀拿出声 - axe_break[/url]\r\n[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3126231609] 小刀 = 蝴蝶刀 × 原版拿出声 - 无声音拿出文件在里面，会和别的声音融合 [/url] \r\n>>>\r\n\r\n\r\n[b]12/25/21[/b] : 对于本地服务器或单人游戏使用者们，感觉小刀攻击速度变的有点迟钝。因为我使用的材料不好。我真诚的道歉。 我无法样大家感觉到这把小刀为我带来的真时游戏手感。目前我无法找到修复的方法，由于目前暂时还没有专门给蝴蝶小刀的修复。\r\n\r\n\r\n[b]4/11/23[/b] : 更新了小刀的攻速，不会像以前那么慢。但是小刀会有一点抖，刚问了一位 他说他不介意，我就更新了。\r\n\r\n\r\n[b]4/16/23[/b] : 更新了小刀的动画/模型，已经没那么抖了，也没那么明显。\r\n\r\n\r\n[b]12/29/23[/b] : 有使用者发现有武器枪的拿出声与这个有冲突，所以我就又发了好几个版本出来，这样其它发生有和这个mod冲突的文件就应该不会再有问题了。\r\n\r\n\r\n\r\n\r\n\r\n再次感谢他们为我们带来的作品\r\n\r\n蝴蝶小刀皮肤 [url=https://steamcommunity.com/profiles/76561198312533845] lmgchikess [/url]\r\n蝴蝶小刀修复 [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2939087657] OWM2 [/url]\r\n蝴蝶小刀原创 [url=https://steamcommunity.com/sharedfiles/filedetails/?id=1586846378] CSGO 蝴蝶小刀 [/url]\r\n\r\n\r\n\r\n/all gg hf",
+      "previewUrl": "https://images.steamusercontent.com/ugc/2296337442860448074/EE26FEF102A2296D91C41AF8A0D78CDC775E3198/",
+      "workshopUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=2680156276",
+      "creator": "76561199060601224",
+      "timeUpdated": 1681634418,
+      "files": [
+        {
+          "filename": "Melee-Knife-Butterfly-Knife-w-Butterfly-Deploy-Sound-axe-break-2680156276-1ac6aacbfca9.vpk",
+          "size": 59046646,
+          "sha256": "1ac6aacbfca9a29d10eb5b9c6423293d6e18b5beb478add4dc39c60ff43eec2d",
+          "url": "https://github.com/KAU4xis/L4D2M/releases/download/v1.0.9/Melee-Knife-Butterfly-Knife-w-Butterfly-Deploy-Sound-axe-break-2680156276-1ac6aacbfca9.vpk"
+        }
+      ]
+    },
+    {
+      "id": "2852410920",
+      "name": "Homer Simpson's car - Charger",
+      "description": "Replaces the Charger with Homer Simpson driving the Family Sedan from The Simpsons: Hit & Run.\r\n\r\n[h1] Features: [/h1]\r\n- Custom music\r\n- Custom footstep sounds\r\n- Tire jiggle bones\r\n- Scorch texture\r\n- Viewmodel\r\n- Voice lines\r\n\r\nModel & Sound Creation Credits:\r\nAbsurdBartholomew - Uploading the Homer model to models-resource.\r\nRadical Entertainment - Creating The Simpsons: Hit & Run.\r\nSimpsons Dumper, Cooper - Uploading the Homer voice clips to sounds-resource.\r\nYoursDiddilyTruly, naynaybuggins - Uploading the Family Sedan model to models-resource.",
+      "previewUrl": "https://images.steamusercontent.com/ugc/1734468995584190958/C0E4316072956660F2FDD21F953C6051E20ABFB0/",
+      "workshopUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=2852410920",
+      "creator": "76561198806171279",
+      "timeUpdated": 1724170280,
+      "files": [
+        {
+          "filename": "Homer-Simpson-s-car-Charger-2852410920-d61d051c1f38.vpk",
+          "size": 12710029,
+          "sha256": "d61d051c1f38251a54070d8de30921ea36921f4af8f29fc03720d86a9495f067",
+          "url": "https://github.com/KAU4xis/L4D2M/releases/download/v1.0.9/Homer-Simpson-s-car-Charger-2852410920-d61d051c1f38.vpk"
+        }
+      ]
+    },
+    {
+      "id": "210368756",
+      "name": "Shrek Tank",
+      "description": "He'll make jelly from your eyes.\r\n\r\nComes with Shrek voice clips and All Star tank music.\r\n\r\n----------------------------------------------------------------------------------------\r\n\r\n[b]If you don't want the music, then don't download this mod.[/b]\r\n\r\n[strike][b]Also, I'm not updating this anymore. Consider this the final version forever.[/b][/strike]\r\n[b]I lied, after 13 years I just gave it the REAL last update.[/b]\r\n\r\n[b]If the music doesn't work then another mod is conflicting with this one. Disable the other mod(s) to fix it.[/b]\r\n\r\n[i]Credit goes to GormlessTosser for porting the model[/i]",
+      "previewUrl": "https://images.steamusercontent.com/ugc/486686236668248727/6A36863228623CE389D99E69220C07F519BB32EF/",
+      "workshopUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=210368756",
+      "creator": "76561197991068829",
+      "timeUpdated": 1787535921,
+      "files": [
+        {
+          "filename": "Shrek-Tank-210368756-184dfe0f153d.vpk",
+          "size": 134228198,
+          "sha256": "184dfe0f153dd04c70f994c8b9469d19044ff90c4e3ae50e52b24c3d79a4ce4d",
+          "url": "https://github.com/KAU4xis/L4D2M/releases/download/v1.0.9/Shrek-Tank-210368756-184dfe0f153d.vpk"
+        }
+      ]
+    },
+    {
+      "id": "2936091693",
+      "name": "[Animated] Enchanted Diamond Sword replaces machete!!!",
+      "description": "Follow me and tell me some ideas to mods xddd\r\nI hope you like it, I had been working on this for a while but there were a lot of image files xd\r\n-Minecraft\r\n-Weapons\r\n-Meele\r\n-Sword\r\n-Diamond\r\n\r\nby: In-Ger",
+      "previewUrl": "https://images.steamusercontent.com/ugc/2026093748162972779/B87D8ED6E686599F6B79DA1D13881063A3B00631/",
+      "workshopUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=2936091693",
+      "creator": "76561199041519298",
+      "timeUpdated": 1676853563,
+      "files": [
+        {
+          "filename": "Animated-Enchanted-Diamond-Sword-replaces-machete-2936091693-8ced7e194819.vpk",
+          "size": 4633176,
+          "sha256": "8ced7e1948193daa30ce30143b133b4589613a1b5341020879fdfbb98eddf3b0",
+          "url": "https://github.com/KAU4xis/L4D2M/releases/download/v1.0.9/Animated-Enchanted-Diamond-Sword-replaces-machete-2936091693-8ced7e194819.vpk"
+        }
+      ]
+    },
+    {
+      "id": "3311402444",
+      "name": "- Minecraft - Fire Charge (Molotov)",
+      "description": "这里是简介 Description below:\r\n来自我的世界的烈焰弹，替换麻辣烫\r\nFire Charge From Minecraft. Replace for Molotov\r\n\r\n此MOD只包含模型\r\nThis mod only includes model\r\n\r\nTNT替换土质炸弹: https://steamcommunity.com/sharedfiles/filedetails/?id=3311400165\r\nTNT for Pipe bomb: https://steamcommunity.com/sharedfiles/filedetails/?id=3311400165\r\n\r\n滞留型剧毒药水替换胆汁: https://steamcommunity.com/sharedfiles/filedetails/?id=3311401685\r\nLingering Poison Potion for Bile Jar: https://steamcommunity.com/sharedfiles/filedetails/?id=3311401685\r\n\r\nCredits:\r\n模型编译 Complie - 苦黄瓜\r\n奔跑&待机动画 Run&Idle Animation - Mav\r\n动画 Animation - 苦黄瓜\r\n模型/纹理 Model/Texture 苦黄瓜/Mojang Studio",
+      "previewUrl": "https://images.steamusercontent.com/ugc/2425837582374564359/5572B92EE1B189CDD345638DAA7E0F9B434BCC9A/",
+      "workshopUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3311402444",
+      "creator": "76561198355644266",
+      "timeUpdated": 1723961683,
+      "files": [
+        {
+          "filename": "Minecraft-Fire-Charge-Molotov-3311402444-efc587f7a2c7.vpk",
+          "size": 892698,
+          "sha256": "efc587f7a2c7f6db5db5f5d6f9859893698050a3d3cd7acd8745ba277aa4a244",
+          "url": "https://github.com/KAU4xis/L4D2M/releases/download/v1.0.9/Minecraft-Fire-Charge-Molotov-3311402444-efc587f7a2c7.vpk"
+        }
+      ]
+    },
+    {
+      "id": "3568468143",
+      "name": "The Mask Music for [XDR] Mr. Smoker",
+      "description": "The Mask - Cuban Pete Song \r\n\r\nYou need 3 mods:\r\n1. Dance - [url=https://steamcommunity.com/workshop/filedetails/?id=3561812348][b][XDR] Mr.Smoker animation[/b][/url]\r\n2. Base - [url=https://steamcommunity.com/workshop/filedetails/?id=2121557118][b][XDR] xdReanimsBase (L4D2) Anim Mods base][/b][/url]\r\n3. and that [b]The Mask Music mod[/b]\r\n4. ???\r\n5. Enjoy :D\r\n\r\n[h1]Don't forget to like other two mods, \r\nwithout them my music mod wouldn't be complete.[/h1]\r\n\r\n[b]Blye Oyster Dance Music (from Police Academy)[/b]\r\n[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3565354267][img]https://images.steamusercontent.com/ugc/10727544164113037020/BE1AF1533509BB3C77EEE9F5B5819F6C539B085E/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true[/img][/url]\r\n\r\n- - - \r\n\r\n[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3485230602]::. SAW music theme (Final + End Credits Music)[/url]\r\n[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3383604611]::. Directed By Michael Bay (Final + End Credits Music)[/url]\r\n[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3135087833]::. The Cat Empire - The Lost Song (Final + End Credits Music)[/url]",
+      "previewUrl": "https://images.steamusercontent.com/ugc/15221447801351203358/18A4F32EC65DEDE2F2D28042212E86BEDEAB23E1/",
+      "workshopUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3568468143",
+      "creator": "76561198037845924",
+      "timeUpdated": 1757897800,
+      "files": [
+        {
+          "filename": "The-Mask-Music-for-XDR-Mr-Smoker-3568468143-c902a48dad9a.vpk",
+          "size": 8377142,
+          "sha256": "c902a48dad9a85b031f441f9cd8475b7fa3c77ddab2b9e3038b112963ebcfe5f",
+          "url": "https://github.com/KAU4xis/L4D2M/releases/download/v1.0.9/The-Mask-Music-for-XDR-Mr-Smoker-3568468143-c902a48dad9a.vpk"
+        }
+      ]
+    },
+    {
+      "id": "1413783817",
+      "name": "Leek (Crowbar)",
+      "description": "Give it a spin!\n\nIt's a leek, from Pokkén Tournament more specifically, held by a Farfetch'd. The more realistic style of that game might be uncanny, but the leek looks decent in here. And it jiggles a bit, because a leek would.\n\nModel ripped by Hallow on The Models Resource",
+      "previewUrl": "https://images.steamusercontent.com/ugc/914675699043247668/508DE7F125FE845359D86601EA65B940463D7037/",
+      "workshopUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=1413783817",
+      "creator": "76561198071732989",
+      "timeUpdated": 1601245022,
+      "files": [
+        {
+          "filename": "Leek-Crowbar-1413783817-f655dd874baf.vpk",
+          "size": 2590155,
+          "sha256": "f655dd874baf5c94ebd4d0b777d665d79bf9240cc90bcb3d6a33be5d0a03c649",
+          "url": "https://github.com/KAU4xis/L4D2M/releases/download/v1.0.9/Leek-Crowbar-1413783817-f655dd874baf.vpk"
+        }
+      ]
+    },
+    {
+      "id": "3396810584",
+      "name": "[Miside] Kind Mita - Replace Bill",
+      "description": "The third Mita is complete!\r\n\r\nThis time, the model's level of detail is better than the previous two mods. The skirt clipping issues that occurred before are almost non-existent here!\r\nThe model includes more JiggleBone, making the hair and skirt more vivid.\r\n(Since I couldn't find a game disassembly model with bones for the kind Mita's hair, I brushed the weights myself, and I'm already numb from doing it.)\r\n\r\nAdditionally, the mod contains a bit of my personal taste, so... please be prepared before using it!\r\n\r\nModel from love game Miside, very good warm game that makes my kind Miside spin.\r\n\r\n[h3]Model Replaces Bill & Bill's Corpse[/h3]\r\n\r\n[h2] FEATURE [/h2]\r\n - JiggleBone\r\n - Vrd Bone\r\n - C Model & P Model\r\n - Outline\r\n - Idle Pose\r\n - Flex\r\n\r\n[h2] OTHER [/h2]\r\nIf you find any other bugs, please leave a message to let me know!\r\nThank you for your subscription and praise\r\n\r\nThe next Mita might be the short-haired Mita (maybe).\r\n\r\nCopyright: Miside\r\n\r\n[url=https://steamcommunity.com/workshop/filedetails/discussion/3394879407/599642060902908150/] Some Possible Problems and Answers [/url]",
+      "previewUrl": "https://images.steamusercontent.com/ugc/58081569315797526/1979EBAF7DE40B0E4BB95D2BCD1BD5DCD1BC0367/",
+      "workshopUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3396810584",
+      "creator": "76561199183330306",
+      "timeUpdated": 1737163360,
+      "files": [
+        {
+          "filename": "Miside-Kind-Mita-Replace-Bill-3396810584-8beebf693444.vpk",
+          "size": 14888827,
+          "sha256": "8beebf693444b36fe27886471ddfb2eaf3fc712fbf5c70d12afb3e6026949e82",
+          "url": "https://github.com/KAU4xis/L4D2M/releases/download/v1.0.9/Miside-Kind-Mita-Replace-Bill-3396810584-8beebf693444.vpk"
+        }
+      ]
+    },
+    {
+      "id": "802292239",
+      "name": "22 Tic Tac Pills (RNG)",
+      "description": "[h1]Update 2020[/h1]\r\n[code]I added 6 new flavors (incl. Tic-Tac Gum), SYS (Select Your Skins) support, and changed the RNG.[/code]\r\n\r\n[h1]Update 2016[/h1]\r\n[code]I added 3 new flavors since you guys did like that mod a lot :D  - Banana, Piña Colada and Mint Rush. I also fixed some minor light bugs and a bug on the back etiquette[/code]\r\n\r\nThis mod is the ultimate remaster of something I did more than 2 years ago : Tic Tac Pills. Tic Tac is a brand of small and hard mints that are produced by the Ferrero (ITA), they are usually avaliable in all parts of the globe and you certainly already tasted some.\r\nToday, these delicious mints come to L4D2 in [b]16 different flavors[/b]. The textures are genuine and brand new and HD. This addon doesn't includes custom sound because the original sounds fits the thing perfectly, so no conflict with your hypothetical sound mods.\r\nMoreover, this mod is the first one that is not a remaster and that natively includes the \"[b]Pure RNG[/b]\" System : there are multiple different boxes of Tic-Tac per map and [u]you end up with the last one you picked or tried to pick[/u] :D. So much more variety =).\r\nI did the textures myself because I couldn't find ultra HD ones, so all Tic-Tac boxes have native Full-HD graphics.\r\nEverything being said, hit subscribe and just make sure that Louis doesn't eat them all'\r\n\r\nEnjoy :)\r\n\r\nFlavors are : \r\n[i]Freshmint\r\nSpearmint Twist\r\nIntense Mint\r\nOrange\r\nGreen Apple\r\nCherry Passion\r\nStrawberry Fields\r\nLime & Orange\r\nWintergreen\r\nApple Burst\r\nGrapes\r\nBanana (Minions)\r\nMint Rush\r\nBig Berry Adventure\r\nPeach Lemonade (Mix)\r\nCherry Cola (Mix)\r\nCoconut Piña Colada (Mix)\r\nMelon Mojito (Mix)\r\nFreshmint (Gum)\r\nSpearmint (Gum)\r\nCool Watermelon (Gum)\r\nCool Tropical (Gum)\r\n[/i]\r\n\r\n[table]\r\n        [tr][th][img]https://i.imgur.com/KB1etMg.png[/img][/th][/tr]\r\n        [tr][th]13 different HD Tic Tac packs to replace the Pain Pills (Textures by me)[/th][/tr]\r\n        [tr][th]Pure RNG : multiple designs per map and the first person model matches the one you picked (most of the time)[/th][/tr]\r\n[/table]\r\n\r\n[table]\r\n        [tr][th][img]https://i.imgur.com/t07MO1K.png[/img][/th][/tr]\r\n        [tr][th]Model : [url=http://www.sharecg.com/v/17594/related/5/3D-Model/tic]Martin Eloy Ocampos[/url][/th][/tr]\r\n[/table]\r\n\r\n[table][tr][th][img]https://i.imgur.com/UieW0rs.png[/img][/th][/tr][/table]\r\n[table][tr][th]There are 22 different Tic-Tac flavors. There are multiple ones per map and the one you pick matches the one you get. It can however sometimes change while in hand.[/th][/tr][/table]",
+      "previewUrl": "https://images.steamusercontent.com/ugc/1664608311205729532/AFB6C36826C57C971FE93C16FA3BDB893DDC81BC/",
+      "workshopUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=802292239",
+      "creator": "76561197988683139",
+      "timeUpdated": 1608366020,
+      "files": [
+        {
+          "filename": "22-Tic-Tac-Pills-RNG-802292239-c384a6c2d337.vpk",
+          "size": 22401869,
+          "sha256": "c384a6c2d3375ab28bdef5026aba3bbeef0d18d7da92cd291ade8d2e4c40cc0e",
+          "url": "https://github.com/KAU4xis/L4D2M/releases/download/v1.0.9/22-Tic-Tac-Pills-RNG-802292239-c384a6c2d337.vpk"
+        }
+      ]
+    },
+    {
+      "id": "3044737547",
+      "name": "【Blender】LX-3 katana 替换武士刀 [重制] （katana）",
+      "description": "替换武士刀，replace katana\r\n包含：颜色贴图（basetexture），法线贴图（normal map），全新动作\r\n\r\n之前那个动作实在不行，所以由物业重新制作了一套动画！\r\n动画演示：https://www.bilibili.com/video/BV1dN411E7wd\r\n[h1]\r\n模型（model）：[url=https://steamcommunity.com/id/luoxi_hentai/] 洛兮—blender自制 [/url]\r\n贴图（texture）：[url=https://steamcommunity.com/id/luoxi_hentai/] 洛兮—substance painter自制 [/url]\r\n动作（animation）：[url=https://steamcommunity.com/id/INSANITY_AURA/] 物业——3D Max制作 [/url]\r\n[/h1]\r\n\r\n[img]https://steamuserimages-a.akamaihd.net/ugc/2074527799722228693/F29A1C772C8E9D5BA61C1210232109C94AE2453F/?imw=5000&imh=5000&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false[/img]\r\n[img]https://steamuserimages-a.akamaihd.net/ugc/2074527799721977770/785A56F2D321404CEEC59D887F3D43D90B1EE296/?imw=5000&imh=5000&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false[/img]\r\n[img]https://steamuserimages-a.akamaihd.net/ugc/2074527799721979104/3F4D0D9DA6327AA3BF1CBF8681BA499869506DDF/?imw=5000&imh=5000&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false[/img]\r\n[img]https://steamuserimages-a.akamaihd.net/ugc/2074527799721980748/92AEBA4011931A02B478762D1F120CC250512B9B/?imw=5000&imh=5000&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false[/img]\r\n[img]https://steamuserimages-a.akamaihd.net/ugc/2074527799721981877/F334CE97A9A1BFA1595B36C58B221084D851B7BA/?imw=5000&imh=5000&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false[/img]",
+      "previewUrl": "https://images.steamusercontent.com/ugc/2074527799722265608/3249EBF1E874C7B7F53E5DA63D3D3512593F3630/",
+      "workshopUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3044737547",
+      "creator": "76561198440514364",
+      "timeUpdated": 1696250928,
+      "files": [
+        {
+          "filename": "BlenderLX-3-katana-katana-3044737547-e7531d15dd05.vpk",
+          "size": 26659963,
+          "sha256": "e7531d15dd0594b7f457968d0791bc1ec7268c8e5ff4628cb972de0513ff2214",
+          "url": "https://github.com/KAU4xis/L4D2M/releases/download/v1.0.9/BlenderLX-3-katana-katana-3044737547-e7531d15dd05.vpk"
+        }
+      ]
+    },
+    {
+      "id": "3543955706",
+      "name": "剑星/Stellar Blade_伊芙/Eve（Zoey;佐伊>",
+      "description": "模型来自这位（General Creations ），模板使用这位（Mluidgb)，带有，飘骨，表情眼球追踪，zoey light模型,修改了原本的贴图和模型，某something something house以及其他人禁止搬运，谢谢.,. model comes from this person (General Creations), and uses a template from this person (Mluidgb), It includes eye tracking, jigglebones, and facial expressions,zoey light model.\r\n something something house and others not allow to reuploading this mod. Thank you.",
+      "previewUrl": "https://images.steamusercontent.com/ugc/12022750024911600336/A060BAE0CE14DE2DE045F5126797375680E03D59/",
+      "workshopUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3543955706",
+      "creator": "76561198165910047",
+      "timeUpdated": 1754642763,
+      "files": [
+        {
+          "filename": "Stellar-Blade-Eve-Zoey-3543955706-61d4492196b4.vpk",
+          "size": 139717619,
+          "sha256": "61d4492196b4b8809ff809f961c0013c84218a3957915e411a8987fe2bd024fe",
+          "url": "https://github.com/KAU4xis/L4D2M/releases/download/v1.0.9/Stellar-Blade-Eve-Zoey-3543955706-61d4492196b4.vpk"
+        }
+      ]
+    },
+    {
+      "id": "3218166755",
+      "name": "Paracelsus Replace Shovel",
+      "description": "[h2] REPLACE SHOVEL WITH PARACETAMOL FROM GUILTY GEAR STRIVE [h2]\r\n\r\nCOMMISSIONS OPEN\r\n\r\n[h2] FEATURES [h2]\r\n-paraplegic over shovel\r\n-custom animations\r\n-world model animations\r\n-cel shading\r\n-paraguay will do some random expressions\r\n-maybe i will make him talk in the future\r\n\r\nDO NOT REUPLOAD ANY OF MY MODS WITHOUT MY PERMISSION\r\n\r\n[img]https://i.imgur.com/F5PyEEv.jpg[/img]\r\n\r\n[h2] Dont forget to like, favorite and share [h2]\r\n\r\n[img]https://i.imgur.com/fQvW1vY.gif[/img]",
+      "previewUrl": "https://images.steamusercontent.com/ugc/2493380068796478277/D18D95B4B3D6A1DD1C5CE0FDF115ECCF9A88258F/",
+      "workshopUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3218166755",
+      "creator": "76561198388050817",
+      "timeUpdated": 1712744815,
+      "files": [
+        {
+          "filename": "Paracelsus-Replace-Shovel-3218166755-7362d3798eaf.vpk",
+          "size": 13151819,
+          "sha256": "7362d3798eaf3225b76091475138225a4ecf57ef087ef038c877ace55e1c4e38",
+          "url": "https://github.com/KAU4xis/L4D2M/releases/download/v1.0.9/Paracelsus-Replace-Shovel-3218166755-7362d3798eaf.vpk"
+        }
+      ]
+    },
+    {
+      "id": "3450885438",
+      "name": "Perry The Platypus (Ellis)",
+      "description": "A Platypus Survivor?\r\nPERRY THE PLATYPUS SURVIVOR!\r\n\r\nAgent P replaces Ellis\r\n\r\nRequested by GamerAntyBraixen\r\nSnapshots by Impurity Mouse\r\n\r\n*ARMS and VGUI added*",
+      "previewUrl": "https://images.steamusercontent.com/ugc/23186929143331241/8855544A2FCDEA2EB1E37CB9C124F9963948D407/",
+      "workshopUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3450885438",
+      "creator": "76561199184063091",
+      "timeUpdated": 1742771067,
+      "files": [
+        {
+          "filename": "Perry-The-Platypus-Ellis-3450885438-86fe0b07e0f2.vpk",
+          "size": 1169822,
+          "sha256": "86fe0b07e0f23ab6fba6f857bda60f691deba11c3e244feea86b48be7278878d",
+          "url": "https://github.com/KAU4xis/L4D2M/releases/download/v1.0.9/Perry-The-Platypus-Ellis-3450885438-86fe0b07e0f2.vpk"
+        }
+      ]
+    },
+    {
+      "id": "3660163753",
+      "name": "Madagascar - Skipper - Coach\n",
+      "description": "Skipper into Left 4 Dead 2!\n\nStarring:\nGabryTheSniper: Extracting and porting this model into Left 4 Dead 2\nDream Works/SFM Lab (Randomperson123): Models & Textures\n\nFeatures:\nSurvivor Replacements: Coach (Skipper)\nViewmodel Arms.\nFace Flexes.\nVRD.\nNick animations.\nEyes.\nCustom VGUI.\nBoomer bile is supported.\nLux Legs are supported for this model!\n\nAny hate comments on this addon will be immediately removed!\n\nCommissioned by GamerAnyDelphox!\n\nOriginal: https://steamcommunity.com/sharedfiles/filedetails/?id=2834619671&searchtext=Penguins\n\nEnjoy!\n\nThis item is not authorized for posting on Steam, except under the Steam account named GabryTheSniper; Steam id \"gabrythehedgehog05\"\nModifications or Redistribution of this addon without explicit permission is prohibited.",
+      "previewUrl": "https://images.steamusercontent.com/ugc/9388291256508951684/1C8165ED8FD6DBD4C5D60FA3EDA15BC13BE21FFC/",
+      "workshopUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3660163753",
+      "creator": "76561199106934814",
+      "timeUpdated": 1791725581,
+      "files": [
+        {
+          "filename": "Madagascar-Skipper-Coach-3660163753-d6956dfb82b3.vpk",
+          "size": 5387809,
+          "sha256": "d6956dfb82b3bf9bb6361574a916f4e1723089a7a8f50e908c44668844b482ad",
+          "url": "https://github.com/KAU4xis/L4D2M/releases/download/v1.0.9/Madagascar-Skipper-Coach-3660163753-d6956dfb82b3.vpk"
+        }
+      ]
+    },
+    {
+      "id": "155191789",
+      "name": "Peach (Witch)",
+      "description": "This replaces the Witch with Peach.",
+      "previewUrl": "https://images.steamusercontent.com/ugc/1118298861060069726/A84AC6FCC9FE0A537E4FACEE304F57F6F3BAC2E7/",
+      "workshopUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=155191789",
+      "creator": "76561197975550008",
+      "timeUpdated": 1601235257,
+      "files": [
+        {
+          "filename": "Peach-Witch-155191789-376759f90e1a.vpk",
+          "size": 208015,
+          "sha256": "376759f90e1a9544e8516fd730382cc1f8d8e4d59a706ba10f5c295b638d9379",
+          "url": "https://github.com/KAU4xis/L4D2M/releases/download/v1.0.9/Peach-Witch-155191789-376759f90e1a.vpk"
+        }
+      ]
+    },
+    {
+      "id": "3240268914",
+      "name": "Walter White (Smoker)\n",
+      "description": "Replaces the L4D2 and L4D1 smokers with meth kingpin Heisenberg/Walter White, from Breaking Bad.\n[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3009918765&searchtext=walter]Accompanying sound mod[/url]\nI don't own this mod, the mod is by Willi. This is just for reuploading and archival purposes",
+      "previewUrl": "https://images.steamusercontent.com/ugc/2502389170037887718/A70A92E1CA4857679A90422DA5629D71B9D80A94/",
+      "workshopUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3240268914",
+      "creator": "76561199497067654",
+      "timeUpdated": 1714932307,
+      "files": [
+        {
+          "filename": "Walter-White-Smoker-3240268914-66c769f15973.vpk",
+          "size": 16817452,
+          "sha256": "66c769f15973d3e335dfa1feea52338ac4524b2a63611ff1e465fccd8a0065c2",
+          "url": "https://github.com/KAU4xis/L4D2M/releases/download/v1.0.9/Walter-White-Smoker-3240268914-66c769f15973.vpk"
+        }
+      ]
+    },
+    {
+      "id": "2750892465",
+      "name": "Quagmire for Jockey - Family Guy",
+      "description": "Glenn Quagmire from Family Guy replaces the Jockey.\r\n\r\n[h1]Features:[/h1]\r\n- Custom neck hitbox\r\n- Custom head .phys mesh\r\n- LOD models\r\n- Proportion\r\n- Voice clips\r\n- Viewmodel arms\r\n- Scorch texture\r\n- VGUI icons\r\n\r\nCredits:\r\nGamerAntyDelphox - Creating the thumbnail.\r\nHeavy Iron Studios & Activision - Creating Family Guy BTTM.\r\nHell Inspector - Uploading the model to models-resource.",
+      "previewUrl": "https://images.steamusercontent.com/ugc/10835389581043492245/5C03AD0496107B8322CFE5AF6726039D576679D1/",
+      "workshopUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=2750892465",
+      "creator": "76561198806171279",
+      "timeUpdated": 1775365577,
+      "files": [
+        {
+          "filename": "Quagmire-for-Jockey-Family-Guy-2750892465-7906c09a0297.vpk",
+          "size": 16252107,
+          "sha256": "7906c09a02974f09c9acc4b95f478f0edca24212ead36e2e3fc772757c9ba20d",
+          "url": "https://github.com/KAU4xis/L4D2M/releases/download/v1.0.9/Quagmire-for-Jockey-Family-Guy-2750892465-7906c09a0297.vpk"
+        }
+      ]
+    },
+    {
+      "id": "3686274043",
+      "name": "Jeffrey Epstein (Hunter)",
+      "description": "jeffrey epstein has now recarnated into l4d2 plus with sound from five nights at epstein model from GMOD by ODIN DIN DIN DONE and thumbnail from evil jax\r\n\r\nEDIT:wow i did not expect this to blow up thanks for the support",
+      "previewUrl": "https://images.steamusercontent.com/ugc/17646850517665015516/092F4C8343026EB30078EBD44D34BEAB0DE1B81F/",
+      "workshopUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3686274043",
+      "creator": "76561199499524441",
+      "timeUpdated": 1773682429,
+      "files": [
+        {
+          "filename": "Jeffrey-Epstein-Hunter-3686274043-351e5859b49f.vpk",
+          "size": 2926101,
+          "sha256": "351e5859b49fc6042ccc9c9516826c9697b472d33a6027fa6be2cb34085653c8",
+          "url": "https://github.com/KAU4xis/L4D2M/releases/download/v1.0.9/Jeffrey-Epstein-Hunter-3686274043-351e5859b49f.vpk"
+        }
+      ]
+    },
+    {
+      "id": "3129854844",
+      "name": "Ronald McDonald (Spitter)",
+      "description": "Replaces the Spitter with Ronald McDonald.\n\n[h1] Features: [/h1]\n- Model itself\n- Scorch texture\n- Proportion\n- LOD models\n- Viewmodel\n\n[url=https://steamcommunity.com/sharedfiles/filedetails/?id=2478917285///]Credit to original model[/url]",
+      "previewUrl": "https://images.steamusercontent.com/ugc/2295211542971902937/AC9992D94CE52078302D9AD2284E198B5E0475E7/",
+      "workshopUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3129854844",
+      "creator": "76561198806171279",
+      "timeUpdated": 1704236418,
+      "files": [
+        {
+          "filename": "Ronald-McDonald-Spitter-3129854844-422174999d34.vpk",
+          "size": 4295186,
+          "sha256": "422174999d34004626fcb5a06a65bdd0a9cdb210c5d1afc6c6a50a7587af4ad1",
+          "url": "https://github.com/KAU4xis/L4D2M/releases/download/v1.0.9/Ronald-McDonald-Spitter-3129854844-422174999d34.vpk"
+        }
+      ]
+    },
+    {
+      "id": "3275160547",
+      "name": "Alucard [Francis]",
+      "description": "[quote=River of Jordan... wait! i've used that before!]\nI hear some people say that this model has some cursed vibes to it, especially the facemodel\n\nbut to be honest, it does represent Alucard's nature in a way,\n\n[i]Not a handsome devil with a lust for violence\nNot a count with insourmountable guilt crawling through his skin\nDefinitely not an eccentric moron that watches cartoons in his basement[/i]\n\n[b]But an eldritch being from the realm of weeping, moaning, and gnashing of the teeth[/b]\n\n[img]https://i.imgur.com/t3cPAJk.gif[/img]\n\nIn Summary: He do be kinda quirky doe\n[/quote]\n[h1]Features:[/h1]\n- Custom Vgui\n- Jigglebones\n- Bile Textures\n- Attachments Hidden for Aesthetic Purposes\n\n\n\n[h3]Recommended Mods:[/h3]\n[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3275154902][img]https://i.imgur.com/1lE4Mwj.png[/img][/url]\n[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3275161148][img]https://i.imgur.com/ksUuZEM.png[/img][/url]\n\n\n[h3]Acknowledgements:[/h3]\nOriginal Gmod Port: [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3188133746]Archom[/url]",
+      "previewUrl": "https://images.steamusercontent.com/ugc/2455105898812918037/1AC3608F5DFDDD05CF2FF7005684507CB817826F/",
+      "workshopUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3275160547",
+      "creator": "76561198126258450",
+      "timeUpdated": 1719547922,
+      "files": [
+        {
+          "filename": "Alucard-Francis-3275160547-8495a3b9149b.vpk",
+          "size": 72891147,
+          "sha256": "8495a3b9149bf14bc71ecfda0127c7bf0724135d1c7ef8a101927b960a0a446b",
+          "url": "https://github.com/KAU4xis/L4D2M/releases/download/v1.0.9/Alucard-Francis-3275160547-8495a3b9149b.vpk"
+        }
+      ]
+    },
+    {
+      "id": "3469837868",
+      "name": "Jujutsu Kaisen Toji - Nick\n",
+      "description": "[h1]Features[/h1]\n[i]Jiggle Bones\nViewmodel Arms \nHub\nBile Texture\nFace Flexes\nEyetracking[/i]\n\n[h1]Credits[/h1]\n[i][url=https://www.deviantart.com/o-dv89-o/art/JJKZRF-Toji-Fushiguro-XPS-FBX-Blend-1030698661]o-DV89-o[/url]\nDoctorAnus\nMrfunreal[/i]\n\nExtracted from Jujutsu Kaisen Zero Realm Front.",
+      "previewUrl": "https://images.steamusercontent.com/ugc/13410538136609045584/314F337FF9B37303C939B5FEC6198829BB0D24C7/",
+      "workshopUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3469837868",
+      "creator": "76561198254707407",
+      "timeUpdated": 1745526820,
+      "files": [
+        {
+          "filename": "Jujutsu-Kaisen-Toji-Nick-3469837868-5a9a3df1ea9f.vpk",
+          "size": 11050699,
+          "sha256": "5a9a3df1ea9f25f56599f739a530bf88c71aee68d711dc0a16a63efe16948bfc",
+          "url": "https://github.com/KAU4xis/L4D2M/releases/download/v1.0.9/Jujutsu-Kaisen-Toji-Nick-3469837868-5a9a3df1ea9f.vpk"
+        }
+      ]
+    },
+    {
+      "id": "2885161224",
+      "name": "Ellie for Rochelle | TLOU2",
+      "description": "[h1] Seattle Day 2 Ellie for Rochelle | The Last of Us Part 2\r\n\r\n[b]Check out [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2885191484]Ellie for Zoey[/url]![/b]\r\n[b]Ellie for all [url=https://drive.google.com/file/d/1I2Mm__gm6zfdC6Wqwk32XYFXL7AT3VhX/view?usp=sharing]L4D1[/url]and [url=https://drive.google.com/file/d/1Q2_oCnUbk5oEHFBwIDr_wRTTC6VqNL4s/view?usp=sharing]L4D2 survivors[/url][/b][/h1]\r\n\r\nThis mod was commissioned by [url=https://steamcommunity.com/profiles/76561198305251271/]ScratchNSniff[/url]. Thank you for ordering from me!\r\n\r\nAnd here I offer you Ellie Williams from TLOU2! She always needed a proper port of this skin to the game. The mod was originally made in July, but I've had a lot of commissions (that I most likely won't post) and life stuff going on, I just didn't have energy to post this, but here we are! \r\n\r\nI also want to thank the commissioner for making the order because it's what finally made me watch TLOU2's playthrough. And it was wonderful.\r\n\r\n[h1] Features [/h1]\r\n● First person arms\r\n● Facial expressions (some were exported from TLOU2!!!)\r\n● VGUI pictures\r\n● Jigglebones for hair, backpack, its zips, and bottom of the shirt like in TLOU2\r\n● Gun attachments like in TLOU2 (main and melee on backpack's sides, pistol tucked into the jeans)\r\n● Zoey's animations\r\n\r\n[h1] Bugs [/h1]\r\nNot that I know of. Tell me if you find any!\r\n\r\n[h1] Creators [/h1]\r\n● [url=https://steamcommunity.com/id/MommoXx/] kukuhorny [/url] — making the mod and screenshots\r\n\r\n[h1] Special thanks to [/h1]\r\n● [url=https://www.naughtydog.com] Naughty Dog [/url] for creating The Last of Us and Ellie\r\n● [url=https://steamcommunity.com/id/aniceoaktree] Katarina [/url] for extracting Ellie's facial animations from TLOU2\r\n● [url=https://steamcommunity.com/id/funreal] мяFunreal [/url] for the icons prefab\r\n● Someone for extracting the model I don't remember lol",
+      "previewUrl": "https://images.steamusercontent.com/ugc/1892102308226848025/CF409AA2A89473F55A18F72BDAF83E1D1B6AC7BC/",
+      "workshopUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=2885161224",
+      "creator": "76561198272788752",
+      "timeUpdated": 1709902890,
+      "files": [
+        {
+          "filename": "Ellie-for-Rochelle-TLOU2-2885161224-a8a7664cfe69.vpk",
+          "size": 59267650,
+          "sha256": "a8a7664cfe6958eb653140dec0e061cda5cd18edc188aac8e45dbf899a9df291",
+          "url": "https://github.com/KAU4xis/L4D2M/releases/download/v1.0.9/Ellie-for-Rochelle-TLOU2-2885161224-a8a7664cfe69.vpk"
         }
       ]
     }
