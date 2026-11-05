@@ -128,8 +128,8 @@ public sealed class ModSynchronizer(HttpClient httpClient, ILocalStateStore stat
     {
         if (!Uri.TryCreate(file.Url, UriKind.Absolute, out var uri) || uri.Scheme != Uri.UriSchemeHttps || !uri.Host.Equals("github.com", StringComparison.OrdinalIgnoreCase))
             throw new InvalidDataException("URL de download não confiável no manifesto.");
-        using var response = await SendDownloadRequestAsync(uri, rateLimitWait, cancellationToken);
-        await using var source = await response.Content.ReadAsStreamAsync(cancellationToken);
+        using var response = await SendDownloadRequestAsync(uri, rateLimitWait, cancellationToken).ConfigureAwait(false);
+        await using var source = await response.Content.ReadAsStreamAsync(cancellationToken).ConfigureAwait(false);
         await using (var output = File.Create(target))
         {
             var buffer = new byte[128 * 1024];
@@ -137,9 +137,9 @@ public sealed class ModSynchronizer(HttpClient httpClient, ILocalStateStore stat
             var lastReport = System.Diagnostics.Stopwatch.GetTimestamp();
             while (true)
             {
-                var read = await source.ReadAsync(buffer, cancellationToken);
+                var read = await source.ReadAsync(buffer, cancellationToken).ConfigureAwait(false);
                 if (read == 0) break;
-                await output.WriteAsync(buffer.AsMemory(0, read), cancellationToken);
+                await output.WriteAsync(buffer.AsMemory(0, read), cancellationToken).ConfigureAwait(false);
                 copied += read;
                 if (System.Diagnostics.Stopwatch.GetElapsedTime(lastReport).TotalMilliseconds >= 100)
                 {
@@ -157,7 +157,7 @@ public sealed class ModSynchronizer(HttpClient httpClient, ILocalStateStore stat
     private static async Task<string> Hash(string path, CancellationToken cancellationToken)
     {
         await using var stream = File.OpenRead(path);
-        return Convert.ToHexString(await SHA256.HashDataAsync(stream, cancellationToken)).ToLowerInvariant();
+        return Convert.ToHexString(await SHA256.HashDataAsync(stream, cancellationToken).ConfigureAwait(false)).ToLowerInvariant();
     }
 
     private async Task<HttpResponseMessage> SendDownloadRequestAsync(Uri uri,
@@ -165,7 +165,7 @@ public sealed class ModSynchronizer(HttpClient httpClient, ILocalStateStore stat
     {
         for (var attempt = 0; attempt <= MaxRateLimitWaits; attempt++)
         {
-            var response = await httpClient.GetAsync(uri, HttpCompletionOption.ResponseHeadersRead, cancellationToken);
+            var response = await httpClient.GetAsync(uri, HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
             if (response.IsSuccessStatusCode) return response;
 
             var status = (int)response.StatusCode;
@@ -184,10 +184,10 @@ public sealed class ModSynchronizer(HttpClient httpClient, ILocalStateStore stat
                 response.Dispose();
 
                 var shouldWait = rateLimitWait is null || await rateLimitWait(
-                    new(message, delay, reset, uri.ToString(), attempt + 1, MaxRateLimitWaits), cancellationToken);
+                    new(message, delay, reset, uri.ToString(), attempt + 1, MaxRateLimitWaits), cancellationToken).ConfigureAwait(false);
                 if (!shouldWait)
                     throw new OperationCanceledException("Download cancelado pelo usuário durante a espera do limite do GitHub.");
-                await Task.Delay(delay, cancellationToken);
+                await Task.Delay(delay, cancellationToken).ConfigureAwait(false);
                 continue;
             }
 
@@ -200,7 +200,7 @@ public sealed class ModSynchronizer(HttpClient httpClient, ILocalStateStore stat
 
             var retryDelay = response.Headers.RetryAfter?.Delta ?? TimeSpan.FromSeconds(Math.Pow(2, attempt + 1));
             response.Dispose();
-            await Task.Delay(retryDelay > TimeSpan.FromMinutes(1) ? TimeSpan.FromMinutes(1) : retryDelay, cancellationToken);
+            await Task.Delay(retryDelay > TimeSpan.FromMinutes(1) ? TimeSpan.FromMinutes(1) : retryDelay, cancellationToken).ConfigureAwait(false);
         }
 
         throw new HttpRequestException($"Falha ao baixar '{uri}': limite do GitHub persistiu após várias tentativas.");

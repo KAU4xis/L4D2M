@@ -1,14 +1,15 @@
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.IO;
 using System.Net.Http;
 using System.Runtime.CompilerServices;
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Diagnostics;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Threading;
 using L4D2ModManager.Core;
 using Microsoft.Win32;
 
@@ -22,6 +23,7 @@ public sealed class MainViewModel : INotifyPropertyChanged
     private readonly IGameLocator gameLocator;
     private readonly ILauncherSettingsStore settingsStore;
     private readonly HttpClient httpClient;
+    private readonly Dispatcher dispatcher = Application.Current?.Dispatcher ?? Dispatcher.CurrentDispatcher;
     private RemoteManifest? manifest;
     private SyncPlan? plan;
     private string? gamePath;
@@ -42,7 +44,6 @@ public sealed class MainViewModel : INotifyPropertyChanged
     private string downloadElapsed = "00:00";
     private string downloadEta = "—";
     private string downloadPosition = "0 / 0";
-
     private bool isRateLimitPaused;
     private string rateLimitMessage = string.Empty;
     private int rateLimitSecondsRemaining;
@@ -57,13 +58,13 @@ public sealed class MainViewModel : INotifyPropertyChanged
         this.gameLocator = gameLocator;
         this.settingsStore = settingsStore;
         this.httpClient = httpClient;
-        RefreshCommand = new AsyncCommand(RefreshAsync, () => !Busy && GamePath is not null);
-        UpdateCommand = new AsyncCommand(UpdateAsync, () => !Busy && plan?.HasChanges == true);
-        SelectPathCommand = new AsyncCommand(SelectPathAsync, () => !Busy);
+        RefreshCommand = new AsyncCommand(() => RunAsync(RefreshCoreAsync), () => !Busy && GamePath is not null);
+        UpdateCommand = new AsyncCommand(() => RunAsync(UpdateCoreAsync), () => !Busy && plan?.HasChanges == true);
+        SelectPathCommand = new AsyncCommand(() => RunAsync(SelectPathCoreAsync), () => !Busy);
         ToggleInterfaceCommand = new ActionCommand(() => IsInterfaceHidden = !IsInterfaceHidden);
-        DeleteLocalModCommand = new AsyncParameterCommand<ModViewModel>(DeleteLocalModAsync,
+        DeleteLocalModCommand = new AsyncParameterCommand<ModViewModel>(mod => RunAsync(() => DeleteLocalModCoreAsync(mod)),
             mod => !Busy && mod?.CanDelete == true);
-        DeleteAllLocalModsCommand = new AsyncCommand(DeleteAllLocalModsAsync,
+        DeleteAllLocalModsCommand = new AsyncCommand(() => RunAsync(DeleteAllLocalModsCoreAsync),
             () => !Busy && LocalMods.Any(mod => mod.CanDelete));
     }
 
@@ -124,114 +125,138 @@ public sealed class MainViewModel : INotifyPropertyChanged
     public bool IsInterfaceHidden { get => isInterfaceHidden; private set => Set(ref isInterfaceHidden, value); }
     public event PropertyChangedEventHandler? PropertyChanged;
 
-    public async Task InitializeAsync()
+    public Task InitializeAsync() => RunAsync(InitializeCoreAsync);
+
+    private async Task InitializeCoreAsync()
     {
-        GamePath = await Task.Run(() => gameLocator.FindFromLauncherDirectory(AppContext.BaseDirectory));
-        if (GamePath is null)
+        var found = await Task.Run(() => gameLocator.FindFromLauncherDirectory(AppContext.BaseDirectory)).ConfigureAwait(false);
+        if (found is null)
         {
-            var saved = await settingsStore.LoadAsync(CancellationToken.None);
-            if (!string.IsNullOrWhiteSpace(saved.GamePath) && Directory.Exists(Path.Combine(saved.GamePath, "left4dead2", "addons")))
-                GamePath = saved.GamePath;
+            var saved = await settingsStore.LoadAsync(CancellationToken.None).ConfigureAwait(false);
+            if (!string.IsNullOrWhiteSpace(saved.GamePath) &&
+                await Task.Run(() => Directory.Exists(Path.Combine(saved.GamePath, "left4dead2", "addons"))).ConfigureAwait(false))
+                found = saved.GamePath;
         }
-        if (GamePath is null) Status = "Selecione a pasta do Left 4 Dead 2";
-        else await RefreshAsync();
+
+        if (found is not null)
+        {
+            await OnUiAsync(() => GamePath = found);
+            await RefreshCoreAsync().ConfigureAwait(false);
+            return;
+        }
+
+        await OnUiAsync(() => Status = "Selecione a pasta do Left 4 Dead 2");
     }
 
-    private async Task SelectPathAsync()
+    private async Task SelectPathCoreAsync()
     {
         var dialog = new OpenFolderDialog { Title = "Selecione a raiz do Left 4 Dead 2", Multiselect = false };
         if (dialog.ShowDialog() != true) return;
-        try
-        {
-            GamePath = gameLocator.NormalizeSelectedPath(dialog.FolderName);
-            await settingsStore.SaveAsync(new(GamePath), CancellationToken.None);
-            await RefreshAsync();
-        }
-        catch (Exception exception) { ShowError(exception); }
+        var normalized = await Task.Run(() => gameLocator.NormalizeSelectedPath(dialog.FolderName)).ConfigureAwait(false);
+        await settingsStore.SaveAsync(new(normalized), CancellationToken.None).ConfigureAwait(false);
+        await OnUiAsync(() => GamePath = normalized);
+        await RefreshCoreAsync().ConfigureAwait(false);
     }
 
-    private async Task RefreshAsync()
+    private async Task RefreshCoreAsync()
     {
-        if (GamePath is null) return;
-        await Run(async () =>
+        var currentGamePath = GamePath;
+        if (currentGamePath is null) return;
+        await OnUiAsync(() => Status = "Consultando manifesto…");
+
+        var remote = await manifestClient.GetLatestAsync(CancellationToken.None).ConfigureAwait(false);
+        var addons = Path.Combine(currentGamePath, "left4dead2", "addons");
+        var local = await stateStore.LoadAsync(addons, CancellationToken.None).ConfigureAwait(false);
+        local = await EnrichLocalStateAsync(local, remote, addons).ConfigureAwait(false);
+        var newPlan = await Task.Run(() => SyncPlanner.Create(remote, local)).ConfigureAwait(false);
+        var catalog = await Task.Run(() => BuildModCatalog(remote, local, newPlan, addons)).ConfigureAwait(false);
+
+        manifest = remote;
+        plan = newPlan;
+        await OnUiAsync(() =>
         {
-            Status = "Consultando manifesto…";
-            manifest = await manifestClient.GetLatestAsync(CancellationToken.None);
-            var addons = AddonsPath();
-            var local = await stateStore.LoadAsync(addons, CancellationToken.None);
-            local = await EnrichLocalStateAsync(local, manifest, addons);
-            plan = await Task.Run(() => SyncPlanner.Create(manifest, local));
-            var catalog = await Task.Run(() => BuildModCatalog(manifest, local, plan, addons));
             InstalledVersion = local.InstalledVersion ?? "Não instalado";
-            AvailableVersion = manifest.Latest;
+            AvailableVersion = remote.Latest;
             ApplyModCatalog(catalog);
-            await PrepareDescriptionImagesAsync(SelectedMod);
             OnPropertyChanged(nameof(ModCount));
             OnPropertyChanged(nameof(RequiredTabTitle));
             OnPropertyChanged(nameof(LocalTabTitle));
-            PlanSummary = $"{plan.Downloads.Count} download(s), {plan.Removals.Count} remoção(ões), {FormatSize(plan.DownloadBytes)} para baixar.";
-            Status = plan.HasChanges ? "Atualização disponível" : "Modpack sincronizado";
+            PlanSummary = $"{newPlan.Downloads.Count} download(s), {newPlan.Removals.Count} remoção(ões), {FormatSize(newPlan.DownloadBytes)} para baixar.";
+            Status = newPlan.HasChanges ? "Atualização disponível" : "Modpack sincronizado";
         });
+        await PrepareDescriptionImagesAsync(SelectedMod).ConfigureAwait(false);
     }
 
-    private async Task UpdateAsync()
+    private async Task UpdateCoreAsync()
     {
-        if (manifest is null || plan is null || GamePath is null) return;
-        var answer = MessageBox.Show($"Aplicar a versão {manifest.Latest}?\n\n{PlanSummary}", "Confirmar atualização", MessageBoxButton.YesNo, MessageBoxImage.Question);
+        var currentManifest = manifest;
+        var currentPlan = plan;
+        var currentGamePath = GamePath;
+        if (currentManifest is null || currentPlan is null || currentGamePath is null) return;
+
+        var answer = OnUi(() => MessageBox.Show(
+            $"Aplicar a versão {currentManifest.Latest}?\n\n{PlanSummary}",
+            "Confirmar atualização", MessageBoxButton.YesNo, MessageBoxImage.Question));
         if (answer != MessageBoxResult.Yes) return;
-        await Run(async () =>
+
+        var addons = Path.Combine(currentGamePath, "left4dead2", "addons");
+        var totalDownloadMods = currentPlan.Downloads.Select(item => item.Mod.Id)
+            .Distinct(StringComparer.OrdinalIgnoreCase).Count();
+        await OnUiAsync(() =>
         {
             ProgressPercent = 0;
             CurrentFilePercent = 0;
             CurrentDownloadName = "Preparando downloads…";
             CurrentFileProgress = "0 B";
-            TotalDownloadProgress = $"0 B / {FormatSize(plan.DownloadBytes)}";
+            TotalDownloadProgress = $"0 B / {FormatSize(currentPlan.DownloadBytes)}";
             DownloadElapsed = "00:00";
             DownloadEta = "Calculando…";
-            var totalDownloadMods = plan.Downloads.Select(item => item.Mod.Id)
-                .Distinct(StringComparer.OrdinalIgnoreCase).Count();
             DownloadPosition = $"0 / {totalDownloadMods}";
-            var timer = Stopwatch.StartNew();
-            var progress = new Progress<SyncProgress>(item =>
+        });
+
+        var timer = Stopwatch.StartNew();
+        var progress = new Progress<SyncProgress>(item =>
+        {
+            Status = item.Stage;
+            ProgressPercent = item.TotalBytes == 0 ? 0 : item.CompletedBytes * 100d / item.TotalBytes;
+            CurrentFilePercent = item.CurrentFileTotalBytes == 0 ? 0 :
+                item.CurrentFileBytes * 100d / item.CurrentFileTotalBytes;
+            CurrentDownloadName = item.Filename ?? "Finalizando…";
+            CurrentFileProgress = $"{FormatSize(item.CurrentFileBytes)} / {FormatSize(item.CurrentFileTotalBytes)} · {CurrentFilePercent:F0}%";
+            TotalDownloadProgress = $"{FormatSize(item.CompletedBytes)} / {FormatSize(item.TotalBytes)} · {ProgressPercent:F0}%";
+            DownloadElapsed = FormatDuration(timer.Elapsed);
+            DownloadPosition = $"{item.CompletedFiles} / {item.TotalFiles}";
+            if (item.CompletedBytes > 0 && item.TotalBytes > item.CompletedBytes)
             {
-                Status = item.Stage;
-                ProgressPercent = item.TotalBytes == 0 ? 0 : item.CompletedBytes * 100d / item.TotalBytes;
-                CurrentFilePercent = item.CurrentFileTotalBytes == 0 ? 0 :
-                    item.CurrentFileBytes * 100d / item.CurrentFileTotalBytes;
-                CurrentDownloadName = item.Filename ?? "Finalizando…";
-                CurrentFileProgress = $"{FormatSize(item.CurrentFileBytes)} / {FormatSize(item.CurrentFileTotalBytes)} · {CurrentFilePercent:F0}%";
-                TotalDownloadProgress = $"{FormatSize(item.CompletedBytes)} / {FormatSize(item.TotalBytes)} · {ProgressPercent:F0}%";
-                DownloadElapsed = FormatDuration(timer.Elapsed);
-                DownloadPosition = $"{item.CompletedFiles} / {item.TotalFiles}";
-                if (item.CompletedBytes > 0 && item.TotalBytes > item.CompletedBytes)
-                {
-                    var bytesPerSecond = item.CompletedBytes / Math.Max(timer.Elapsed.TotalSeconds, 0.1);
-                    DownloadEta = bytesPerSecond <= 0 ? "Calculando…" :
-                        FormatDuration(TimeSpan.FromSeconds((item.TotalBytes - item.CompletedBytes) / bytesPerSecond));
-                }
-                else DownloadEta = item.TotalBytes > 0 && item.CompletedBytes >= item.TotalBytes ? "Concluído" : "Calculando…";
-            });
-            await synchronizer.ApplyAsync(manifest, AddonsPath(), plan, progress, WaitForRateLimitAsync, CancellationToken.None);
+                var bytesPerSecond = item.CompletedBytes / Math.Max(timer.Elapsed.TotalSeconds, 0.1);
+                DownloadEta = bytesPerSecond <= 0 ? "Calculando…" :
+                    FormatDuration(TimeSpan.FromSeconds((item.TotalBytes - item.CompletedBytes) / bytesPerSecond));
+            }
+            else DownloadEta = item.TotalBytes > 0 && item.CompletedBytes >= item.TotalBytes ? "Concluído" : "Calculando…";
+        });
+
+        await synchronizer.ApplyAsync(currentManifest, addons, currentPlan, progress, WaitForRateLimitAsync, CancellationToken.None)
+            .ConfigureAwait(false);
+        await OnUiAsync(() =>
+        {
             ProgressPercent = 100;
             CurrentFilePercent = 100;
             DownloadElapsed = FormatDuration(timer.Elapsed);
             DownloadEta = "Concluído";
             DownloadPosition = $"{totalDownloadMods} / {totalDownloadMods}";
-            await RefreshAsync();
-            MessageBox.Show("Modpack atualizado com sucesso!", "L4D2 Modpack Manager", MessageBoxButton.OK, MessageBoxImage.Information);
         });
+        await RefreshCoreAsync().ConfigureAwait(false);
+        OnUi(() => MessageBox.Show("Modpack atualizado com sucesso!", "L4D2 Modpack Manager", MessageBoxButton.OK, MessageBoxImage.Information));
     }
 
-    private async Task Run(Func<Task> action)
+    private async Task RunAsync(Func<Task> action)
     {
         if (Busy) return;
-        Busy = true;
-        try { await action(); }
+        await OnUiAsync(() => Busy = true);
+        try { await action().ConfigureAwait(false); }
         catch (Exception exception) { ShowError(exception); }
-        finally { Busy = false; }
+        finally { await OnUiAsync(() => Busy = false); }
     }
-
-    private string AddonsPath() => Path.Combine(GamePath!, "left4dead2", "addons");
 
     private async Task<LocalState> EnrichLocalStateAsync(LocalState local, RemoteManifest remote, string addonsPath)
     {
@@ -247,18 +272,10 @@ public sealed class MainViewModel : INotifyPropertyChanged
         {
             try
             {
-                await stateStore.SaveAsync(addonsPath, enriched, CancellationToken.None);
+                await stateStore.SaveAsync(addonsPath, enriched, CancellationToken.None).ConfigureAwait(false);
             }
-            catch (UnauthorizedAccessException)
-            {
-                // Metadata migration is optional during refresh. Keep using the
-                // enriched data in memory when the game folder is read-only.
-            }
-            catch (IOException)
-            {
-                // A locked/read-only state file must not prevent the catalog
-                // from loading. A later successful update persists schema 2.
-            }
+            catch (UnauthorizedAccessException) { }
+            catch (IOException) { }
         }
         return enriched;
     }
@@ -312,18 +329,13 @@ public sealed class MainViewModel : INotifyPropertyChanged
 
     public async Task SelectModAsync(ModViewModel mod)
     {
-        if (RequiredMods.Contains(mod))
+        await OnUiAsync(() =>
         {
-            SelectedLocalMod = null;
-            SelectedRequiredMod = mod;
-        }
-        else if (LocalMods.Contains(mod))
-        {
-            SelectedRequiredMod = null;
-            SelectedLocalMod = mod;
-        }
-        SelectedMod = mod;
-        await PrepareDescriptionImagesAsync(mod);
+            if (RequiredMods.Contains(mod)) { SelectedLocalMod = null; SelectedRequiredMod = mod; }
+            else if (LocalMods.Contains(mod)) { SelectedRequiredMod = null; SelectedLocalMod = mod; }
+            SelectedMod = mod;
+        });
+        await PrepareDescriptionImagesAsync(mod).ConfigureAwait(false);
     }
 
     private async Task PrepareDescriptionImagesAsync(ModViewModel? mod)
@@ -331,19 +343,19 @@ public sealed class MainViewModel : INotifyPropertyChanged
         if (mod is null) return;
         var cache = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
             "L4D2ModManager", "markdown-images");
-        await mod.CacheRemoteImagesAsync(httpClient, cache, CancellationToken.None);
+        await mod.CacheRemoteImagesAsync(httpClient, cache, CancellationToken.None).ConfigureAwait(false);
     }
 
-    private async Task DeleteLocalModAsync(ModViewModel mod)
+    private async Task DeleteLocalModCoreAsync(ModViewModel mod)
     {
         if (!mod.CanDelete || string.IsNullOrWhiteSpace(mod.LocalFilePath)) return;
-        var answer = MessageBox.Show($"Apagar o mod local?\n\n{Path.GetFileName(mod.LocalFilePath)}",
-            "Excluir mod local", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+        var answer = OnUi(() => MessageBox.Show($"Apagar o mod local?\n\n{Path.GetFileName(mod.LocalFilePath)}",
+            "Excluir mod local", MessageBoxButton.YesNo, MessageBoxImage.Warning));
         if (answer != MessageBoxResult.Yes) return;
 
-        await Run(async () =>
+        await Task.Run(() => File.Delete(mod.LocalFilePath)).ConfigureAwait(false);
+        await OnUiAsync(() =>
         {
-            await Task.Run(() => File.Delete(mod.LocalFilePath));
             LocalMods.Remove(mod);
             if (ReferenceEquals(SelectedMod, mod))
             {
@@ -351,41 +363,34 @@ public sealed class MainViewModel : INotifyPropertyChanged
                 SelectedMod = SelectedRequiredMod ?? LocalMods.FirstOrDefault();
             }
             OnPropertyChanged(nameof(LocalTabTitle));
-            await Task.CompletedTask;
         });
     }
 
-    private async Task DeleteAllLocalModsAsync()
+    private async Task DeleteAllLocalModsCoreAsync()
     {
         var targets = LocalMods.Where(mod => mod.CanDelete && !string.IsNullOrWhiteSpace(mod.LocalFilePath)).ToArray();
         if (targets.Length == 0) return;
 
-        var answer = MessageBox.Show(
+        var answer = OnUi(() => MessageBox.Show(
             $"Apagar todos os {targets.Length} mods locais que não vieram do Git?\n\nOs mods gerenciados pelo modpack serão preservados.",
-            "Excluir todos os mods locais", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            "Excluir todos os mods locais", MessageBoxButton.YesNo, MessageBoxImage.Warning));
         if (answer != MessageBoxResult.Yes) return;
 
-        await Run(async () =>
+        var result = await Task.Run(() =>
         {
-            var result = await Task.Run(() =>
+            var deleted = new List<ModViewModel>();
+            var failures = new List<string>();
+            foreach (var mod in targets)
             {
-                var deleted = new List<ModViewModel>();
-                var failures = new List<string>();
-                foreach (var mod in targets)
-                {
-                    try
-                    {
-                        File.Delete(mod.LocalFilePath!);
-                        deleted.Add(mod);
-                    }
-                    catch (Exception exception) when (exception is IOException or UnauthorizedAccessException)
-                    {
-                        failures.Add($"{Path.GetFileName(mod.LocalFilePath)}: {exception.Message}");
-                    }
-                }
-                return (Deleted: deleted, Failures: failures);
-            });
+                try { File.Delete(mod.LocalFilePath!); deleted.Add(mod); }
+                catch (Exception exception) when (exception is IOException or UnauthorizedAccessException)
+                { failures.Add($"{Path.GetFileName(mod.LocalFilePath)}: {exception.Message}"); }
+            }
+            return (Deleted: deleted, Failures: failures);
+        }).ConfigureAwait(false);
 
+        await OnUiAsync(() =>
+        {
             foreach (var mod in result.Deleted) LocalMods.Remove(mod);
             if (SelectedMod?.CanDelete == true && !LocalMods.Contains(SelectedMod))
             {
@@ -394,29 +399,28 @@ public sealed class MainViewModel : INotifyPropertyChanged
             }
             OnPropertyChanged(nameof(LocalTabTitle));
             Status = $"{result.Deleted.Count} mod(s) local(is) apagado(s)";
-
             if (result.Failures.Count > 0)
                 MessageBox.Show(string.Join("\n", result.Failures), "Alguns mods não foram apagados",
                     MessageBoxButton.OK, MessageBoxImage.Warning);
         });
     }
 
-    private void ShowError(Exception exception) { Status = "Falha na operação"; MessageBox.Show(exception.Message, "Erro", MessageBoxButton.OK, MessageBoxImage.Error); }
+    private void ShowError(Exception exception)
+    {
+        OnUi(() =>
+        {
+            Status = "Falha na operação";
+            MessageBox.Show(exception.Message, "Erro", MessageBoxButton.OK, MessageBoxImage.Error);
+        });
+    }
 
     private async Task<bool> WaitForRateLimitAsync(RateLimitPause pause, CancellationToken cancellationToken)
     {
         var wait = pause.Wait < TimeSpan.FromSeconds(1) ? TimeSpan.FromSeconds(1) : pause.Wait;
         if (wait > TimeSpan.FromMinutes(65)) wait = TimeSpan.FromMinutes(65);
         var until = DateTimeOffset.UtcNow + wait;
-        var dispatcher = Application.Current?.Dispatcher;
 
-        void Set(Action action)
-        {
-            if (dispatcher is null || dispatcher.CheckAccess()) action();
-            else dispatcher.Invoke(action);
-        }
-
-        Set(() =>
+        await OnUiAsync(() =>
         {
             IsRateLimitPaused = true;
             RateLimitMessage = pause.Message;
@@ -434,26 +438,40 @@ public sealed class MainViewModel : INotifyPropertyChanged
                 cancellationToken.ThrowIfCancellationRequested();
                 var remaining = until - DateTimeOffset.UtcNow;
                 var seconds = Math.Max(0, (int)Math.Ceiling(remaining.TotalSeconds));
-                Set(() => RateLimitSecondsRemaining = seconds);
+                await OnUiAsync(() => RateLimitSecondsRemaining = seconds);
                 if (seconds <= 0) return true;
-                await Task.Delay(TimeSpan.FromSeconds(1), cancellationToken);
+                await Task.Delay(TimeSpan.FromSeconds(1), cancellationToken).ConfigureAwait(false);
             }
         }
-        finally
-        {
-            Set(() => IsRateLimitPaused = false);
-        }
+        finally { await OnUiAsync(() => IsRateLimitPaused = false); }
     }
+
     private static string FormatSize(long value) => value >= 1_048_576 ? $"{value / 1_048_576d:F2} MiB" : $"{value / 1024d:F1} KiB";
     private static string FormatDuration(TimeSpan value)
         => value.TotalHours >= 1 ? $"{(int)value.TotalHours:00}:{value.Minutes:00}:{value.Seconds:00}" : $"{value.Minutes:00}:{value.Seconds:00}";
-    private void NotifyCommands() { (RefreshCommand as AsyncCommand)?.RaiseCanExecuteChanged(); (UpdateCommand as AsyncCommand)?.RaiseCanExecuteChanged(); (SelectPathCommand as AsyncCommand)?.RaiseCanExecuteChanged(); (DeleteLocalModCommand as AsyncParameterCommand<ModViewModel>)?.RaiseCanExecuteChanged(); (DeleteAllLocalModsCommand as AsyncCommand)?.RaiseCanExecuteChanged(); }
-    private void Set<T>(ref T field, T value, [CallerMemberName] string? name = null) { if (EqualityComparer<T>.Default.Equals(field, value)) return; field = value; OnPropertyChanged(name); }
+    private void NotifyCommands() => OnUi(() =>
+    {
+        (RefreshCommand as AsyncCommand)?.RaiseCanExecuteChanged();
+        (UpdateCommand as AsyncCommand)?.RaiseCanExecuteChanged();
+        (SelectPathCommand as AsyncCommand)?.RaiseCanExecuteChanged();
+        (DeleteLocalModCommand as AsyncParameterCommand<ModViewModel>)?.RaiseCanExecuteChanged();
+        (DeleteAllLocalModsCommand as AsyncCommand)?.RaiseCanExecuteChanged();
+    });
+    private void Set<T>(ref T field, T value, [CallerMemberName] string? name = null)
+    { if (EqualityComparer<T>.Default.Equals(field, value)) return; field = value; OnPropertyChanged(name); }
     private void OnPropertyChanged([CallerMemberName] string? name = null) => PropertyChanged?.Invoke(this, new(name));
+    private void OnUi(Action action)
+    { if (dispatcher.CheckAccess()) action(); else dispatcher.Invoke(action); }
+    private T OnUi<T>(Func<T> action)
+        => dispatcher.CheckAccess() ? action() : dispatcher.Invoke(action);
+    private Task OnUiAsync(Action action)
+    {
+        if (dispatcher.CheckAccess()) { action(); return Task.CompletedTask; }
+        return dispatcher.InvokeAsync(action).Task;
+    }
 
     private sealed record ModCatalog(IReadOnlyList<ModViewModel> Required, IReadOnlyList<ModViewModel> Local);
 }
-
 public sealed class ModViewModel : INotifyPropertyChanged
 {
     private string markdownDescription;

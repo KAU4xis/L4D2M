@@ -14,7 +14,8 @@ public sealed class LauncherSettingsStore : ILauncherSettingsStore
     {
         if (!File.Exists(SettingsPath)) return new(null);
         await using var stream = File.OpenRead(SettingsPath);
-        return await JsonSerializer.DeserializeAsync<LauncherSettings>(stream, JsonOptions, cancellationToken) ?? new(null);
+        return await JsonSerializer.DeserializeAsync<LauncherSettings>(stream, JsonOptions, cancellationToken).ConfigureAwait(false)
+            ?? new(null);
     }
 
     public async Task SaveAsync(LauncherSettings settings, CancellationToken cancellationToken)
@@ -22,7 +23,7 @@ public sealed class LauncherSettingsStore : ILauncherSettingsStore
         Directory.CreateDirectory(Path.GetDirectoryName(SettingsPath)!);
         var temporary = SettingsPath + ".tmp";
         await using (var stream = File.Create(temporary))
-            await JsonSerializer.SerializeAsync(stream, settings, JsonOptions, cancellationToken);
+            await JsonSerializer.SerializeAsync(stream, settings, JsonOptions, cancellationToken).ConfigureAwait(false);
         File.Move(temporary, SettingsPath, true);
     }
 }

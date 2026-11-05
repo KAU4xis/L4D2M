@@ -13,7 +13,8 @@ public sealed class LocalStateStore : ILocalStateStore
         var path = StatePath(addonsPath);
         if (!File.Exists(path)) return LocalState.Empty;
         await using var stream = File.OpenRead(path);
-        return await JsonSerializer.DeserializeAsync<LocalState>(stream, JsonOptions, cancellationToken) ?? LocalState.Empty;
+        return await JsonSerializer.DeserializeAsync<LocalState>(stream, JsonOptions, cancellationToken).ConfigureAwait(false)
+            ?? LocalState.Empty;
     }
 
     public async Task SaveAsync(string addonsPath, LocalState state, CancellationToken cancellationToken)
@@ -22,7 +23,7 @@ public sealed class LocalStateStore : ILocalStateStore
         Directory.CreateDirectory(Path.GetDirectoryName(path)!);
         var temporary = path + ".tmp";
         await using (var stream = File.Create(temporary))
-            await JsonSerializer.SerializeAsync(stream, state, JsonOptions, cancellationToken);
+            await JsonSerializer.SerializeAsync(stream, state, JsonOptions, cancellationToken).ConfigureAwait(false);
         File.Move(temporary, path, true);
     }
 }

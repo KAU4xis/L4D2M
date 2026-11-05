@@ -11,6 +11,7 @@ public sealed class ManifestClient(HttpClient httpClient, Uri manifestUri) : IMa
     public async Task<RemoteManifest> GetLatestAsync(CancellationToken cancellationToken)
     {
         var manifest = await httpClient.GetFromJsonAsync<RemoteManifest>(manifestUri, JsonOptions, cancellationToken)
+            .ConfigureAwait(false)
             ?? throw new InvalidDataException("O servidor retornou um manifesto vazio.");
         if (manifest.SchemaVersion != 1 || manifest.Game != 550 || string.IsNullOrWhiteSpace(manifest.Latest))
             throw new InvalidDataException("O formato do manifesto remoto não é suportado.");
