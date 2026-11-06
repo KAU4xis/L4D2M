@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "latest": "1.0.12",
+  "latest": "1.0.13",
   "game": 550,
-  "generatedAt": "2026-11-05T22:46:51Z",
+  "generatedAt": "2026-11-06T00:58:50Z",
   "mods": [
     {
       "id": "3547441271",
@@ -953,6 +953,91 @@
           "size": 122280114,
           "sha256": "710883c6a3d3c86520207418e50bf3ecf569217a31af5182ff6a29e974a7c0c9",
           "url": "https://github.com/KAU4xis/L4D2M/releases/download/v1.0.12/Dublagem-PT-BR-NPC-s-e-Radio-3821690808-710883c6a3d3.vpk"
+        }
+      ]
+    },
+    {
+      "id": "3803618146",
+      "name": "Morning Dew - Dead South Color Correction",
+      "description": "A vibrant color correction for the custom campaign Dead South by FlushableGavin. The first and second maps have a bright blue color while the third map is colored a deep violet hue. This also changes the intro and chapter images of the campaign.\n\n*Note: You MUST subscribe to this first on the Workshop before subscribing to Dead South in order to notice this color correction. This doesn't affect vanilla campaigns.\n\nPlease let me know what you think below, and if you like this, please consider checking out my other color corrections.",
+      "previewUrl": "https://images.steamusercontent.com/ugc/15678193942493952805/049A152336C5B520929CEDB3C4896758892A6CE4/",
+      "workshopUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3803618146",
+      "creator": "76561197979782361",
+      "timeUpdated": 1789717867,
+      "files": [
+        {
+          "filename": "Morning-Dew-Dead-South-Color-Correction-3803618146-1a93bbcac6a3.vpk",
+          "size": 15484337,
+          "sha256": "1a93bbcac6a3e6306120c5c0b13e033360ae12b6069a047de674f014afd5e9f7",
+          "url": "https://github.com/KAU4xis/L4D2M/releases/download/v1.0.13/Morning-Dew-Dead-South-Color-Correction-3803618146-1a93bbcac6a3.vpk"
+        }
+      ]
+    },
+    {
+      "id": "2121557118",
+      "name": "xdReanimsBase (L4D2) Anim Mods base",
+      "description": "[h1]Base dependency for 3-rd person re-animations mods for survivors and infected[/h1]\r\n\r\n[h2]Features:[/h2]\r\n[list]\r\n[*] Provides basic system of adding replacements for animations.\r\n[*] Slot system that allows combining multiple re-animations mods. Up to 48 different slots per each character.\r\n[*] When not provided new ones, original sequences are played instead. Implement only willing things.\r\n[*] Has sequence orders already predefined for multiplayer gaming consistency, no more of painful sequence reordering for mod makers.\r\n[/list]\r\n\r\n[h2]Bugs and Limitations:[/h2]\r\n[list]\r\n[*] Conflicts with other animations mods.\r\n[*] Doesn't alterate hitbox positions on servers without anim mods! Not recommended for competitive playing.\r\n[*] Likewise, with anim mod installed locally, hitboxes locations are not visaully transferred to players without mods.\r\n[*] Combining both mods on same character slot won't work. Random one will be picked instead. Ask modder to recompile to different slot or unpack and move the anim file to another slot, tutorial is in description.\r\n[*] If both mods replace same sequence, the one from replacement with lowest slot number will have priority.\r\n[*] It's currently not possible to replace some animations for stock model variants of some special infected as they have them embedded into models themselves instead of importing from animation mdl and thus having priority. A reanim compatible models of them are required to make them fully moddable.\r\n[*] In stock variants, Francis and Louis have embedded animations. To optionally make them fully moddable, install [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2640924497]Francis[/url] and [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2640922701]Louis[/url] Reanims Compatible variants or search Reanims Compatible replacement models of them. Without proper support, it's not possible to replace Healing and Rifle animations.\r\n[*] Custom models must have original skeletons.\r\n[*] You can't add new sequences for common zombies, this will break sequences order. You can, however, replace existing. If you need to extend animations with layers, you can replace and use any other -delta or -layer as long as it doesn't break something else.\r\n[*] To replace Tank \"Idle\" $sequence, have it named as \"Idle_xdr\".\r\n[/list]\r\n\r\n[h2]Info and Guides:[/h2]\r\n[list]\r\n[*] [url=https://steamcommunity.com/workshop/filedetails/discussion/2121557118/2290590708544878869/]How to create reanimation mods[/url]\r\n[*] [url=https://steamcommunity.com/workshop/filedetails/discussion/2121557118/2290590708546536185/]Slots designations[/url]\r\n[*] [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2821354817]Modify xdR animation addons[/url]\r\n[*] [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3569126360]Animation mod doesn't work or crashes the game[/url] < Read this before commenting.\r\n[/list]",
+      "previewUrl": "https://images.steamusercontent.com/ugc/10892356258565477722/45A021DF2D389E2D31B22E2811E46E5A787288F3/",
+      "workshopUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=2121557118",
+      "creator": "76561198048089766",
+      "timeUpdated": 1755627304,
+      "files": [
+        {
+          "filename": "xdReanimsBase-L4D2-Anim-Mods-base-2121557118-d206d561b1c5.vpk",
+          "size": 26581932,
+          "sha256": "d206d561b1c5b0cf2c79d7916c3708e57f2e70766c97b5f777b292e033b0aa84",
+          "url": "https://github.com/KAU4xis/L4D2M/releases/download/v1.0.13/xdReanimsBase-L4D2-Anim-Mods-base-2121557118-d206d561b1c5.vpk"
+        }
+      ]
+    },
+    {
+      "id": "3561812348",
+      "name": "[XDR] Mr.Smoker",
+      "description": "Smoker先生\r\n自制背景音乐——https://steamcommunity.com/sharedfiles/filedetails/?id=3562922103",
+      "previewUrl": "https://images.steamusercontent.com/ugc/14272286343479553797/E7F91F84B50984F033397B41A24C6ED8FF0C7D78/",
+      "workshopUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3561812348",
+      "creator": "76561198995528280",
+      "timeUpdated": 1756975901,
+      "files": [
+        {
+          "filename": "XDR-Mr-Smoker-3561812348-27692351ce5e.vpk",
+          "size": 654780,
+          "sha256": "27692351ce5e928ec8ec1a2035408c50c519507677914859fed6b5b4a855dd1a",
+          "url": "https://github.com/KAU4xis/L4D2M/releases/download/v1.0.13/XDR-Mr-Smoker-3561812348-27692351ce5e.vpk"
+        }
+      ]
+    },
+    {
+      "id": "3805284255",
+      "name": "Better Progress Bar Texture",
+      "description": "Made for fun.\r\n\r\nits true\r\n\r\nOnly replaces [b]../vgui/hud/progressbar_fill[/b], so you can use this with other hud mods.\r\nAdded replacement texture for [b]../vgui/new/loadingbar[/b] for support with [u][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3628546617]Minimalistic Gameplay Panels[/url][/u]",
+      "previewUrl": "https://images.steamusercontent.com/ugc/18256382288282540165/8C3606DEF88A7DF1931D7DC2C2EE76EFE2BAD787/",
+      "workshopUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3805284255",
+      "creator": "76561198280436070",
+      "timeUpdated": 1790109021,
+      "files": [
+        {
+          "filename": "Better-Progress-Bar-Texture-3805284255-41390bbb47ee.vpk",
+          "size": 179594,
+          "sha256": "41390bbb47ee4dad341b345329c5c1d1d35416e157e5b1c2eacf6895d7f5c41a",
+          "url": "https://github.com/KAU4xis/L4D2M/releases/download/v1.0.13/Better-Progress-Bar-Texture-3805284255-41390bbb47ee.vpk"
+        }
+      ]
+    },
+    {
+      "id": "827842553",
+      "name": "Cat Gun",
+      "description": "[h1]Cat Gun replaces smg(UZI) [/h1] \n\nOriginal model of the game [url=http://store.steampowered.com/app/286940/] S.K.I.L.L. - Special Force 2  [/url]\n\nPorted rigged and - particles by Me \n\n[b]includes:[/b] \nworld models\nview models\nsounds\nparticles\n\nSpecial thanks to [url=http://steamcommunity.com/profiles/76561198010780650/]MARK2580[/url] for the idea and for providing models and textures and sounds\n\n[url=http://steamcommunity.com/sharedfiles/filedetails/?id=827320827]Gmod version[/url]\n\n[url=http://steamcommunity.com/sharedfiles/filedetails/?id=283903288]Cat Painpills[/url]\n\n[spoiler]like it ? push finger up[/spoiler]",
+      "previewUrl": "https://images.steamusercontent.com/ugc/199680985351313750/44868F83B8A82CBC978405063FF1B2B038F884D2/",
+      "workshopUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=827842553",
+      "creator": "76561198039760038",
+      "timeUpdated": 1483049219,
+      "files": [
+        {
+          "filename": "Cat-Gun-827842553-bd1cdb327d17.vpk",
+          "size": 3648394,
+          "sha256": "bd1cdb327d17c45930d112d12b9ed7aed285c7f59c9c9a578b1eb13d2965befa",
+          "url": "https://github.com/KAU4xis/L4D2M/releases/download/v1.0.13/Cat-Gun-827842553-bd1cdb327d17.vpk"
         }
       ]
     }
