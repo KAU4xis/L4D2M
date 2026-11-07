@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "latest": "1.0.14",
+  "latest": "1.0.15",
   "game": 550,
-  "generatedAt": "2026-11-06T15:54:25Z",
+  "generatedAt": "2026-11-07T20:58:36Z",
   "mods": [
     {
       "id": "3547441271",
@@ -1038,6 +1038,431 @@
           "size": 3648394,
           "sha256": "bd1cdb327d17c45930d112d12b9ed7aed285c7f59c9c9a578b1eb13d2965befa",
           "url": "https://github.com/KAU4xis/L4D2M/releases/download/v1.0.13/Cat-Gun-827842553-bd1cdb327d17.vpk"
+        }
+      ]
+    },
+    {
+      "id": "1996854930",
+      "name": "Rusty's P220 and Glock 19",
+      "description": "Reskin for pistols",
+      "previewUrl": "https://images.steamusercontent.com/ugc/772867489046606805/66AAC55BF735EC7A2B0628B2A3C7F2995B02BDD3/",
+      "workshopUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=1996854930",
+      "creator": "76561198135960780",
+      "timeUpdated": 1581647095,
+      "files": [
+        {
+          "filename": "Rusty-s-P220-and-Glock-19-1996854930-5436b7ae7f53.vpk",
+          "size": 1049503,
+          "sha256": "5436b7ae7f53ec22a3f2f0de1db8c410d7107cb8bf28a5863fd00a691bc3386c",
+          "url": "https://github.com/KAU4xis/L4D2M/releases/download/v1.0.15/Rusty-s-P220-and-Glock-19-1996854930-5436b7ae7f53.vpk"
+        }
+      ]
+    },
+    {
+      "id": "1401182823",
+      "name": "Waffe 28 Silenced [Silenced SMG]",
+      "description": "[b][u]English:[/u][/b]\r\n\r\nHi everyone. A predecessor to the MP40 is now showin here, the MP28. The MP28 is based on the earlier MP18 SMG used by the German Empire during WWI. The design was imrpoved and mass-produced during the 1920s. When the Nazi Party established a totalitarian government when Hitler became the Fuhrer, the MP28 was used as the standard service weapon of the Waffen SS, while the MP40 became standardized among the Wehrmacht. In reality, the fire rate of the MP28 is far slower when comapred to its counterpart in CoD: WWII. This version is with suppressor for the Silenced SMG slot.\r\n\r\nCredits:\r\nSledgehammer - Model,  textures and sound creation\r\n[url=http://steamcommunity.com/profiles/76561198051851739/]Dusty[/url] – Compiling, animations, files editing and extractor of models and textures \r\n[url=http://steamcommunity.com/id/barnie_sandlers] Barnie Sandlers[/url] – Weapon testing and feedback\r\n\r\nThank you for support, subscribe for download!\r\n\r\n\r\n[b][u]Português Brasil:[/u][/b]\r\n\r\nOlá a todos. Um precursor do MP40, o MP28 é baseado no antigo SMG MP18 usado pelo Império Alemão durante a Primeira Guerra Mundial. O design foi criado e produzido em massa durante a década de 1920. Quando os Nazistas estabeleceram um governo totalitário e Hitler se tornou o Führer, o MP28 foi usado como a arma de serviço padrão da Waffen SS, enquanto o MP40 se tornou padrão entre a Wehrmacht. Na realidade, a taxa de fogo do MP28 é muito mais lenta quando comparado a sua versão no CoD: WWII. Esta versão é com o silenciador para o slot do SMG Silenced.\r\n\r\nCréditos:\r\nSledgehammer – Criador dos modelos, texturas e sons\r\n[url=http://steamcommunity.com/profiles/76561198051851739/]Dusty[/url] – Compilação, animação, edição de arquivos e extrator dos modelos e texturas\r\n[url=http://steamcommunity.com/id/barnie_sandlers] Barnie Sandlers[/url] – Teste do mod e suporte/feedback\r\n\r\nObrigado pelo suporte, e se inscreva para baixar!",
+      "previewUrl": "https://images.steamusercontent.com/ugc/931562843190607926/64EE20C0163B707D1913690282C8D5829E7C6323/",
+      "workshopUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=1401182823",
+      "creator": "76561198051851739",
+      "timeUpdated": 1527967802,
+      "files": [
+        {
+          "filename": "Waffe-28-Silenced-Silenced-SMG-1401182823-b0c95f5eda1f.vpk",
+          "size": 17742030,
+          "sha256": "b0c95f5eda1f12873bcd9391f0d94bdb106da1f1dba5380922d5b8d0fc1f04ca",
+          "url": "https://github.com/KAU4xis/L4D2M/releases/download/v1.0.15/Waffe-28-Silenced-Silenced-SMG-1401182823-b0c95f5eda1f.vpk"
+        }
+      ]
+    },
+    {
+      "id": "3430316978",
+      "name": "MP5-缘\n",
+      "description": "许久不见，先把这把MP5-缘上传给你们玩，这是我很早的作品。没有那么的同质化，我觉得很不错，分享给你们，另外，我已经在着手新的枪皮，但我现在时间不是很多，空闲时间我也想要玩手机休息休息，所以~我会尽力更新的\n 生活愉快~\nIt's been a long time.,I'll upload this MP5-缘 to you for play.,This is my early work.。 It's not that homogeneous, I think it's very good, share it with you, in addition, I'm already working on a new gun skin, but I don't have a lot of free time now, and I also want to play with my phone and rest in my free time.\nSo~ I'll do my best to update.\nHappy life~",
+      "previewUrl": "https://images.steamusercontent.com/ugc/53583512065665088/AD12D6145F68E1CF3F5D637AA7361E2766B5CC66/",
+      "workshopUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3430316978",
+      "creator": "76561199231629630",
+      "timeUpdated": 1739964733,
+      "files": [
+        {
+          "filename": "MP5-3430316978-51ba8de4c5be.vpk",
+          "size": 80489395,
+          "sha256": "51ba8de4c5be3a00e3c430fa8b18a72a62599e2d253eb25960dda104cfd77681",
+          "url": "https://github.com/KAU4xis/L4D2M/releases/download/v1.0.15/MP5-3430316978-51ba8de4c5be.vpk"
+        }
+      ]
+    },
+    {
+      "id": "585169671",
+      "name": "Christmas Winchester（PumpShotgun）",
+      "description": "Replace the Pumpshotgun,make a new action and replace the sound of fire.\r\n\r\nDon't forget to Rate,Subscribe and Favorite if you like it. \r\n\r\nThe first time I want to know the latest works, remember to pay attention to my creative Workshop. \r\n———————— \r\n2.0Edition:Optimization of action,And give the snowman added for Reload.\r\n\r\n替换木质单喷，制作了全新的动作并且替换了开火声音\r\n\r\n如果你喜欢它不要忘记点赞、收藏、分享 \r\n\r\n想要第一时间知道我的最新作品，记得关注我的创意工坊~\r\n\r\n2.0版本：优化了动作，并且给雪人添加了换弹动作",
+      "previewUrl": "https://images.steamusercontent.com/ugc/272847783034714568/EFC61CC993A6823489B7426579763A76F24D5198/",
+      "workshopUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=585169671",
+      "creator": "76561198154264414",
+      "timeUpdated": 1467397200,
+      "files": [
+        {
+          "filename": "Christmas-Winchester-PumpShotgun-585169671-4141bb7d3e06.vpk",
+          "size": 6641001,
+          "sha256": "4141bb7d3e0666a98dcea3fe8bd4fefcebecd620b10ff694addc94a6d69e35d0",
+          "url": "https://github.com/KAU4xis/L4D2M/releases/download/v1.0.15/Christmas-Winchester-PumpShotgun-585169671-4141bb7d3e06.vpk"
+        }
+      ]
+    },
+    {
+      "id": "1846880958",
+      "name": "Floppy Chrome shotgun {Fun mod}",
+      "description": "[img=https://i.loli.net/2018/01/26/5a6a514a61592.png][/img]\r\nDo you love your gun and its floppy-hit multi-target attacks?\r\n慢慢来，太快就会和这枪一样\r\n[b] 对了有认识MMD大佬的请务必介绍介绍，好多角色都不配布，我也很难受啊。\r\nReplaces Chrome shotgun.[/b]\r\n[b] 替换武器 铁喷.[/b]\r\n\r\n[img=https://i.loli.net/2018/01/26/5a6a514a611d9.png][/img]\r\nModels and textures:Valve\r\nPhysics,Publish:Me\r\n\r\n[img=https://i.loli.net/2018/01/26/5a6a514a614dc.png][/img]\r\n[url=steamcommunity.com/profiles/76561198097181139]ClearSkyC      晴空大佬\t[/url]\r\n[url=steamcommunity.com/id/grsomiprs]Grsomiprs  槐音大佬\t[/url]\r\n[url=steamcommunity.com/profiles/76561198102348071/]8sianDude\t[/url]\r\nYou for always support me | 大伙对我以来的资瓷\r\n\r\n[img=https://i.loli.net/2018/01/26/5a6a514a59b81.png][/img]\r\n[h1] Remember to leave my name or the link of this webpage.\r\n欢迎转载我的MOD，唯一的要求请署上我的名字或这个页面的链接。\r\n\r\n我的B站链接https://space.bilibili.com/217380/\r\n[i]找我定做MOD请加[spoiler]唯一指定恰饭[/spoiler]QQ:827727140[/i][/h1]\r\n\r\nHave Fun！And don't forget to[img=https://i.loli.net/2018/06/24/5b2f377750d77.gif][/img]\r\n尽情享受，最后别忘了点个赞加个收藏哦。",
+      "previewUrl": "https://images.steamusercontent.com/ugc/781859262305326335/C7793704F31E445EAA7D54AAC1E8B8E2A234C6F7/",
+      "workshopUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=1846880958",
+      "creator": "76561198062771609",
+      "timeUpdated": 1566918002,
+      "files": [
+        {
+          "filename": "Floppy-Chrome-shotgun-Fun-mod-1846880958-4d1bff4b70ec.vpk",
+          "size": 1095441,
+          "sha256": "4d1bff4b70ec0f0ad0ae30c98f82948e03acb37ba055a1bb1ea0d7de84181ee0",
+          "url": "https://github.com/KAU4xis/L4D2M/releases/download/v1.0.15/Floppy-Chrome-shotgun-Fun-mod-1846880958-4d1bff4b70ec.vpk"
+        }
+      ]
+    },
+    {
+      "id": "3076066493",
+      "name": "Tactical Shotgun Fortnite (Auto Shotgun)",
+      "description": "Swaps the auto shotgun with the Tactical Shotgun from Fortnite. Original model from Epic Games. I'm not using this for profit.\n\nAdd sound:\nhttps://steamcommunity.com/sharedfiles/filedetails/?id=3393826581",
+      "previewUrl": "https://images.steamusercontent.com/ugc/2528291475867742734/EA39F6209C6789E5399144FAD1AFCC3C368F7FB9/",
+      "workshopUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3076066493",
+      "creator": "76561198841186339",
+      "timeUpdated": 1768176267,
+      "files": [
+        {
+          "filename": "Tactical-Shotgun-Fortnite-Auto-Shotgun-3076066493-33bd1f0477e4.vpk",
+          "size": 6050257,
+          "sha256": "33bd1f0477e43584846e8d2a275ab73ab2f010e73ee6eaf8ef1053b7b06ab267",
+          "url": "https://github.com/KAU4xis/L4D2M/releases/download/v1.0.15/Tactical-Shotgun-Fortnite-Auto-Shotgun-3076066493-33bd1f0477e4.vpk"
+        }
+      ]
+    },
+    {
+      "id": "3272172037",
+      "name": "Snowbreak Sunny Payback (Combat Shotgun)",
+      "description": "这里是简介 Description below:\r\n[h1]来自尘白禁区的传奇霰弹枪——太阳酬金，替换战斗霰弹枪(二代连喷)\r\nLegendary Shotgun From Snow Break. Replace for Combat Shotgun(Spas-12)\r\n[/h1]\r\n此MOD包含模型,图标,嘤效\r\nThis mod includes model/icon/sound\r\n\r\n[h1]模型纹理提取自尘白禁区，十分感谢 S.K.A Phantom 在模型解包上提供的帮助\r\nModel and texture unpacked from Snowbreak. Thank S.K.A Phantom for help on model unpacked\r\n[/h1]\r\n本人并不会制作特效和动态贴图，所以该mod不包含这部分内容\r\nParticle and dynamic texture not include in this mod, because I can`t get them\r\n\r\nCredits:\r\n编译 Complie - 苦黄瓜\r\n奔跑&待机动画 Run&Idle Animation - Mav/Viper\r\n动画 Animation - 苦黄瓜\r\n模型/纹理 Model/Texture 狸花猫工作室\r\n音效 Sound - 苦黄瓜/狸花猫工作室/Activision",
+      "previewUrl": "https://images.steamusercontent.com/ugc/2492260595802573412/FF7874BEA2CB8C38CA5ECC0F2FBA8F2BF3B75C48/",
+      "workshopUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3272172037",
+      "creator": "76561198355644266",
+      "timeUpdated": 1718973943,
+      "files": [
+        {
+          "filename": "Snowbreak-Sunny-Payback-Combat-Shotgun-3272172037-859375a3cf0d.vpk",
+          "size": 3689596,
+          "sha256": "859375a3cf0d212f298c78706eebe7e1d77028f16a416357b4865012af0d322c",
+          "url": "https://github.com/KAU4xis/L4D2M/releases/download/v1.0.15/Snowbreak-Sunny-Payback-Combat-Shotgun-3272172037-859375a3cf0d.vpk"
+        }
+      ]
+    },
+    {
+      "id": "3001831304",
+      "name": "Ion Vandal (AK47)",
+      "description": "This is the Ion Vandal from valorant and it replaces the ak47",
+      "previewUrl": "https://images.steamusercontent.com/ugc/2039616629988758675/6BC9ECF638101BA12DDA73F92F94913B8B7ADFE9/",
+      "workshopUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3001831304",
+      "creator": "76561199183681328",
+      "timeUpdated": 1688935707,
+      "files": [
+        {
+          "filename": "Ion-Vandal-AK47-3001831304-488e8d0dc09b.vpk",
+          "size": 7393274,
+          "sha256": "488e8d0dc09b20621a215dabdec86fe9efcf61461a2b1ea0ed3e203c7802a18a",
+          "url": "https://github.com/KAU4xis/L4D2M/releases/download/v1.0.15/Ion-Vandal-AK47-3001831304-488e8d0dc09b.vpk"
+        }
+      ]
+    },
+    {
+      "id": "560117984",
+      "name": "D concerto (Scar)",
+      "description": "This MOD modifies the scar,It has a new sound,It has a new way of holding.There is a certain fluorescent effect.interestingly,It has some notes.But my ocd is not recommended to use it, but also to welcome you to tryThank you for your attention to my WORKSHOP,Welcome to my thumb up.\r\n\r\n死亡的乐章，由你来演奏。是的，你没有看错，这就是CSOL的D小调，我勉强算是克复过来吧，修改了游戏中的三连发，新的音效和鬼畜的换弹方式，一定的荧光效果。但我不推荐强迫症用，原因嘛，你用了就知道了，欢迎关注我的创意工坊，感谢你为我点赞。THANK YOU",
+      "previewUrl": "https://images.steamusercontent.com/ugc/643248853417593925/3270BB2882E64CD504D1F3EBE973F400C00427C5/",
+      "workshopUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=560117984",
+      "creator": "76561198177265614",
+      "timeUpdated": 1448167999,
+      "files": [
+        {
+          "filename": "D-concerto-Scar-560117984-b52f64c63c0a.vpk",
+          "size": 7686853,
+          "sha256": "b52f64c63c0ac732c8f24d22b28c66fa9bd413788a8c7ae578e6f14dffbee0b0",
+          "url": "https://github.com/KAU4xis/L4D2M/releases/download/v1.0.15/D-concerto-Scar-560117984-b52f64c63c0a.vpk"
+        }
+      ]
+    },
+    {
+      "id": "675563672",
+      "name": "Paladin（SG552）",
+      "description": "Replace SG552,Make the new action and replace fire sound.All the gun body added fluorescent effect.Basically restored all the actions in the original game. \r\n\r\nDon't forget to rate,Subscribe and Favorite if you like it. \r\n\r\nThe first time I want to know the latest works, remember to pay attention to my creative Workshop. \r\n\r\n替换SG552，制作了全新的动作并且替换了开火的声音，枪身全部设置了荧光效果，基本还原了在原游戏中的动作 \r\n\r\n如果你喜欢它不要忘记点赞、收藏、分享 \r\n\r\n想要第一时间知道我的最新作品，记得关注我的创意工坊~",
+      "previewUrl": "https://images.steamusercontent.com/ugc/278471773759565017/78D1607769ABA19A4A791AE7CF156578A20716CE/",
+      "workshopUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=675563672",
+      "creator": "76561198154264414",
+      "timeUpdated": 1462001556,
+      "files": [
+        {
+          "filename": "Paladin-SG552-675563672-feb3a85030bc.vpk",
+          "size": 29088189,
+          "sha256": "feb3a85030bcc496476101bff2960eceaa468a7735feaa3759fd4077da326a1c",
+          "url": "https://github.com/KAU4xis/L4D2M/releases/download/v1.0.15/Paladin-SG552-675563672-feb3a85030bc.vpk"
+        }
+      ]
+    },
+    {
+      "id": "3193442524",
+      "name": "HUNTING RIFLE | PRINTSTREAM",
+      "description": "[h1]Info:[/h1]\r\nThis is an imitation of the Printstream line for the weapon [b]Hunting Rifle or Ruger Mini-14[/b], this was inspired by [url=https://steamcommunity.com/profiles/76561198051199961]JTPNZ[/url], creator of the Printstream in the game [b]CS:GO[/b].\r\n\r\n[h1]About:[/h1]\r\n[list]\r\n[*]The texture is designed to approximate the Printstream style.\r\n[*]Depending on the angle of the light source, the whole body of the gun will show the holographic effect, transmitting the colors between blue, green, sky blue, pink and yellow.\r\n[*]It also contains the ‘Normal Map’ effect to give detail to texture shapes.\r\n[/list]\r\n\r\n[h1]Note:[/h1]\r\nThis mod only replaces the Hunting Rifle texture. You can use it with some sound mod and animation mod. The holographic effect is also just an imitation.\r\n\r\n　　　　　　　　　　　[img]https://i.imgur.com/RXc8aRR.gif[/img] [img]https://i.postimg.cc/Pr7YkJFm/image.gif[/img]",
+      "previewUrl": "https://images.steamusercontent.com/ugc/2432579570947722518/DBBFD66466E69DA21D87C8268FB0055FFA520804/",
+      "workshopUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3193442524",
+      "creator": "76561198292435237",
+      "timeUpdated": 1710956216,
+      "files": [
+        {
+          "filename": "HUNTING-RIFLE-PRINTSTREAM-3193442524-4e16ddd06ecf.vpk",
+          "size": 45091578,
+          "sha256": "4e16ddd06ecfd1724d21dc576179ed05dbc1107ccb3c11afb7f23f030443b2f4",
+          "url": "https://github.com/KAU4xis/L4D2M/releases/download/v1.0.15/HUNTING-RIFLE-PRINTSTREAM-3193442524-4e16ddd06ecf.vpk"
+        }
+      ]
+    },
+    {
+      "id": "244198426",
+      "name": "PSG - Stocking Military Sniper Rifle",
+      "description": "A custom skin for the military sniper rifle containing Stocking from Panty and Stocking With Garterbelt.",
+      "previewUrl": "https://images.steamusercontent.com/ugc/576766211314247878/ED9495DB49EFEB02EE5B79F03466DAF174B26A88/",
+      "workshopUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=244198426",
+      "creator": "76561198087250478",
+      "timeUpdated": 1396231237,
+      "files": [
+        {
+          "filename": "PSG-Stocking-Military-Sniper-Rifle-244198426-b6a7c0571664.vpk",
+          "size": 1616436,
+          "sha256": "b6a7c0571664408f6538edd4698ef6a3c36c48540ab7ce5d4449392df4f0f7e5",
+          "url": "https://github.com/KAU4xis/L4D2M/releases/download/v1.0.15/PSG-Stocking-Military-Sniper-Rifle-244198426-b6a7c0571664.vpk"
+        }
+      ]
+    },
+    {
+      "id": "2956961980",
+      "name": "[Apex]Triple Take HYPERDRIVE(scout)",
+      "description": "This mod was made using Twilight Sparkle's Triple take mod,all weapon animations are from her mod\r\nReplace scout\r\nCredits:\r\nmodel porting - shu\r\nPorting/Rigging/Extra Animations - Twilight Sparkle\r\nModel/Textures/Animations - Respawn Entertainment",
+      "previewUrl": "https://images.steamusercontent.com/ugc/2033978840262067788/3032907CDFC07EBBB3D6D7DEA54B2F4A2EC7D0F0/",
+      "workshopUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=2956961980",
+      "creator": "76561198057926251",
+      "timeUpdated": 1680510315,
+      "files": [
+        {
+          "filename": "Apex-Triple-Take-HYPERDRIVE-scout-2956961980-1ab2cf463c0c.vpk",
+          "size": 25319650,
+          "sha256": "1ab2cf463c0cb677be66b69172f60d470598038ee3f5d4c81aad9fcd78c5a2d1",
+          "url": "https://github.com/KAU4xis/L4D2M/releases/download/v1.0.15/Apex-Triple-Take-HYPERDRIVE-scout-2956961980-1ab2cf463c0c.vpk"
+        }
+      ]
+    },
+    {
+      "id": "2824448757",
+      "name": "laserfist (m60)",
+      "description": "replace the m60\r\n\r\n\r\nThose who make bad comments, I wish you a failed life.",
+      "previewUrl": "https://images.steamusercontent.com/ugc/1870697811208551003/81CD78F950E22685C4ED160DF6850AC5E25184A9/",
+      "workshopUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=2824448757",
+      "creator": "76561198366347855",
+      "timeUpdated": 1705143116,
+      "files": [
+        {
+          "filename": "laserfist-m60-2824448757-eade2e0fb875.vpk",
+          "size": 29929484,
+          "sha256": "eade2e0fb875c176ab12da0773744cb0aad9b5c541ec886572a0d6a5cc25bdb3",
+          "url": "https://github.com/KAU4xis/L4D2M/releases/download/v1.0.15/laserfist-m60-2824448757-eade2e0fb875.vpk"
+        }
+      ]
+    },
+    {
+      "id": "2619178067",
+      "name": "Minecraft Rocket Crossbow(Grenade Launcher)",
+      "description": "替换榴弹发射器,替换了模型及部分音效\r\nReplace for Grenade Launcher,models and some sound\r\n\r\n模型是我对照mc原版的贴图和官方的宣传片制作的，音效录制于mc1.17.1\r\nI made the model in order to original Minecraft contrast,and sound was recorded in Minecraft 1.17.1\r\n\r\n使用我自制的动作\r\nIt uses my self-created animation\r\n\r\n国庆节剩下几天我可能还会发布一些别的mod，也许吧。。。\r\nMaybe I would upload some other mods,maybe...\r\n\r\n关于之前别的一些mod的bug我后面应该也会修复的，如果我能找到什么解决方案的话。。。\r\n如果这个mod在服务器下运行错误，请告诉我\r\nIf this mod cause some bugs on the server,pleace tell me\r\n\r\n希望你们能喜欢这个mod\r\nI hope you woulc like this mod,enjoy!",
+      "previewUrl": "https://images.steamusercontent.com/ugc/1635361014314920945/C5F5433DA2D5FBAFD4503E0DF576FF4AA38ECAA1/",
+      "workshopUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=2619178067",
+      "creator": "76561198355644266",
+      "timeUpdated": 1633344861,
+      "files": [
+        {
+          "filename": "Minecraft-Rocket-Crossbow-Grenade-Launcher-2619178067-9e3baae496f6.vpk",
+          "size": 4157143,
+          "sha256": "9e3baae496f6eee3c8a71ef3b12b2958bff2503e472f1395f43690ead6069149",
+          "url": "https://github.com/KAU4xis/L4D2M/releases/download/v1.0.15/Minecraft-Rocket-Crossbow-Grenade-Launcher-2619178067-9e3baae496f6.vpk"
+        }
+      ]
+    },
+    {
+      "id": "863903567",
+      "name": "Laevateinn (Cricket Bat)\n",
+      "description": "Laevateinn for valentine, seems legit.\n\n[h1] Features [/h1]\n- HUD icon.\n- No custom sound.\n- TLS skin.\n\n[h1] Credits [/h1]\nFrontier Aja: Koumajou Densetsu/Touhouvania\nThomasCat, mav: [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2635870954] animation [/url]",
+      "previewUrl": "https://images.steamusercontent.com/ugc/85969284941796875/2822ACA59EBC8C31D5BBA0F67E25BFDD447DCECE/",
+      "workshopUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=863903567",
+      "creator": "76561198043680445",
+      "timeUpdated": 1726482073,
+      "files": [
+        {
+          "filename": "Laevateinn-Cricket-Bat-863903567-f4e76d69e7af.vpk",
+          "size": 3046834,
+          "sha256": "f4e76d69e7af394ab971f1e2cb8d42ed0f3e0497576a00c95689c024a3a2b0a5",
+          "url": "https://github.com/KAU4xis/L4D2M/releases/download/v1.0.15/Laevateinn-Cricket-Bat-863903567-f4e76d69e7af.vpk"
+        }
+      ]
+    },
+    {
+      "id": "3067093869",
+      "name": "[Golf Club] Bloodborne: Saw Cleaver",
+      "description": "Bloodborne model rip by Venturion\r\nRigged to Apex's Dead Man's Curve animation port by Leepc12XD, replacing the Golf Club\r\n\r\n[h1]Features:[/h1]\r\n- HUD icon\r\n- Custom sound  \r\n- Custom world model physics (only work in local server)\r\n- Inspect anim (play when hover weapon)\r\n\r\n[h1]Credits:[/h1]\r\nVenturion - SFM port https://steamcommunity.com/sharedfiles/filedetails/?id=1601367935\r\nLeepc12XD  - Animations https://steamcommunity.com/sharedfiles/filedetails/?id=2834554968\r\nValve, Respawn - Sound samples\r\nTyler Spicher - 3D Art\r\n7EMP3ST - Rig, material/shader, anim tweak, sound mix",
+      "previewUrl": "https://images.steamusercontent.com/ugc/2097048080776216100/A2ADDD62D77A26BA1186D840543A2C3CBC6AF2CF/",
+      "workshopUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3067093869",
+      "creator": "76561198048248045",
+      "timeUpdated": 1698723178,
+      "files": [
+        {
+          "filename": "Golf-Club-Bloodborne-Saw-Cleaver-3067093869-2b1fd8a9a3d0.vpk",
+          "size": 14526354,
+          "sha256": "2b1fd8a9a3d075fcc1f948cc6c1a1efa1f49aaa89043013a3d3debf9f522ec2b",
+          "url": "https://github.com/KAU4xis/L4D2M/releases/download/v1.0.15/Golf-Club-Bloodborne-Saw-Cleaver-3067093869-2b1fd8a9a3d0.vpk"
+        }
+      ]
+    },
+    {
+      "id": "2562776679",
+      "name": "Minecraft Trident (Replaces pitchfork)\n",
+      "description": "\"A trident is a weapon used in both melee and ranged combat and is a rare drop from drowned.\"\r\n\r\nSome time ago I saw someone asking for the Minecraft Trident and Shovel for the new weapons after TLS update, so here's the first part, the Trident\r\n\r\nThings added/changed:\r\n- Replaced pitchfork with Minecraft Trident\r\n- Custom ui icon in the HUD",
+      "previewUrl": "https://images.steamusercontent.com/ugc/1702909278032037266/3DBDFEF0CD3B3C8297F3EC013201097DBE3E8B31/",
+      "workshopUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=2562776679",
+      "creator": "76561198431601527",
+      "timeUpdated": 1628140953,
+      "files": [
+        {
+          "filename": "Minecraft-Trident-Replaces-pitchfork-2562776679-abc67c8cbc33.vpk",
+          "size": 192655,
+          "sha256": "abc67c8cbc3389935e0298f0e716a2897847b762034ef5c3a975fbe937a4ddcb",
+          "url": "https://github.com/KAU4xis/L4D2M/releases/download/v1.0.15/Minecraft-Trident-Replaces-pitchfork-2562776679-abc67c8cbc33.vpk"
+        }
+      ]
+    },
+    {
+      "id": "3429737369",
+      "name": "Pwetty Incendiary Ammo\n",
+      "description": "🌸✨ Hot Kisses - Incendiary Ammo ✨🌸\nLight up the apocalypse with Hot Kisses! 💕 This incendiary ammo box is now pink and stylish, featuring a cute yet fiery \"Hot Kisses\" design. Because setting zombies on fire should always be done with flair! 🎀🔥\n\n🌟 Features:\n\nA pink incendiary ammo box with \"Hot Kisses\" branding. 💖💋\nThe perfect blend of sweetness and destruction! 🔥✨\n🌟 More kawaii addons are on the way! 🌟\nLet me know what adorable ideas you’d love to see next! 🩷✨\n\n\n💕💕💕 Thank you for using my creations, and if you enjoy them, feel free to support me with an Award using Steam Points! 🎁 Your love helps me make more adorable mods! 🩷✨\n\n🧚🏻✨ Check out my PWETTY collection here: https://steamcommunity.com/sharedfiles/filedetails/?id=3411022395 🩷🎀",
+      "previewUrl": "https://images.steamusercontent.com/ugc/52457075113632602/C47EFB601B918D3FE27727875767782740E96027/",
+      "workshopUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3429737369",
+      "creator": "76561199658176477",
+      "timeUpdated": 1739876221,
+      "files": [
+        {
+          "filename": "Pwetty-Incendiary-Ammo-3429737369-d77f1a11ef44.vpk",
+          "size": 8389113,
+          "sha256": "d77f1a11ef446b29d89450ec67099a79cb6804289604259b3363b0f1483304f6",
+          "url": "https://github.com/KAU4xis/L4D2M/releases/download/v1.0.15/Pwetty-Incendiary-Ammo-3429737369-d77f1a11ef44.vpk"
+        }
+      ]
+    },
+    {
+      "id": "1737329813",
+      "name": "Explosive Ammo ○✿○ Chia ○✿○",
+      "description": "Explosive Ammo from the Chia Collection.\r\n\r\n[h1]Description[/h1]\r\nOften players find themself on a custom server with certain abilities and loot from SI. The intention behind this mod was to make these ammo boxes easier to spot and therefore faster to loot/find.\r\n\r\n[url=https://steamcommunity.com/profiles/76561198018980934/myworkshopfiles/?appid=550][img]https://i.imgur.com/G3jKXqs.png[/img][/url]\r\n[url=https://steamcommunity.com/sharedfiles/filedetails/?id=1767484931][img]https://i.imgur.com/dTI4Xb1.png[/img][/url]\r\n[url=https://steamcommunity.com/sharedfiles/filedetails/?id=1737521676][img]https://i.imgur.com/ycvfv4N.png[/img][/url]\r\n\r\n[quote][h1]○✿○ Features ○✿○[/h1]\r\n● Highresolution 2K Textures (All)\r\n● Improved Model\r\n● Glowing Textures[/quote]\r\n\r\n[h1]Credits[/h1]\r\nTextures & Edit: Me.\r\nSpecial Thanks to [url=https://steamcommunity.com/profiles/76561198027899782/]Twilight Sparkle[/url] for helping me out with the animations.\r\nArtwork: Amashiro Natsuki.\r\n\r\n[img]https://i.imgur.com/p7Fv1Z6.gif[/img]",
+      "previewUrl": "https://images.steamusercontent.com/ugc/794244274617542853/15480CE6F2B12C0E238A2802010C358187C8FBDD/",
+      "workshopUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=1737329813",
+      "creator": "76561198018980934",
+      "timeUpdated": 1567216221,
+      "files": [
+        {
+          "filename": "Explosive-Ammo-Chia-1737329813-0faa3cd1e956.vpk",
+          "size": 47599574,
+          "sha256": "0faa3cd1e956f0d5bcb13ab2309f8a679b43024a60bab0a2fbb344b9a2e3ce82",
+          "url": "https://github.com/KAU4xis/L4D2M/releases/download/v1.0.15/Explosive-Ammo-Chia-1737329813-0faa3cd1e956.vpk"
+        }
+      ]
+    },
+    {
+      "id": "1899187082",
+      "name": "[Honkai Impact 3]Nidhogg's Claws replaces Chainsaw",
+      "description": "【崩坏3rd】尼德霍格翼爪替换链锯\r\n\r\nThe saw blade is dynamic (all the time). Animations are origin ones.\r\n\r\n锯条是可动的（一直转）。动作沿用了原版动作。",
+      "previewUrl": "https://images.steamusercontent.com/ugc/777360850316171801/5DF5F4C99C56041AD645239EC155442179BC0C59/",
+      "workshopUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=1899187082",
+      "creator": "76561198879980070",
+      "timeUpdated": 1572102804,
+      "files": [
+        {
+          "filename": "Honkai-Impact-3-Nidhogg-s-Claws-replaces-Chainsaw-1899187082-d443e03e11bc.vpk",
+          "size": 1451077,
+          "sha256": "d443e03e11bc8d1562751a8b5dd4b4b346cbc8f8d169621e662737a88dc9ee08",
+          "url": "https://github.com/KAU4xis/L4D2M/releases/download/v1.0.15/Honkai-Impact-3-Nidhogg-s-Claws-replaces-Chainsaw-1899187082-d443e03e11bc.vpk"
+        }
+      ]
+    },
+    {
+      "id": "3453376064",
+      "name": "Oxygen Tank: Arizona Tea [Green Tea]\n",
+      "description": "[h1]This Mod Replaces The Oxygen Tank[/h1]\n\n[url=https://steamcommunity.com/profiles/76561198966715613/][b]If You Have a Request, Feel Free to Comment Down Below or On My Profile! I Can Do ANYTHING Except: 3D Models Sadly, & Scripts. If You WantFull Voice Replacements You'll Have to Pay Me And Send Me Each Individual Voiceline Yourself.[/b][/url]\n\n[*][b]The Model Is From Here: [url=https://sketchfab.com/3d-models/arizona-can-1c44d008f1a44a72a9874d75b14bd9fe][b]Sketchfab[/b][/url][/b]\n\n[*][b]This Was A Request By Me: [url=https://steamcommunity.com/profiles/76561198966715613/][b]SB67[/b][/url][/b]\n\n[*][b]The Port Was Done By: [url=https://steamcommunity.com/id/DangHolmes/]SherlockHolmes9[/url]",
+      "previewUrl": "https://images.steamusercontent.com/ugc/25441083933633051/4F4EAB5073B5968136BDC48D64C64D4E977B59FA/",
+      "workshopUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3453376064",
+      "creator": "76561198966715613",
+      "timeUpdated": 1743132930,
+      "files": [
+        {
+          "filename": "Oxygen-Tank-Arizona-Tea-Green-Tea-3453376064-843988bb7ed4.vpk",
+          "size": 1634578,
+          "sha256": "843988bb7ed46d115274037c7969edb6c5e897fa12cbd351ce0748c491d4c834",
+          "url": "https://github.com/KAU4xis/L4D2M/releases/download/v1.0.15/Oxygen-Tank-Arizona-Tea-Green-Tea-3453376064-843988bb7ed4.vpk"
+        }
+      ]
+    },
+    {
+      "id": "3478300194",
+      "name": "Slurp Barrel (Propane Tank)\n",
+      "description": "Swaps the propane tank and cafe cabinet with the Slurp Barrel from Fortnite. Original model from Epic Games. I'm not using this for profit.\n\nAnimations:\nhttps://steamcommunity.com/sharedfiles/filedetails/?id=3448076510",
+      "previewUrl": "https://images.steamusercontent.com/ugc/9949696923676218075/E4CCEA630737A8EFE2A00DD7248FCE23B1F6AD94/",
+      "workshopUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3478300194",
+      "creator": "76561198841186339",
+      "timeUpdated": 1746757550,
+      "files": [
+        {
+          "filename": "Slurp-Barrel-Propane-Tank-3478300194-5e66adc79ffe.vpk",
+          "size": 3931981,
+          "sha256": "5e66adc79ffe36010569f786c5f59b0c416efaba9ae0fb15ad558ea0b5c4294c",
+          "url": "https://github.com/KAU4xis/L4D2M/releases/download/v1.0.15/Slurp-Barrel-Propane-Tank-3478300194-5e66adc79ffe.vpk"
+        }
+      ]
+    },
+    {
+      "id": "3702965119",
+      "name": "Li'l Lisa Slurry for Explosive Barrel\n",
+      "description": "Replaces the models barrel_fuel.mdl, barrel_fuel_parta.mdl and barrel_fuel_partb.mdl\n\nThis mod was commissioned by [url=https://steamcommunity.com/id/gamerantybraixen/] GamerAntyDelphox [/url]",
+      "previewUrl": "https://images.steamusercontent.com/ugc/16042858331972041633/D40B9D273CDF8722B676D1BDF5106DCAE2967023/",
+      "workshopUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3702965119",
+      "creator": "76561198056719881",
+      "timeUpdated": 1775710462,
+      "files": [
+        {
+          "filename": "Li-l-Lisa-Slurry-for-Explosive-Barrel-3702965119-e803804c7525.vpk",
+          "size": 295456,
+          "sha256": "e803804c75255b119a774310cf6f3a40bff1cb2a213b8897c05ba2e0c1b73efe",
+          "url": "https://github.com/KAU4xis/L4D2M/releases/download/v1.0.15/Li-l-Lisa-Slurry-for-Explosive-Barrel-3702965119-e803804c7525.vpk"
+        }
+      ]
+    },
+    {
+      "id": "2815885941",
+      "name": "Pink Heavy Machine Gun",
+      "description": "[h1] Pink Heavy Machine Gun [MG]\r\n------------------------------------------------------------------\r\n\r\n[b] Matching with the pink minigun, the pink MG has been brought to the apocalypse! This gun may look cute and \r\ninnocent, but it can blast through a vicious horde of zombies. ♡\r\n\r\n------------------------------------------------------------------\r\n\r\nThis mod only replaces the heavy machine gun seen in various campaigns and survival with something way more cuter! \r\n\r\n------------------------------------------------------------------\r\n\r\nFor a lighter pink variation, click here: https://steamcommunity.com/sharedfiles/filedetails/?id=2815886907\r\n\r\nFor the matching miniguns, pick one of your choice: https://steamcommunity.com/sharedfiles/filedetails/?id=2815454065\r\n\r\nhttps://steamcommunity.com/sharedfiles/filedetails/?id=2815465563\r\n\r\n------------------------------------------------------------------\r\n\r\n[THESE PICTURES WERE TAKEN USING A COLOR CORRECTOR]",
+      "previewUrl": "https://images.steamusercontent.com/ugc/1840298513725063089/67173500256293DDA50D3F9B2AAC4574DE238AC5/",
+      "workshopUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=2815885941",
+      "creator": "76561198165410883",
+      "timeUpdated": 1654171334,
+      "files": [
+        {
+          "filename": "Pink-Heavy-Machine-Gun-2815885941-9d88afed9b55.vpk",
+          "size": 5593240,
+          "sha256": "9d88afed9b55b614ad1a31023a93047a51ba8d2a36c2ae262164a5ba629ece46",
+          "url": "https://github.com/KAU4xis/L4D2M/releases/download/v1.0.15/Pink-Heavy-Machine-Gun-2815885941-9d88afed9b55.vpk"
         }
       ]
     }
